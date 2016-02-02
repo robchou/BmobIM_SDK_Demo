@@ -24,11 +24,11 @@ import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.view.xlist.XListView;
 import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
 
-/** Ìí¼ÓºÃÓÑ
+/** æ·»åŠ å¥½å‹
   * @ClassName: AddFriendActivity
   * @Description: TODO
   * @author smile
-  * @date 2014-6-5 ÏÂÎç5:26:41
+  * @date 2014-6-5 ä¸‹åˆ5:26:41
   */
 public class AddFriendActivity extends ActivityBase implements OnClickListener,IXListViewListener,OnItemClickListener{
 	
@@ -47,7 +47,7 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 	}
 	
 	private void initView(){
-		initTopBarForLeft("²éÕÒºÃÓÑ");
+		initTopBarForLeft("æŸ¥æ‰¾å¥½å‹");
 		et_find_name = (EditText)findViewById(R.id.et_find_name);
 		btn_search = (Button)findViewById(R.id.btn_search);
 		btn_search.setOnClickListener(this);
@@ -56,11 +56,11 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 
 	private void initXListView() {
 		mListView = (XListView) findViewById(R.id.list_search);
-		// Ê×ÏÈ²»ÔÊĞí¼ÓÔØ¸ü¶à
+		// é¦–å…ˆä¸å…è®¸åŠ è½½æ›´å¤š
 		mListView.setPullLoadEnable(false);
-		// ²»ÔÊĞíÏÂÀ­
+		// ä¸å…è®¸ä¸‹æ‹‰
 		mListView.setPullRefreshEnable(false);
-		// ÉèÖÃ¼àÌıÆ÷
+		// è®¾ç½®ç›‘å¬å™¨
 		mListView.setXListViewListener(this);
 		//
 		mListView.pullRefreshing();
@@ -76,7 +76,7 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 	private void initSearchList(final boolean isUpdate){
 		if(!isUpdate){
 			progress = new ProgressDialog(AddFriendActivity.this);
-			progress.setMessage("ÕıÔÚËÑË÷...");
+			progress.setMessage("æ­£åœ¨æœç´¢...");
 			progress.setCanceledOnTouchOutside(true);
 			progress.show();
 		}
@@ -85,14 +85,14 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 			@Override
 			public void onError(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				BmobLog.i("²éÑ¯´íÎó:"+arg1);
+				BmobLog.i("æŸ¥è¯¢é”™è¯¯:"+arg1);
 				if(users!=null){
 					users.clear();
 				}
-				ShowToast("ÓÃ»§²»´æÔÚ");
+				ShowToast("ç”¨æˆ·ä¸å­˜åœ¨");
 				mListView.setPullLoadEnable(false);
 				refreshPull();
-				//ÕâÑùÄÜ±£Ö¤Ã¿´Î²éÑ¯¶¼ÊÇ´ÓÍ·¿ªÊ¼
+				//è¿™æ ·èƒ½ä¿è¯æ¯æ¬¡æŸ¥è¯¢éƒ½æ˜¯ä»å¤´å¼€å§‹
 				curPage = 0;
 			}
 
@@ -106,30 +106,30 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 					adapter.addAll(arg0);
 					if(arg0.size()<BRequest.QUERY_LIMIT_COUNT){
 						mListView.setPullLoadEnable(false);
-						ShowToast("ÓÃ»§ËÑË÷Íê³É!");
+						ShowToast("ç”¨æˆ·æœç´¢å®Œæˆ!");
 					}else{
 						mListView.setPullLoadEnable(true);
 					}
 				}else{
-					BmobLog.i("²éÑ¯³É¹¦:ÎŞ·µ»ØÖµ");
+					BmobLog.i("æŸ¥è¯¢æˆåŠŸ:æ— è¿”å›å€¼");
 					if(users!=null){
 						users.clear();
 					}
-					ShowToast("ÓÃ»§²»´æÔÚ");
+					ShowToast("ç”¨æˆ·ä¸å­˜åœ¨");
 				}
 				if(!isUpdate){
 					progress.dismiss();
 				}else{
 					refreshPull();
 				}
-				//ÕâÑùÄÜ±£Ö¤Ã¿´Î²éÑ¯¶¼ÊÇ´ÓÍ·¿ªÊ¼
+				//è¿™æ ·èƒ½ä¿è¯æ¯æ¬¡æŸ¥è¯¢éƒ½æ˜¯ä»å¤´å¼€å§‹
 				curPage = 0;
 			}
 		});
 		
 	}
 	
-	/** ²éÑ¯¸ü¶à
+	/** æŸ¥è¯¢æ›´å¤š
 	  * @Title: queryMoreNearList
 	  * @Description: TODO
 	  * @param @param page 
@@ -151,7 +151,7 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 			@Override
 			public void onError(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				ShowLog("ËÑË÷¸ü¶àÓÃ»§³ö´í:"+arg1);
+				ShowLog("æœç´¢æ›´å¤šç”¨æˆ·å‡ºé”™:"+arg1);
 				mListView.setPullLoadEnable(false);
 				refreshLoad();
 			}
@@ -174,13 +174,13 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
-		case R.id.btn_search://ËÑË÷
+		case R.id.btn_search://æœç´¢
 			users.clear();
 			searchName = et_find_name.getText().toString();
 			if(searchName!=null && !searchName.equals("")){
 				initSearchList(false);
 			}else{
-				ShowToast("ÇëÊäÈëÓÃ»§Ãû");
+				ShowToast("è¯·è¾“å…¥ç”¨æˆ·å");
 			}
 			break;
 
@@ -207,7 +207,7 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 					curPage++;
 					queryMoreSearchList(curPage);
 				}else{
-					ShowToast("Êı¾İ¼ÓÔØÍê³É");
+					ShowToast("æ•°æ®åŠ è½½å®Œæˆ");
 					mListView.setPullLoadEnable(false);
 					refreshLoad();
 				}
@@ -216,7 +216,7 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 			@Override
 			public void onFailure(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				ShowLog("²éÑ¯¸½½üµÄÈË×ÜÊıÊ§°Ü"+arg1);
+				ShowLog("æŸ¥è¯¢é™„è¿‘çš„äººæ€»æ•°å¤±è´¥"+arg1);
 				refreshLoad();
 			}
 		});

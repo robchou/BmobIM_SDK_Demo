@@ -74,18 +74,18 @@ import com.bmob.im.demo.view.xlist.XListView;
 import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
 
 /**
- * ÁÄÌì½çÃæ
+ * èŠå¤©ç•Œé¢
  * 
  * @ClassName: ChatActivity
  * @Description: TODO
  * @author smile
- * @date 2014-6-3 ÏÂÎç4:33:11
+ * @date 2014-6-3 ä¸‹åˆ4:33:11
  */
 /**
  * @ClassName: ChatActivity
  * @Description: TODO
  * @author smile
- * @date 2014-6-23 ÏÂÎç3:28:49
+ * @date 2014-6-23 ä¸‹åˆ3:28:49
  */
 @SuppressLint({ "ClickableViewAccessibility", "InflateParams" })
 public class ChatActivity extends ActivityBase implements OnClickListener,
@@ -109,12 +109,12 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 
 	private TextView tv_picture, tv_camera, tv_location;
 
-	// ÓïÒôÓĞ¹Ø
+	// è¯­éŸ³æœ‰å…³
 	RelativeLayout layout_record;
 	TextView tv_voice_tips;
 	ImageView iv_record;
 
-	private Drawable[] drawable_Anims;// »°Í²¶¯»­
+	private Drawable[] drawable_Anims;// è¯ç­’åŠ¨ç”»
 
 	BmobRecordManager recordManager;
 
@@ -125,20 +125,20 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		setContentView(R.layout.activity_chat);
 		manager = BmobChatManager.getInstance(this);
 		MsgPagerNum = 0;
-		// ×é×°ÁÄÌì¶ÔÏó
+		// ç»„è£…èŠå¤©å¯¹è±¡
 		targetUser = (BmobChatUser) getIntent().getSerializableExtra("user");
 		targetId = targetUser.getObjectId();
-//		BmobLog.i("ÁÄÌì¶ÔÏó£º" + targetUser.getUsername() + ",targetId = "
+//		BmobLog.i("èŠå¤©å¯¹è±¡ï¼š" + targetUser.getUsername() + ",targetId = "
 //				+ targetId);
-		//×¢²á¹ã²¥½ÓÊÕÆ÷
+		//æ³¨å†Œå¹¿æ’­æ¥æ”¶å™¨
 		initNewMessageBroadCast();
 		initView();
 	}
 	
 	private void initRecordManager(){
-		// ÓïÒôÏà¹Ø¹ÜÀíÆ÷
+		// è¯­éŸ³ç›¸å…³ç®¡ç†å™¨
 		recordManager = BmobRecordManager.getInstance(this);
-		// ÉèÖÃÒôÁ¿´óĞ¡¼àÌı--ÔÚÕâÀï¿ª·¢Õß¿ÉÒÔ×Ô¼ºÊµÏÖ£ºµ±Ê£Óà10ÃëÇé¿öÏÂµÄ¸øÓÃ»§µÄÌáÊ¾£¬ÀàËÆÎ¢ĞÅµÄÓïÒôÄÇÑù
+		// è®¾ç½®éŸ³é‡å¤§å°ç›‘å¬--åœ¨è¿™é‡Œå¼€å‘è€…å¯ä»¥è‡ªå·±å®ç°ï¼šå½“å‰©ä½™10ç§’æƒ…å†µä¸‹çš„ç»™ç”¨æˆ·çš„æç¤ºï¼Œç±»ä¼¼å¾®ä¿¡çš„è¯­éŸ³é‚£æ ·
 		recordManager.setOnRecordChangeListener(new OnRecordChangeListener() {
 	
 			@Override
@@ -150,16 +150,16 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			@Override
 			public void onTimeChanged(int recordTime, String localPath) {
 				// TODO Auto-generated method stub
-				BmobLog.i("voice", "ÒÑÂ¼Òô³¤¶È:" + recordTime);
-				if (recordTime >= BmobRecordManager.MAX_RECORD_TIME) {// 1·ÖÖÓ½áÊø£¬·¢ËÍÏûÏ¢
-					// ĞèÒªÖØÖÃ°´Å¥
+				BmobLog.i("voice", "å·²å½•éŸ³é•¿åº¦:" + recordTime);
+				if (recordTime >= BmobRecordManager.MAX_RECORD_TIME) {// 1åˆ†é’Ÿç»“æŸï¼Œå‘é€æ¶ˆæ¯
+					// éœ€è¦é‡ç½®æŒ‰é’®
 					btn_speak.setPressed(false);
 					btn_speak.setClickable(false);
-					// È¡ÏûÂ¼Òô¿ò
+					// å–æ¶ˆå½•éŸ³æ¡†
 					layout_record.setVisibility(View.INVISIBLE);
-					// ·¢ËÍÓïÒôÏûÏ¢
+					// å‘é€è¯­éŸ³æ¶ˆæ¯
 					sendVoiceMessage(localPath, recordTime);
-					//ÊÇÎªÁË·ÀÖ¹¹ıÁËÂ¼ÒôÊ±¼äºó£¬»á¶à·¢Ò»ÌõÓïÒô³öÈ¥µÄÇé¿ö¡£
+					//æ˜¯ä¸ºäº†é˜²æ­¢è¿‡äº†å½•éŸ³æ—¶é—´åï¼Œä¼šå¤šå‘ä¸€æ¡è¯­éŸ³å‡ºå»çš„æƒ…å†µã€‚
 					handler.postDelayed(new Runnable() {
 	
 						@Override
@@ -178,14 +178,14 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	private void initView() {
 		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
 		mListView = (XListView) findViewById(R.id.mListView);
-		initTopBarForLeft("Óë" + targetUser.getUsername() + "¶Ô»°");
+		initTopBarForLeft("ä¸" + targetUser.getUsername() + "å¯¹è¯");
 		initBottomView();
 		initXListView();
 		initVoiceView();
 	}
 
 	/**
-	 * ³õÊ¼»¯ÓïÒô²¼¾Ö
+	 * åˆå§‹åŒ–è¯­éŸ³å¸ƒå±€
 	 * 
 	 * @Title: initVoiceView
 	 * @Description: TODO
@@ -203,11 +203,11 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * ³¤°´Ëµ»°
+	 * é•¿æŒ‰è¯´è¯
 	 * @ClassName: VoiceTouchListen
 	 * @Description: TODO
 	 * @author smile
-	 * @date 2014-7-1 ÏÂÎç6:10:16
+	 * @date 2014-7-1 ä¸‹åˆ6:10:16
 	 */
 	class VoiceTouchListen implements View.OnTouchListener {
 		@Override
@@ -215,14 +215,14 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
 				if (!CommonUtils.checkSdCard()) {
-					ShowToast("·¢ËÍÓïÒôĞèÒªsdcardÖ§³Ö£¡");
+					ShowToast("å‘é€è¯­éŸ³éœ€è¦sdcardæ”¯æŒï¼");
 					return false;
 				}
 				try {
 					v.setPressed(true);
 					layout_record.setVisibility(View.VISIBLE);
 					tv_voice_tips.setText(getString(R.string.voice_cancel_tips));
-					// ¿ªÊ¼Â¼Òô
+					// å¼€å§‹å½•éŸ³
 					recordManager.startRecording(targetId);
 				} catch (Exception e) {
 				}
@@ -242,18 +242,18 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 				v.setPressed(false);
 				layout_record.setVisibility(View.INVISIBLE);
 				try {
-					if (event.getY() < 0) {// ·ÅÆúÂ¼Òô
+					if (event.getY() < 0) {// æ”¾å¼ƒå½•éŸ³
 						recordManager.cancelRecording();
-						BmobLog.i("voice", "·ÅÆú·¢ËÍÓïÒô");
+						BmobLog.i("voice", "æ”¾å¼ƒå‘é€è¯­éŸ³");
 					} else {
 						int recordTime = recordManager.stopRecording();
 						if (recordTime > 1) {
-							// ·¢ËÍÓïÒôÎÄ¼ş
-							BmobLog.i("voice", "·¢ËÍÓïÒô");
+							// å‘é€è¯­éŸ³æ–‡ä»¶
+							BmobLog.i("voice", "å‘é€è¯­éŸ³");
 							sendVoiceMessage(
 									recordManager.getRecordFilePath(targetId),
 									recordTime);
-						} else {// Â¼ÒôÊ±¼ä¹ı¶Ì£¬ÔòÌáÊ¾Â¼Òô¹ı¶ÌµÄÌáÊ¾
+						} else {// å½•éŸ³æ—¶é—´è¿‡çŸ­ï¼Œåˆ™æç¤ºå½•éŸ³è¿‡çŸ­çš„æç¤º
 							layout_record.setVisibility(View.GONE);
 							showShortToast().show();
 						}
@@ -269,7 +269,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * ·¢ËÍÓïÒôÏûÏ¢
+	 * å‘é€è¯­éŸ³æ¶ˆæ¯
 	 * @Title: sendImageMessage
 	 * @Description: TODO
 	 * @param @param localPath
@@ -295,7 +295,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 					@Override
 					public void onFailure(int error, String arg1) {
 						// TODO Auto-generated method stub
-						ShowLog("ÉÏ´«ÓïÒôÊ§°Ü -->arg1£º" + arg1);
+						ShowLog("ä¸Šä¼ è¯­éŸ³å¤±è´¥ -->arg1ï¼š" + arg1);
 						mAdapter.notifyDataSetChanged();
 					}
 				});
@@ -304,7 +304,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	Toast toast;
 
 	/**
-	 * ÏÔÊ¾Â¼ÒôÊ±¼ä¹ı¶ÌµÄToast
+	 * æ˜¾ç¤ºå½•éŸ³æ—¶é—´è¿‡çŸ­çš„Toast
 	 * @Title: showShortToast
 	 * @return void
 	 * @throws
@@ -322,7 +322,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * ³õÊ¼»¯ÓïÒô¶¯»­×ÊÔ´
+	 * åˆå§‹åŒ–è¯­éŸ³åŠ¨ç”»èµ„æº
 	 * @Title: initVoiceAnimRes
 	 * @Description: TODO
 	 * @param
@@ -339,7 +339,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * ¼ÓÔØÏûÏ¢ÀúÊ·£¬´ÓÊı¾İ¿âÖĞ¶Á³ö
+	 * åŠ è½½æ¶ˆæ¯å†å²ï¼Œä»æ•°æ®åº“ä¸­è¯»å‡º
 	 */
 	private List<BmobMsg> initMsgData() {
 		List<BmobMsg> list = BmobDB.create(this).queryMessages(targetId,MsgPagerNum);
@@ -347,7 +347,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * ½çÃæË¢ĞÂ
+	 * ç•Œé¢åˆ·æ–°
 	 * @Title: initOrRefresh
 	 * @Description: TODO
 	 * @param
@@ -356,11 +356,11 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	 */
 	private void initOrRefresh() {
 		if (mAdapter != null) {
-			if (MyMessageReceiver.mNewNum != 0) {// ÓÃÓÚ¸üĞÂµ±ÔÚÁÄÌì½çÃæËøÆÁÆÚ¼äÀ´ÁËÏûÏ¢£¬ÕâÊ±ÔÙ»Øµ½ÁÄÌìÒ³ÃæµÄÊ±ºòĞèÒªÏÔÊ¾ĞÂÀ´µÄÏûÏ¢
-				int news=  MyMessageReceiver.mNewNum;//ÓĞ¿ÉÄÜËøÆÁÆÚ¼ä£¬À´ÁËNÌõÏûÏ¢,Òò´ËĞèÒªµ¹ĞğÏÔÊ¾ÔÚ½çÃæÉÏ
+			if (MyMessageReceiver.mNewNum != 0) {// ç”¨äºæ›´æ–°å½“åœ¨èŠå¤©ç•Œé¢é”å±æœŸé—´æ¥äº†æ¶ˆæ¯ï¼Œè¿™æ—¶å†å›åˆ°èŠå¤©é¡µé¢çš„æ—¶å€™éœ€è¦æ˜¾ç¤ºæ–°æ¥çš„æ¶ˆæ¯
+				int news=  MyMessageReceiver.mNewNum;//æœ‰å¯èƒ½é”å±æœŸé—´ï¼Œæ¥äº†Næ¡æ¶ˆæ¯,å› æ­¤éœ€è¦å€’å™æ˜¾ç¤ºåœ¨ç•Œé¢ä¸Š
 				int size = initMsgData().size();
 				for(int i=(news-1);i>=0;i--){
-					mAdapter.add(initMsgData().get(size-(i+1)));// Ìí¼Ó×îºóÒ»ÌõÏûÏ¢µ½½çÃæÏÔÊ¾
+					mAdapter.add(initMsgData().get(size-(i+1)));// æ·»åŠ æœ€åä¸€æ¡æ¶ˆæ¯åˆ°ç•Œé¢æ˜¾ç¤º
 				}
 				mListView.setSelection(mAdapter.getCount() - 1);
 			} else {
@@ -382,29 +382,29 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	private void initBottomView() {
-		// ×î×ó±ß
+		// æœ€å·¦è¾¹
 		btn_chat_add = (Button) findViewById(R.id.btn_chat_add);
 		btn_chat_emo = (Button) findViewById(R.id.btn_chat_emo);
 		btn_chat_add.setOnClickListener(this);
 		btn_chat_emo.setOnClickListener(this);
-		// ×îÓÒ±ß
+		// æœ€å³è¾¹
 		btn_chat_keyboard = (Button) findViewById(R.id.btn_chat_keyboard);
 		btn_chat_voice = (Button) findViewById(R.id.btn_chat_voice);
 		btn_chat_voice.setOnClickListener(this);
 		btn_chat_keyboard.setOnClickListener(this);
 		btn_chat_send = (Button) findViewById(R.id.btn_chat_send);
 		btn_chat_send.setOnClickListener(this);
-		// ×îÏÂÃæ
+		// æœ€ä¸‹é¢
 		layout_more = (LinearLayout) findViewById(R.id.layout_more);
 		layout_emo = (LinearLayout) findViewById(R.id.layout_emo);
 		layout_add = (LinearLayout) findViewById(R.id.layout_add);
 		initAddView();
 		initEmoView();
 
-		// ×îÖĞ¼ä
-		// ÓïÒô¿ò
+		// æœ€ä¸­é—´
+		// è¯­éŸ³æ¡†
 		btn_speak = (Button) findViewById(R.id.btn_speak);
-		// ÊäÈë¿ò
+		// è¾“å…¥æ¡†
 		edit_user_comment = (EmoticonsEditText) findViewById(R.id.edit_user_comment);
 		edit_user_comment.setOnClickListener(this);
 		edit_user_comment.addTextChangedListener(new TextWatcher() {
@@ -444,7 +444,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	List<FaceText> emos;
 
 	/**
-	 * ³õÊ¼»¯±íÇé²¼¾Ö
+	 * åˆå§‹åŒ–è¡¨æƒ…å¸ƒå±€
 	 * @Title: initEmoView
 	 * @Description: TODO
 	 * @param
@@ -487,7 +487,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 						CharSequence content = edit_user_comment.getText()
 								.insert(start, key);
 						edit_user_comment.setText(content);
-						// ¶¨Î»¹â±êÎ»ÖÃ
+						// å®šä½å…‰æ ‡ä½ç½®
 						CharSequence info = edit_user_comment.getText();
 						if (info instanceof Spannable) {
 							Spannable spanText = (Spannable) info;
@@ -507,15 +507,15 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	MessageChatAdapter mAdapter;
 	
 	private void initXListView() {
-		// Ê×ÏÈ²»ÔÊĞí¼ÓÔØ¸ü¶à
+		// é¦–å…ˆä¸å…è®¸åŠ è½½æ›´å¤š
 		mListView.setPullLoadEnable(false);
-		// ÔÊĞíÏÂÀ­
+		// å…è®¸ä¸‹æ‹‰
 		mListView.setPullRefreshEnable(true);
-		// ÉèÖÃ¼àÌıÆ÷
+		// è®¾ç½®ç›‘å¬å™¨
 		mListView.setXListViewListener(this);
 		mListView.pullRefreshing();
 		mListView.setDividerHeight(0);
-		// ¼ÓÔØÊı¾İ
+		// åŠ è½½æ•°æ®
 		initOrRefresh();
 		mListView.setSelection(mAdapter.getCount() - 1);
 		mListView.setOnTouchListener(new OnTouchListener() {
@@ -533,21 +533,21 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			}
 		});
 
-		// ÖØ·¢°´Å¥µÄµã»÷ÊÂ¼ş
+		// é‡å‘æŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶
 		mAdapter.setOnInViewClickListener(R.id.iv_fail_resend,
 				new MessageChatAdapter.onInternalClickListener() {
 
 					@Override
 					public void OnClickListener(View parentV, View v,
 							Integer position, Object values) {
-						// ÖØ·¢ÏûÏ¢
+						// é‡å‘æ¶ˆæ¯
 						showResendDialog(parentV, v, values);
 					}
 				});
 	}
 
 	/**
-	 * ÏÔÊ¾ÖØ·¢°´Å¥ showResendDialog
+	 * æ˜¾ç¤ºé‡å‘æŒ‰é’® showResendDialog
 	 * @Title: showResendDialog
 	 * @Description: TODO
 	 * @param @param recent
@@ -555,13 +555,13 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	 * @throws
 	 */
 	public void showResendDialog(final View parentV, View v, final Object values) {
-		DialogTips dialog = new DialogTips(this, "È·¶¨ÖØ·¢¸ÃÏûÏ¢", "È·¶¨", "È¡Ïû", "ÌáÊ¾",
+		DialogTips dialog = new DialogTips(this, "ç¡®å®šé‡å‘è¯¥æ¶ˆæ¯", "ç¡®å®š", "å–æ¶ˆ", "æç¤º",
 				true);
-		// ÉèÖÃ³É¹¦ÊÂ¼ş
+		// è®¾ç½®æˆåŠŸäº‹ä»¶
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
 				if (((BmobMsg) values).getMsgType() == BmobConfig.TYPE_IMAGE
-						|| ((BmobMsg) values).getMsgType() == BmobConfig.TYPE_VOICE) {// Í¼Æ¬ºÍÓïÒôÀàĞÍµÄ²ÉÓÃ
+						|| ((BmobMsg) values).getMsgType() == BmobConfig.TYPE_VOICE) {// å›¾ç‰‡å’Œè¯­éŸ³ç±»å‹çš„é‡‡ç”¨
 					resendFileMsg(parentV, values);
 				} else {
 					resendTextMsg(parentV, values);
@@ -569,13 +569,13 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 				dialogInterface.dismiss();
 			}
 		});
-		// ÏÔÊ¾È·ÈÏ¶Ô»°¿ò
+		// æ˜¾ç¤ºç¡®è®¤å¯¹è¯æ¡†
 		dialog.show();
 		dialog = null;
 	}
 
 	/**
-	 * ÖØ·¢ÎÄ±¾ÏûÏ¢
+	 * é‡å‘æ–‡æœ¬æ¶ˆæ¯
 	 */
 	private void resendTextMsg(final View parentV, final Object values) {
 		BmobChatManager.getInstance(ChatActivity.this).resendTextMessage(
@@ -584,7 +584,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
-						ShowLog("·¢ËÍ³É¹¦");
+						ShowLog("å‘é€æˆåŠŸ");
 						((BmobMsg) values)
 								.setStatus(BmobConfig.STATUS_SEND_SUCCESS);
 						parentV.findViewById(R.id.progress_load).setVisibility(
@@ -594,13 +594,13 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 						parentV.findViewById(R.id.tv_send_status)
 								.setVisibility(View.VISIBLE);
 						((TextView) parentV.findViewById(R.id.tv_send_status))
-								.setText("ÒÑ·¢ËÍ");
+								.setText("å·²å‘é€");
 					}
 
 					@Override
 					public void onFailure(int arg0, String arg1) {
 						// TODO Auto-generated method stub
-						ShowLog("·¢ËÍÊ§°Ü:" + arg1);
+						ShowLog("å‘é€å¤±è´¥:" + arg1);
 						((BmobMsg) values)
 								.setStatus(BmobConfig.STATUS_SEND_FAIL);
 						parentV.findViewById(R.id.progress_load).setVisibility(
@@ -615,7 +615,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * ÖØ·¢Í¼Æ¬ÏûÏ¢
+	 * é‡å‘å›¾ç‰‡æ¶ˆæ¯
 	 * @Title: resendImageMsg
 	 * @Description: TODO
 	 * @param @param parentV
@@ -651,7 +651,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 									.setVisibility(View.VISIBLE);
 							((TextView) parentV
 									.findViewById(R.id.tv_send_status))
-									.setText("ÒÑ·¢ËÍ");
+									.setText("å·²å‘é€");
 						}
 					}
 
@@ -675,7 +675,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.edit_user_comment:// µã»÷ÎÄ±¾ÊäÈë¿ò
+		case R.id.edit_user_comment:// ç‚¹å‡»æ–‡æœ¬è¾“å…¥æ¡†
 			mListView.setSelection(mListView.getCount() - 1);
 			if (layout_more.getVisibility() == View.VISIBLE) {
 				layout_add.setVisibility(View.GONE);
@@ -683,7 +683,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 				layout_more.setVisibility(View.GONE);
 			}
 			break;
-		case R.id.btn_chat_emo:// µã»÷Ğ¦Á³Í¼±ê
+		case R.id.btn_chat_emo:// ç‚¹å‡»ç¬‘è„¸å›¾æ ‡
 			if (layout_more.getVisibility() == View.GONE) {
 				showEditState(true);
 			} else {
@@ -696,7 +696,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			}
 
 			break;
-		case R.id.btn_chat_add:// Ìí¼Ó°´Å¥-ÏÔÊ¾Í¼Æ¬¡¢ÅÄÕÕ¡¢Î»ÖÃ
+		case R.id.btn_chat_add:// æ·»åŠ æŒ‰é’®-æ˜¾ç¤ºå›¾ç‰‡ã€æ‹ç…§ã€ä½ç½®
 			if (layout_more.getVisibility() == View.GONE) {
 				layout_more.setVisibility(View.VISIBLE);
 				layout_add.setVisibility(View.VISIBLE);
@@ -712,7 +712,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			}
 
 			break;
-		case R.id.btn_chat_voice:// ÓïÒô°´Å¥
+		case R.id.btn_chat_voice:// è¯­éŸ³æŒ‰é’®
 			edit_user_comment.setVisibility(View.GONE);
 			layout_more.setVisibility(View.GONE);
 			btn_chat_voice.setVisibility(View.GONE);
@@ -720,13 +720,13 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			btn_speak.setVisibility(View.VISIBLE);
 			hideSoftInputView();
 			break;
-		case R.id.btn_chat_keyboard:// ¼üÅÌ°´Å¥£¬µã»÷¾Íµ¯³ö¼üÅÌ²¢Òş²ØµôÉùÒô°´Å¥
+		case R.id.btn_chat_keyboard:// é”®ç›˜æŒ‰é’®ï¼Œç‚¹å‡»å°±å¼¹å‡ºé”®ç›˜å¹¶éšè—æ‰å£°éŸ³æŒ‰é’®
 			showEditState(false);
 			break;
-		case R.id.btn_chat_send:// ·¢ËÍÎÄ±¾
+		case R.id.btn_chat_send:// å‘é€æ–‡æœ¬
 			final String msg = edit_user_comment.getText().toString();
 			if (msg.equals("")) {
-				ShowToast("ÇëÊäÈë·¢ËÍÏûÏ¢!");
+				ShowToast("è¯·è¾“å…¥å‘é€æ¶ˆæ¯!");
 				return;
 			}
 			boolean isNetConnected = CommonUtils.isNetworkAvailable(this);
@@ -734,22 +734,22 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 				ShowToast(R.string.network_tips);
 				// return;
 			}
-			// ×é×°BmobMessage¶ÔÏó
+			// ç»„è£…BmobMessageå¯¹è±¡
 			BmobMsg message = BmobMsg.createTextSendMsg(this, targetId, msg);
 			message.setExtra("Bmob");
-			// Ä¬ÈÏ·¢ËÍÍê³É£¬½«Êı¾İ±£´æµ½±¾µØÏûÏ¢±íºÍ×î½ü»á»°±íÖĞ
+			// é»˜è®¤å‘é€å®Œæˆï¼Œå°†æ•°æ®ä¿å­˜åˆ°æœ¬åœ°æ¶ˆæ¯è¡¨å’Œæœ€è¿‘ä¼šè¯è¡¨ä¸­
 			manager.sendTextMessage(targetUser, message);
-			// Ë¢ĞÂ½çÃæ
+			// åˆ·æ–°ç•Œé¢
 			refreshMessage(message);
 
 			break;
-		case R.id.tv_camera:// ÅÄÕÕ
+		case R.id.tv_camera:// æ‹ç…§
 			selectImageFromCamera();
 			break;
-		case R.id.tv_picture:// Í¼Æ¬
+		case R.id.tv_picture:// å›¾ç‰‡
 			selectImageFromLocal();
 			break;
-		case R.id.tv_location:// Î»ÖÃ
+		case R.id.tv_location:// ä½ç½®
 			selectLocationFromMap();
 			break;
 		default:
@@ -758,7 +758,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * Æô¶¯µØÍ¼
+	 * å¯åŠ¨åœ°å›¾
 	 * 
 	 * @Title: selectLocationFromMap
 	 * @Description: TODO
@@ -772,10 +772,10 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		startActivityForResult(intent, BmobConstants.REQUESTCODE_TAKE_LOCATION);
 	}
 
-	private String localCameraPath = "";// ÅÄÕÕºóµÃµ½µÄÍ¼Æ¬µØÖ·
+	private String localCameraPath = "";// æ‹ç…§åå¾—åˆ°çš„å›¾ç‰‡åœ°å€
 
 	/**
-	 * Æô¶¯Ïà»úÅÄÕÕ startCamera
+	 * å¯åŠ¨ç›¸æœºæ‹ç…§ startCamera
 	 * 
 	 * @Title: startCamera
 	 * @throws
@@ -796,7 +796,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * Ñ¡ÔñÍ¼Æ¬
+	 * é€‰æ‹©å›¾ç‰‡
 	 * @Title: selectImage
 	 * @Description: TODO
 	 * @param
@@ -820,8 +820,8 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
-			case BmobConstants.REQUESTCODE_TAKE_CAMERA:// µ±È¡µ½ÖµµÄÊ±ºò²ÅÉÏ´«pathÂ·¾¶ÏÂµÄÍ¼Æ¬µ½·şÎñÆ÷
-				ShowLog("±¾µØÍ¼Æ¬µÄµØÖ·£º" + localCameraPath);
+			case BmobConstants.REQUESTCODE_TAKE_CAMERA:// å½“å–åˆ°å€¼çš„æ—¶å€™æ‰ä¸Šä¼ pathè·¯å¾„ä¸‹çš„å›¾ç‰‡åˆ°æœåŠ¡å™¨
+				ShowLog("æœ¬åœ°å›¾ç‰‡çš„åœ°å€ï¼š" + localCameraPath);
 				sendImageMessage(localCameraPath);
 				break;
 			case BmobConstants.REQUESTCODE_TAKE_LOCAL:
@@ -836,21 +836,21 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 						cursor.close();
 						if (localSelectPath == null
 								|| localSelectPath.equals("null")) {
-							ShowToast("ÕÒ²»µ½ÄúÏëÒªµÄÍ¼Æ¬");
+							ShowToast("æ‰¾ä¸åˆ°æ‚¨æƒ³è¦çš„å›¾ç‰‡");
 							return;
 						}
 						sendImageMessage(localSelectPath);
 					}
 				}
 				break;
-			case BmobConstants.REQUESTCODE_TAKE_LOCATION:// µØÀíÎ»ÖÃ
-				double latitude = data.getDoubleExtra("x", 0);// Î¬¶È
-				double longtitude = data.getDoubleExtra("y", 0);// ¾­¶È
+			case BmobConstants.REQUESTCODE_TAKE_LOCATION:// åœ°ç†ä½ç½®
+				double latitude = data.getDoubleExtra("x", 0);// ç»´åº¦
+				double longtitude = data.getDoubleExtra("y", 0);// ç»åº¦
 				String address = data.getStringExtra("address");
 				if (address != null && !address.equals("")) {
 					sendLocationMessage(address, latitude, longtitude);
 				} else {
-					ShowToast("ÎŞ·¨»ñÈ¡µ½ÄúµÄÎ»ÖÃĞÅÏ¢!");
+					ShowToast("æ— æ³•è·å–åˆ°æ‚¨çš„ä½ç½®ä¿¡æ¯!");
 				}
 
 				break;
@@ -859,7 +859,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	}
 
 	/**
-	 * ·¢ËÍÎ»ÖÃĞÅÏ¢
+	 * å‘é€ä½ç½®ä¿¡æ¯
 	 * @Title: sendLocationMessage
 	 * @Description: TODO
 	 * @param @param address
@@ -875,17 +875,17 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			layout_add.setVisibility(View.GONE);
 			layout_emo.setVisibility(View.GONE);
 		}
-		// ×é×°BmobMessage¶ÔÏó
+		// ç»„è£…BmobMessageå¯¹è±¡
 		BmobMsg message = BmobMsg.createLocationSendMsg(this, targetId,
 				address, latitude, longtitude);
-		// Ä¬ÈÏ·¢ËÍÍê³É£¬½«Êı¾İ±£´æµ½±¾µØÏûÏ¢±íºÍ×î½ü»á»°±íÖĞ
+		// é»˜è®¤å‘é€å®Œæˆï¼Œå°†æ•°æ®ä¿å­˜åˆ°æœ¬åœ°æ¶ˆæ¯è¡¨å’Œæœ€è¿‘ä¼šè¯è¡¨ä¸­
 		manager.sendTextMessage(targetUser, message);
-		// Ë¢ĞÂ½çÃæ
+		// åˆ·æ–°ç•Œé¢
 		refreshMessage(message);
 	}
 
 	/**
-	 * Ä¬ÈÏÏÈÉÏ´«±¾µØÍ¼Æ¬£¬Ö®ºó²ÅÏÔÊ¾³öÀ´ sendImageMessage
+	 * é»˜è®¤å…ˆä¸Šä¼ æœ¬åœ°å›¾ç‰‡ï¼Œä¹‹åæ‰æ˜¾ç¤ºå‡ºæ¥ sendImageMessage
 	 * @Title: sendImageMessage
 	 * @Description: TODO
 	 * @param @param localPath
@@ -903,7 +903,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			@Override
 			public void onStart(BmobMsg msg) {
 				// TODO Auto-generated method stub
-				ShowLog("¿ªÊ¼ÉÏ´«onStart£º" + msg.getContent() + ",×´Ì¬£º"
+				ShowLog("å¼€å§‹ä¸Šä¼ onStartï¼š" + msg.getContent() + ",çŠ¶æ€ï¼š"
 						+ msg.getStatus());
 				refreshMessage(msg);
 			}
@@ -917,17 +917,17 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			@Override
 			public void onFailure(int error, String arg1) {
 				// TODO Auto-generated method stub
-				ShowLog("ÉÏ´«Ê§°Ü -->arg1£º" + arg1);
+				ShowLog("ä¸Šä¼ å¤±è´¥ -->arg1ï¼š" + arg1);
 				mAdapter.notifyDataSetChanged();
 			}
 		});
 	}
 
 	/**
-	 * ¸ù¾İÊÇ·ñµã»÷Ğ¦Á³À´ÏÔÊ¾ÎÄ±¾ÊäÈë¿òµÄ×´Ì¬
+	 * æ ¹æ®æ˜¯å¦ç‚¹å‡»ç¬‘è„¸æ¥æ˜¾ç¤ºæ–‡æœ¬è¾“å…¥æ¡†çš„çŠ¶æ€
 	 * @Title: showEditState
 	 * @Description: TODO
-	 * @param @param isEmo: ÓÃÓÚÇø·ÖÎÄ×ÖºÍ±íÇé
+	 * @param @param isEmo: ç”¨äºåŒºåˆ†æ–‡å­—å’Œè¡¨æƒ…
 	 * @return void
 	 * @throws
 	 */
@@ -949,7 +949,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 		}
 	}
 
-	// ÏÔÊ¾Èí¼üÅÌ
+	// æ˜¾ç¤ºè½¯é”®ç›˜
 	public void showSoftInputView() {
 		if (getWindow().getAttributes().softInputMode == WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
 			if (getCurrentFocus() != null)
@@ -962,13 +962,13 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		// ĞÂÏûÏ¢µ½´ï£¬ÖØĞÂË¢ĞÂ½çÃæ
+		// æ–°æ¶ˆæ¯åˆ°è¾¾ï¼Œé‡æ–°åˆ·æ–°ç•Œé¢
 		initOrRefresh();
-		MyMessageReceiver.ehList.add(this);// ¼àÌıÍÆËÍµÄÏûÏ¢
-		// ÓĞ¿ÉÄÜËøÆÁÆÚ¼ä£¬ÔÚÁÄÌì½çÃæ³öÏÖÍ¨ÖªÀ¸£¬ÕâÊ±ºòĞèÒªÇå³ıÍ¨ÖªºÍÇå¿ÕÎ´¶ÁÏûÏ¢Êı
+		MyMessageReceiver.ehList.add(this);// ç›‘å¬æ¨é€çš„æ¶ˆæ¯
+		// æœ‰å¯èƒ½é”å±æœŸé—´ï¼Œåœ¨èŠå¤©ç•Œé¢å‡ºç°é€šçŸ¥æ ï¼Œè¿™æ—¶å€™éœ€è¦æ¸…é™¤é€šçŸ¥å’Œæ¸…ç©ºæœªè¯»æ¶ˆæ¯æ•°
 		BmobNotifyManager.getInstance(this).cancelNotify();
 		BmobDB.create(this).resetUnread(targetId);
-		//Çå¿ÕÏûÏ¢Î´¶ÁÊı-Õâ¸öÒªÔÚË¢ĞÂÖ®ºó
+		//æ¸…ç©ºæ¶ˆæ¯æœªè¯»æ•°-è¿™ä¸ªè¦åœ¨åˆ·æ–°ä¹‹å
 		MyMessageReceiver.mNewNum=0;
 	}
 
@@ -976,13 +976,13 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MyMessageReceiver.ehList.remove(this);// ¼àÌıÍÆËÍµÄÏûÏ¢
-		// Í£Ö¹Â¼Òô
+		MyMessageReceiver.ehList.remove(this);// ç›‘å¬æ¨é€çš„æ¶ˆæ¯
+		// åœæ­¢å½•éŸ³
 		if (recordManager.isRecording()) {
 			recordManager.cancelRecording();
 			layout_record.setVisibility(View.GONE);
 		}
-		// Í£Ö¹²¥·ÅÂ¼Òô
+		// åœæ­¢æ’­æ”¾å½•éŸ³
 		if (NewRecordPlayClickListener.isPlaying
 				&& NewRecordPlayClickListener.currentPlayListener != null) {
 			NewRecordPlayClickListener.currentPlayListener.stopPlayRecord();
@@ -997,32 +997,32 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 				BmobMsg message = (BmobMsg) msg.obj;
 				String uid = message.getBelongId();
 				BmobMsg m = BmobChatManager.getInstance(ChatActivity.this).getMessage(message.getConversationId(), message.getMsgTime());
-				if (!uid.equals(targetId))// Èç¹û²»ÊÇµ±Ç°ÕıÔÚÁÄÌì¶ÔÏóµÄÏûÏ¢£¬²»´¦Àí
+				if (!uid.equals(targetId))// å¦‚æœä¸æ˜¯å½“å‰æ­£åœ¨èŠå¤©å¯¹è±¡çš„æ¶ˆæ¯ï¼Œä¸å¤„ç†
 					return;
 				mAdapter.add(m);
-				// ¶¨Î»
+				// å®šä½
 				mListView.setSelection(mAdapter.getCount() - 1);
-				//È¡Ïûµ±Ç°ÁÄÌì¶ÔÏóµÄÎ´¶Á±êÊ¾
+				//å–æ¶ˆå½“å‰èŠå¤©å¯¹è±¡çš„æœªè¯»æ ‡ç¤º
 				BmobDB.create(ChatActivity.this).resetUnread(targetId);
 			}
 		}
 	};
 
-	public static final int NEW_MESSAGE = 0x001;// ÊÕµ½ÏûÏ¢
+	public static final int NEW_MESSAGE = 0x001;// æ”¶åˆ°æ¶ˆæ¯
 	
 	NewBroadcastReceiver  receiver;
 	
 	private void initNewMessageBroadCast(){
-		// ×¢²á½ÓÊÕÏûÏ¢¹ã²¥
+		// æ³¨å†Œæ¥æ”¶æ¶ˆæ¯å¹¿æ’­
 		receiver = new NewBroadcastReceiver();
 		IntentFilter intentFilter = new IntentFilter(BmobConfig.BROADCAST_NEW_MESSAGE);
-		//ÉèÖÃ¹ã²¥µÄÓÅÏÈ¼¶±ğ´óÓÚMainacitivity,ÕâÑùÈç¹ûÏûÏ¢À´µÄÊ±ºòÕıºÃÔÚchatÒ³Ãæ£¬Ö±½ÓÏÔÊ¾ÏûÏ¢£¬¶ø²»ÊÇÌáÊ¾ÏûÏ¢Î´¶Á
+		//è®¾ç½®å¹¿æ’­çš„ä¼˜å…ˆçº§åˆ«å¤§äºMainacitivity,è¿™æ ·å¦‚æœæ¶ˆæ¯æ¥çš„æ—¶å€™æ­£å¥½åœ¨chaté¡µé¢ï¼Œç›´æ¥æ˜¾ç¤ºæ¶ˆæ¯ï¼Œè€Œä¸æ˜¯æç¤ºæ¶ˆæ¯æœªè¯»
 		intentFilter.setPriority(5);
 		registerReceiver(receiver, intentFilter);
 	}
 	
 	/**
-	 * ĞÂÏûÏ¢¹ã²¥½ÓÊÕÕß
+	 * æ–°æ¶ˆæ¯å¹¿æ’­æ¥æ”¶è€…
 	 * 
 	 */
 	private class NewBroadcastReceiver extends BroadcastReceiver {
@@ -1031,25 +1031,25 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 			String from = intent.getStringExtra("fromId");
 			String msgId = intent.getStringExtra("msgId");
 			String msgTime = intent.getStringExtra("msgTime");
-			// ÊÕµ½Õâ¸ö¹ã²¥µÄÊ±ºò£¬messageÒÑ¾­ÔÚÏûÏ¢±íÖĞ£¬¿ÉÖ±½Ó»ñÈ¡
+			// æ”¶åˆ°è¿™ä¸ªå¹¿æ’­çš„æ—¶å€™ï¼Œmessageå·²ç»åœ¨æ¶ˆæ¯è¡¨ä¸­ï¼Œå¯ç›´æ¥è·å–
 			if(!TextUtils.isEmpty(from)&& !TextUtils.isEmpty(msgId)&& !TextUtils.isEmpty(msgTime)){
 				BmobMsg msg = BmobChatManager.getInstance(ChatActivity.this).getMessage(msgId, msgTime);
-				if (!from.equals(targetId))// Èç¹û²»ÊÇµ±Ç°ÕıÔÚÁÄÌì¶ÔÏóµÄÏûÏ¢£¬²»´¦Àí
+				if (!from.equals(targetId))// å¦‚æœä¸æ˜¯å½“å‰æ­£åœ¨èŠå¤©å¯¹è±¡çš„æ¶ˆæ¯ï¼Œä¸å¤„ç†
 					return;
-				//Ìí¼Óµ½µ±Ç°Ò³Ãæ
+				//æ·»åŠ åˆ°å½“å‰é¡µé¢
 				mAdapter.add(msg);
-				// ¶¨Î»
+				// å®šä½
 				mListView.setSelection(mAdapter.getCount() - 1);
-				//È¡Ïûµ±Ç°ÁÄÌì¶ÔÏóµÄÎ´¶Á±êÊ¾
+				//å–æ¶ˆå½“å‰èŠå¤©å¯¹è±¡çš„æœªè¯»æ ‡ç¤º
 				BmobDB.create(ChatActivity.this).resetUnread(targetId);
 			}
-			// ¼ÇµÃ°Ñ¹ã²¥¸øÖÕ½áµô
+			// è®°å¾—æŠŠå¹¿æ’­ç»™ç»ˆç»“æ‰
 			abortBroadcast();
 		}
 	}
 	
 	/**
-	 * Ë¢ĞÂ½çÃæ
+	 * åˆ·æ–°ç•Œé¢
 	 * @Title: refreshMessage
 	 * @Description: TODO
 	 * @param @param message
@@ -1057,7 +1057,7 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	 * @throws
 	 */
 	private void refreshMessage(BmobMsg msg) {
-		// ¸üĞÂ½çÃæ
+		// æ›´æ–°ç•Œé¢
 		mAdapter.add(msg);
 		mListView.setSelection(mAdapter.getCount() - 1);
 		edit_user_comment.setText("");
@@ -1095,9 +1095,9 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 	@Override
 	public void onReaded(String conversionId, String msgTime) {
 		// TODO Auto-generated method stub
-		// ´Ë´¦Ó¦¸Ã¹ıÂËµô²»ÊÇºÍµ±Ç°ÓÃ»§µÄÁÄÌìµÄ»ØÖ´ÏûÏ¢½çÃæµÄË¢ĞÂ
+		// æ­¤å¤„åº”è¯¥è¿‡æ»¤æ‰ä¸æ˜¯å’Œå½“å‰ç”¨æˆ·çš„èŠå¤©çš„å›æ‰§æ¶ˆæ¯ç•Œé¢çš„åˆ·æ–°
 		if (conversionId.split("&")[1].equals(targetId)) {
-			// ĞŞ¸Ä½çÃæÉÏÖ¸¶¨ÏûÏ¢µÄÔÄ¶Á×´Ì¬
+			// ä¿®æ”¹ç•Œé¢ä¸ŠæŒ‡å®šæ¶ˆæ¯çš„é˜…è¯»çŠ¶æ€
 			for (BmobMsg msg : mAdapter.getList()) {
 				if (msg.getConversationId().equals(conversionId)
 						&& msg.getMsgTime().equals(msgTime)) {
@@ -1117,10 +1117,10 @@ public class ChatActivity extends ActivityBase implements OnClickListener,
 				// TODO Auto-generated method stub
 				MsgPagerNum++;
 				int total = BmobDB.create(ChatActivity.this).queryChatTotalCount(targetId);
-				BmobLog.i("¼ÇÂ¼×ÜÊı£º" + total);
+				BmobLog.i("è®°å½•æ€»æ•°" + total);
 				int currents = mAdapter.getCount();
 				if (total <= currents) {
-					ShowToast("ÁÄÌì¼ÇÂ¼¼ÓÔØÍêÁËÅ¶!");
+					ShowToast("èŠå¤©è®°å½•åŠ è½½å®Œäº†å“¦ï¼");
 				} else {
 					List<BmobMsg> msgList = initMsgData();
 					mAdapter.setList(msgList);

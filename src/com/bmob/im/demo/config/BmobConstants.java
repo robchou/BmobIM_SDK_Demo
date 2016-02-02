@@ -8,32 +8,32 @@ import android.os.Environment;
   * @ClassName: BmobConstants
   * @Description: TODO
   * @author smile
-  * @date 2014-6-19 ÏÂÎç2:48:33
+  * @date 2014-6-19 ä¸‹åˆ2:48:33
   */
 @SuppressLint("SdCardPath")
 public class BmobConstants {
 
 	/**
-	 * ´æ·Å·¢ËÍÍ¼Æ¬µÄÄ¿Â¼
+	 * å­˜æ”¾å‘é€å›¾ç‰‡çš„ç›®å½•
 	 */
 	public static String BMOB_PICTURE_PATH = Environment.getExternalStorageDirectory()	+ "/bmobimdemo/image/";
 	
 	/**
-	 * ÎÒµÄÍ·Ïñ±£´æÄ¿Â¼
+	 * æˆ‘çš„å¤´åƒä¿å­˜ç›®å½•
 	 */
 	public static String MyAvatarDir = "/sdcard/bmobimdemo/avatar/";
 	/**
-	 * ÅÄÕÕ»Øµ÷
+	 * æ‹ç…§å›è°ƒ
 	 */
-	public static final int REQUESTCODE_UPLOADAVATAR_CAMERA = 1;//ÅÄÕÕĞŞ¸ÄÍ·Ïñ
-	public static final int REQUESTCODE_UPLOADAVATAR_LOCATION = 2;//±¾µØÏà²áĞŞ¸ÄÍ·Ïñ
-	public static final int REQUESTCODE_UPLOADAVATAR_CROP = 3;//ÏµÍ³²Ã¼ôÍ·Ïñ
+	public static final int REQUESTCODE_UPLOADAVATAR_CAMERA = 1;//æ‹ç…§ä¿®æ”¹å¤´åƒ
+	public static final int REQUESTCODE_UPLOADAVATAR_LOCATION = 2;//æœ¬åœ°ç›¸å†Œä¿®æ”¹å¤´åƒ
+	public static final int REQUESTCODE_UPLOADAVATAR_CROP = 3;//ç³»ç»Ÿè£å‰ªå¤´åƒ
 	
-	public static final int REQUESTCODE_TAKE_CAMERA = 0x000001;//ÅÄÕÕ
-	public static final int REQUESTCODE_TAKE_LOCAL = 0x000002;//±¾µØÍ¼Æ¬
-	public static final int REQUESTCODE_TAKE_LOCATION = 0x000003;//Î»ÖÃ
+	public static final int REQUESTCODE_TAKE_CAMERA = 0x000001;//æ‹ç…§
+	public static final int REQUESTCODE_TAKE_LOCAL = 0x000002;//æœ¬åœ°å›¾ç‰‡
+	public static final int REQUESTCODE_TAKE_LOCATION = 0x000003;//ä½ç½®
 	public static final String EXTRA_STRING = "extra_string";
 	
 	
-	public static final String ACTION_REGISTER_SUCCESS_FINISH ="register.success.finish";//×¢²á³É¹¦Ö®ºóµÇÂ½Ò³ÃæÍË³ö
+	public static final String ACTION_REGISTER_SUCCESS_FINISH ="register.success.finish";//æ³¨å†ŒæˆåŠŸä¹‹åç™»é™†é¡µé¢é€€å‡º
 }

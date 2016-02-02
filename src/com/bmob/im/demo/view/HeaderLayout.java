@@ -12,11 +12,11 @@ import android.widget.TextView;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.util.PixelUtil;
 
-/** ×Ô¶¨ÒåÍ·²¿²¼¾Ö
+/** è‡ªå®šä¹‰å¤´éƒ¨å¸ƒå±€
   * @ClassName: HeaderLayout
   * @Description: TODO
   * @author smile
-  * @date 2014-5-19 ÏÂÎç2:30:30
+  * @date 2014-5-19 ä¸‹åˆ2:30:30
   */
 public class HeaderLayout extends LinearLayout {
 	private LayoutInflater mInflater;
@@ -32,7 +32,7 @@ public class HeaderLayout extends LinearLayout {
 	private ImageButton mLeftImageButton;
 	private onLeftImageButtonClickListener mLeftImageButtonClickListener;
 
-	public enum HeaderStyle {// Í·²¿ÕûÌåÑùÊ½
+	public enum HeaderStyle {// å¤´éƒ¨æ•´ä½“æ ·å¼
 		DEFAULT_TITLE, TITLE_LIFT_IMAGEBUTTON, TITLE_RIGHT_IMAGEBUTTON, TITLE_DOUBLE_IMAGEBUTTON;
 	}
 
@@ -56,7 +56,7 @@ public class HeaderLayout extends LinearLayout {
 	public void initViews() {
 		mLayoutLeftContainer = (LinearLayout) findViewByHeaderId(R.id.header_layout_leftview_container);
 		// mLayoutMiddleContainer = (LinearLayout)
-		// findViewByHeaderId(R.id.header_layout_middleview_container);ÖĞ¼ä²¿·ÖÌí¼ÓËÑË÷»òÕßÆäËû°´Å¥Ê±¿É´ò¿ª
+		// findViewByHeaderId(R.id.header_layout_middleview_container);ä¸­é—´éƒ¨åˆ†æ·»åŠ æœç´¢æˆ–è€…å…¶ä»–æŒ‰é’®æ—¶å¯æ‰“å¼€
 		mLayoutRightContainer = (LinearLayout) findViewByHeaderId(R.id.header_layout_rightview_container);
 		mHtvSubTitle = (TextView) findViewByHeaderId(R.id.header_htv_subtitle);
 
@@ -90,13 +90,13 @@ public class HeaderLayout extends LinearLayout {
 		}
 	}
 
-	// Ä¬ÈÏÎÄ×Ö±êÌâ
+	// é»˜è®¤æ–‡å­—æ ‡é¢˜
 	private void defaultTitle() {
 		mLayoutLeftContainer.removeAllViews();
 		mLayoutRightContainer.removeAllViews();
 	}
 
-	// ×ó²à×Ô¶¨Òå°´Å¥
+	// å·¦ä¾§è‡ªå®šä¹‰æŒ‰é’®
 	private void titleLeftImageButton() {
 		View mleftImageButtonView = mInflater.inflate(
 				R.layout.common_header_button, null);
@@ -116,7 +116,7 @@ public class HeaderLayout extends LinearLayout {
 		});
 	}
 
-	// ÓÒ²à×Ô¶¨Òå°´Å¥
+	// å³ä¾§è‡ªå®šä¹‰æŒ‰é’®
 	private void titleRightImageButton() {
 		View mRightImageButtonView = mInflater.inflate(
 				R.layout.common_header_rightbutton, null);
@@ -136,7 +136,7 @@ public class HeaderLayout extends LinearLayout {
 		});
 	}
 
-	/** »ñÈ¡ÓÒ±ß°´Å¥
+	/** è·å–å³è¾¹æŒ‰é’®
 	  * @Title: getRightImageButton
 	  * @Description: TODO
 	  * @param @return 

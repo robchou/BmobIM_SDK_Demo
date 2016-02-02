@@ -18,12 +18,12 @@ import com.bmob.im.demo.view.HeaderLayout;
 import com.bmob.im.demo.view.dialog.DialogTips;
 
 /**
- * ºÚÃûµ¥ÁĞ±í
+ * é»‘åå•åˆ—è¡¨
  * 
  * @ClassName: BlackListActivity
  * @Description: TODO
  * @author smile
- * @date 2014-6-24 ÏÂÎç5:17:50
+ * @date 2014-6-24 ä¸‹åˆ5:17:50
  */
 public class BlackListActivity extends ActivityBase implements OnItemClickListener {
 
@@ -40,14 +40,14 @@ public class BlackListActivity extends ActivityBase implements OnItemClickListen
 
 	private void initView() {
 		mHeaderLayout = (HeaderLayout) findViewById(R.id.common_actionbar);
-		initTopBarForLeft("ºÚÃûµ¥");
+		initTopBarForLeft("é»‘åå•");
 		adapter = new BlackListAdapter(this, BmobDB.create(this).getBlackList());
 		listview = (ListView) findViewById(R.id.list_blacklist);
 		listview.setOnItemClickListener(this);
 		listview.setAdapter(adapter);
 	}
 
-	/** ÏÔÊ¾ÒÆ³ıºÚÃûµ¥¶Ô»°¿ò
+	/** æ˜¾ç¤ºç§»é™¤é»‘åå•å¯¹è¯æ¡†
 	  * @Title: showRemoveBlackDialog
 	  * @Description: TODO
 	  * @param @param position
@@ -56,9 +56,9 @@ public class BlackListActivity extends ActivityBase implements OnItemClickListen
 	  * @throws
 	  */
 	public void showRemoveBlackDialog(final int position, final BmobChatUser user) {
-		DialogTips dialog = new DialogTips(this, "ÒÆ³öºÚÃûµ¥",
-				"ÄãÈ·¶¨½«"+user.getUsername()+"ÒÆ³öºÚÃûµ¥Âğ?", "È·¶¨", true, true);
-		// ÉèÖÃ³É¹¦ÊÂ¼ş
+		DialogTips dialog = new DialogTips(this, "ç§»å‡ºé»‘åå•",
+				"ä½ ç¡®å®šå°†"+user.getUsername()+"ç§»å‡ºé»‘åå•å—?", "ç¡®å®š", true, true);
+		// è®¾ç½®æˆåŠŸäº‹ä»¶
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
 				adapter.remove(position);
@@ -67,20 +67,20 @@ public class BlackListActivity extends ActivityBase implements OnItemClickListen
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
-						ShowToast("ÒÆ³öºÚÃûµ¥³É¹¦");
-						//ÖØĞÂÉèÖÃÏÂÄÚ´æÖĞ±£´æµÄºÃÓÑÁĞ±í
+						ShowToast("ç§»å‡ºé»‘åå•æˆåŠŸ");
+						//é‡æ–°è®¾ç½®ä¸‹å†…å­˜ä¸­ä¿å­˜çš„å¥½å‹åˆ—è¡¨
 						CustomApplcation.getInstance().setContactList(CollectionUtils.list2map(BmobDB.create(getApplicationContext()).getContactList()));	
 					}
 					
 					@Override
 					public void onFailure(int arg0, String arg1) {
 						// TODO Auto-generated method stub
-						ShowToast("ÒÆ³öºÚÃûµ¥Ê§°Ü:"+arg1);
+						ShowToast("ç§»å‡ºé»‘åå•å¤±è´¥:"+arg1);
 					}
 				});
 			}
 		});
-		// ÏÔÊ¾È·ÈÏ¶Ô»°¿ò
+		// æ˜¾ç¤ºç¡®è®¤å¯¹è¯æ¡†
 		dialog.show();
 		dialog = null;
 	}

@@ -10,56 +10,56 @@ import android.annotation.SuppressLint;
 public class TimeUtil {
 	
 	public final static String FORMAT_YEAR = "yyyy";
-	public final static String FORMAT_MONTH_DAY = "MMÔÂddÈÕ";
+	public final static String FORMAT_MONTH_DAY = "MMæœˆddæ—¥";
 	
 	public final static String FORMAT_DATE = "yyyy-MM-dd";
 	public final static String FORMAT_TIME = "HH:mm";
-	public final static String FORMAT_MONTH_DAY_TIME = "MMÔÂddÈÕ  hh:mm";
+	public final static String FORMAT_MONTH_DAY_TIME = "MMæœˆddæ—¥  hh:mm";
 	
 	public final static String FORMAT_DATE_TIME = "yyyy-MM-dd HH:mm";
 	public final static String FORMAT_DATE1_TIME = "yyyy/MM/dd HH:mm";
 	public final static String FORMAT_DATE_TIME_SECOND = "yyyy/MM/dd HH:mm:ss";
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat();
-	private static final int YEAR = 365 * 24 * 60 * 60;// Äê
-	private static final int MONTH = 30 * 24 * 60 * 60;// ÔÂ
-	private static final int DAY = 24 * 60 * 60;// Ìì
-	private static final int HOUR = 60 * 60;// Ğ¡Ê±
-	private static final int MINUTE = 60;// ·ÖÖÓ
+	private static final int YEAR = 365 * 24 * 60 * 60;// å¹´
+	private static final int MONTH = 30 * 24 * 60 * 60;// æœˆ
+	private static final int DAY = 24 * 60 * 60;// å¤©
+	private static final int HOUR = 60 * 60;// å°æ—¶
+	private static final int MINUTE = 60;// åˆ†é’Ÿ
 
 	/**
-	 * ¸ù¾İÊ±¼ä´Á»ñÈ¡ÃèÊöĞÔÊ±¼ä£¬Èç3·ÖÖÓÇ°£¬1ÌìÇ°
+	 * æ ¹æ®æ—¶é—´æˆ³è·å–æè¿°æ€§æ—¶é—´ï¼Œå¦‚3åˆ†é’Ÿå‰ï¼Œ1å¤©å‰
 	 * 
 	 * @param timestamp
-	 *            Ê±¼ä´Á µ¥Î»ÎªºÁÃë
-	 * @return Ê±¼ä×Ö·û´®
+	 *            æ—¶é—´æˆ³ å•ä½ä¸ºæ¯«ç§’
+	 * @return æ—¶é—´å­—ç¬¦ä¸²
 	 */
 	public static String getDescriptionTimeFromTimestamp(long timestamp) {
 		long currentTime = System.currentTimeMillis();
-		long timeGap = (currentTime - timestamp) / 1000;// ÓëÏÖÔÚÊ±¼äÏà²îÃëÊı
+		long timeGap = (currentTime - timestamp) / 1000;// ä¸ç°åœ¨æ—¶é—´ç›¸å·®ç§’æ•°
 		System.out.println("timeGap: " + timeGap);
 		String timeStr = null;
 		if (timeGap > YEAR) {
-			timeStr = timeGap / YEAR + "ÄêÇ°";
+			timeStr = timeGap / YEAR + "å¹´å‰";
 		} else if (timeGap > MONTH) {
-			timeStr = timeGap / MONTH + "¸öÔÂÇ°";
-		} else if (timeGap > DAY) {// 1ÌìÒÔÉÏ
-			timeStr = timeGap / DAY + "ÌìÇ°";
-		} else if (timeGap > HOUR) {// 1Ğ¡Ê±-24Ğ¡Ê±
-			timeStr = timeGap / HOUR + "Ğ¡Ê±Ç°";
-		} else if (timeGap > MINUTE) {// 1·ÖÖÓ-59·ÖÖÓ
-			timeStr = timeGap / MINUTE + "·ÖÖÓÇ°";
-		} else {// 1ÃëÖÓ-59ÃëÖÓ
-			timeStr = "¸Õ¸Õ";
+			timeStr = timeGap / MONTH + "ä¸ªæœˆå‰";
+		} else if (timeGap > DAY) {// 1å¤©ä»¥ä¸Š
+			timeStr = timeGap / DAY + "å¤©å‰";
+		} else if (timeGap > HOUR) {// 1å°æ—¶-24å°æ—¶
+			timeStr = timeGap / HOUR + "å°æ—¶å‰";
+		} else if (timeGap > MINUTE) {// 1åˆ†é’Ÿ-59åˆ†é’Ÿ
+			timeStr = timeGap / MINUTE + "åˆ†é’Ÿå‰";
+		} else {// 1ç§’é’Ÿ-59ç§’é’Ÿ
+			timeStr = "åˆšåˆš";
 		}
 		return timeStr;
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÆÚµÄÖ¸¶¨¸ñÊ½µÄ×Ö·û´®
+	 * è·å–å½“å‰æ—¥æœŸçš„æŒ‡å®šæ ¼å¼çš„å­—ç¬¦ä¸²
 	 * 
 	 * @param format
-	 *            Ö¸¶¨µÄÈÕÆÚÊ±¼ä¸ñÊ½£¬ÈôÎªnull»ò""ÔòÊ¹ÓÃÖ¸¶¨µÄ¸ñÊ½"yyyy-MM-dd HH:MM"
+	 *            æŒ‡å®šçš„æ—¥æœŸæ—¶é—´æ ¼å¼ï¼Œè‹¥ä¸ºnullæˆ–""åˆ™ä½¿ç”¨æŒ‡å®šçš„æ ¼å¼"yyyy-MM-dd HH:MM"
 	 * @return
 	 */
 	public static String getCurrentTime(String format) {
@@ -71,27 +71,27 @@ public class TimeUtil {
 		return sdf.format(new Date());
 	}
 
-	// dateÀàĞÍ×ª»»ÎªStringÀàĞÍ
- 	// formatType¸ñÊ½Îªyyyy-MM-dd HH:mm:ss//yyyyÄêMMÔÂddÈÕ HHÊ±mm·ÖssÃë
- 	// data DateÀàĞÍµÄÊ±¼ä
+	// dateç±»å‹è½¬æ¢ä¸ºStringç±»å‹
+ 	// formatTypeæ ¼å¼ä¸ºyyyy-MM-dd HH:mm:ss//yyyyå¹´MMæœˆddæ—¥ HHæ—¶mmåˆ†ssç§’
+ 	// data Dateç±»å‹çš„æ—¶é—´
  	public static String dateToString(Date data, String formatType) {
  		return new SimpleDateFormat(formatType).format(data);
  	}
  
- 	// longÀàĞÍ×ª»»ÎªStringÀàĞÍ
- 	// currentTimeÒª×ª»»µÄlongÀàĞÍµÄÊ±¼ä
- 	// formatTypeÒª×ª»»µÄstringÀàĞÍµÄÊ±¼ä¸ñÊ½
+ 	// longç±»å‹è½¬æ¢ä¸ºStringç±»å‹
+ 	// currentTimeè¦è½¬æ¢çš„longç±»å‹çš„æ—¶é—´
+ 	// formatTypeè¦è½¬æ¢çš„stringç±»å‹çš„æ—¶é—´æ ¼å¼
  	public static String longToString(long currentTime, String formatType){
  		String strTime="";
-		Date date = longToDate(currentTime, formatType);// longÀàĞÍ×ª³ÉDateÀàĞÍ
-		strTime = dateToString(date, formatType); // dateÀàĞÍ×ª³ÉString 
+		Date date = longToDate(currentTime, formatType);// longç±»å‹è½¬æˆDateç±»å‹
+		strTime = dateToString(date, formatType); // dateç±»å‹è½¬æˆString 
  		return strTime;
  	}
  
- 	// stringÀàĞÍ×ª»»ÎªdateÀàĞÍ
- 	// strTimeÒª×ª»»µÄstringÀàĞÍµÄÊ±¼ä£¬formatTypeÒª×ª»»µÄ¸ñÊ½yyyy-MM-dd HH:mm:ss//yyyyÄêMMÔÂddÈÕ
- 	// HHÊ±mm·ÖssÃë£¬
- 	// strTimeµÄÊ±¼ä¸ñÊ½±ØĞëÒªÓëformatTypeµÄÊ±¼ä¸ñÊ½ÏàÍ¬
+ 	// stringç±»å‹è½¬æ¢ä¸ºdateç±»å‹
+ 	// strTimeè¦è½¬æ¢çš„stringç±»å‹çš„æ—¶é—´ï¼ŒformatTypeè¦è½¬æ¢çš„æ ¼å¼yyyy-MM-dd HH:mm:ss//yyyyå¹´MMæœˆddæ—¥
+ 	// HHæ—¶mmåˆ†ssç§’ï¼Œ
+ 	// strTimeçš„æ—¶é—´æ ¼å¼å¿…é¡»è¦ä¸formatTypeçš„æ—¶é—´æ ¼å¼ç›¸åŒ
  	public static Date stringToDate(String strTime, String formatType){
  		SimpleDateFormat formatter = new SimpleDateFormat(formatType);
  		Date date = null;
@@ -104,32 +104,32 @@ public class TimeUtil {
  		return date;
  	}
  
- 	// long×ª»»ÎªDateÀàĞÍ
- 	// currentTimeÒª×ª»»µÄlongÀàĞÍµÄÊ±¼ä
- 	// formatTypeÒª×ª»»µÄÊ±¼ä¸ñÊ½yyyy-MM-dd HH:mm:ss//yyyyÄêMMÔÂddÈÕ HHÊ±mm·ÖssÃë
+ 	// longè½¬æ¢ä¸ºDateç±»å‹
+ 	// currentTimeè¦è½¬æ¢çš„longç±»å‹çš„æ—¶é—´
+ 	// formatTypeè¦è½¬æ¢çš„æ—¶é—´æ ¼å¼yyyy-MM-dd HH:mm:ss//yyyyå¹´MMæœˆddæ—¥ HHæ—¶mmåˆ†ssç§’
  	public static Date longToDate(long currentTime, String formatType){
- 		Date dateOld = new Date(currentTime); // ¸ù¾İlongÀàĞÍµÄºÁÃëÊıÉúÃüÒ»¸ödateÀàĞÍµÄÊ±¼ä
- 		String sDateTime = dateToString(dateOld, formatType); // °ÑdateÀàĞÍµÄÊ±¼ä×ª»»Îªstring
- 		Date date = stringToDate(sDateTime, formatType); // °ÑStringÀàĞÍ×ª»»ÎªDateÀàĞÍ
+ 		Date dateOld = new Date(currentTime); // æ ¹æ®longç±»å‹çš„æ¯«ç§’æ•°ç”Ÿå‘½ä¸€ä¸ªdateç±»å‹çš„æ—¶é—´
+ 		String sDateTime = dateToString(dateOld, formatType); // æŠŠdateç±»å‹çš„æ—¶é—´è½¬æ¢ä¸ºstring
+ 		Date date = stringToDate(sDateTime, formatType); // æŠŠStringç±»å‹è½¬æ¢ä¸ºDateç±»å‹
  		return date;
  	}
  
- 	// stringÀàĞÍ×ª»»ÎªlongÀàĞÍ
- 	// strTimeÒª×ª»»µÄStringÀàĞÍµÄÊ±¼ä
- 	// formatTypeÊ±¼ä¸ñÊ½
- 	// strTimeµÄÊ±¼ä¸ñÊ½ºÍformatTypeµÄÊ±¼ä¸ñÊ½±ØĞëÏàÍ¬
+ 	// stringç±»å‹è½¬æ¢ä¸ºlongç±»å‹
+ 	// strTimeè¦è½¬æ¢çš„Stringç±»å‹çš„æ—¶é—´
+ 	// formatTypeæ—¶é—´æ ¼å¼
+ 	// strTimeçš„æ—¶é—´æ ¼å¼å’ŒformatTypeçš„æ—¶é—´æ ¼å¼å¿…é¡»ç›¸åŒ
  	public static long stringToLong(String strTime, String formatType){
- 		Date date = stringToDate(strTime, formatType); // StringÀàĞÍ×ª³ÉdateÀàĞÍ
+ 		Date date = stringToDate(strTime, formatType); // Stringç±»å‹è½¬æˆdateç±»å‹
  		if (date == null) {
  			return 0;
  		} else {
- 			long currentTime = dateToLong(date); // dateÀàĞÍ×ª³ÉlongÀàĞÍ
+ 			long currentTime = dateToLong(date); // dateç±»å‹è½¬æˆlongç±»å‹
  			return currentTime;
  		}
  	}
  
- 	// dateÀàĞÍ×ª»»ÎªlongÀàĞÍ
- 	// dateÒª×ª»»µÄdateÀàĞÍµÄÊ±¼ä
+ 	// dateç±»å‹è½¬æ¢ä¸ºlongç±»å‹
+ 	// dateè¦è½¬æ¢çš„dateç±»å‹çš„æ—¶é—´
  	public static long dateToLong(Date date) {
  		return date.getTime();
  	}
@@ -144,7 +144,7 @@ public class TimeUtil {
 		return format.format(new Date(time));
 	}
 
-	/** »ñÈ¡ÁÄÌìÊ±¼ä£ºÒòÎªsdkµÄÊ±¼äÄ¬ÈÏµ½Ãë¹ÊÓ¦¸Ã³Ë1000
+	/** è·å–èŠå¤©æ—¶é—´ï¼šå› ä¸ºsdkçš„æ—¶é—´é»˜è®¤åˆ°ç§’æ•…åº”è¯¥ä¹˜1000
 	  * @Title: getChatTime
 	  * @Description: TODO
 	  * @param @param timesamp
@@ -163,13 +163,13 @@ public class TimeUtil {
 
 		switch (temp) {
 		case 0:
-			result = "½ñÌì " + getHourAndMin(clearTime);
+			result = "ä»Šå¤© " + getHourAndMin(clearTime);
 			break;
 		case 1:
-			result = "×òÌì " + getHourAndMin(clearTime);
+			result = "æ˜¨å¤© " + getHourAndMin(clearTime);
 			break;
 		case 2:
-			result = "Ç°Ìì " + getHourAndMin(clearTime);
+			result = "å‰å¤© " + getHourAndMin(clearTime);
 			break;
 
 		default:

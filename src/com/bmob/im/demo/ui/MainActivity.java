@@ -27,11 +27,11 @@ import com.bmob.im.demo.ui.fragment.RecentFragment;
 import com.bmob.im.demo.ui.fragment.SettingsFragment;
 
 /**
- * µÇÂ½
+ * ç™»é™†
  * @ClassName: MainActivity
  * @Description: TODO
  * @author smile
- * @date 2014-5-29 ÏÂÎç2:45:35
+ * @date 2014-5-29 ä¸‹åˆ2:45:35
  */
 public class MainActivity extends ActivityBase implements EventListener{
 
@@ -43,16 +43,16 @@ public class MainActivity extends ActivityBase implements EventListener{
 	private int index;
 	private int currentTabIndex;
 	
-	ImageView iv_recent_tips,iv_contact_tips;//ÏûÏ¢ÌáÊ¾
+	ImageView iv_recent_tips,iv_contact_tips;//æ¶ˆæ¯æç¤º
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//¿ªÆô¶¨Ê±¼ì²â·şÎñ£¨µ¥Î»ÎªÃë£©-ÔÚÕâÀï¼ì²âºóÌ¨ÊÇ·ñ»¹ÓĞÎ´¶ÁµÄÏûÏ¢£¬ÓĞµÄ»°¾ÍÈ¡³öÀ´
-		//Èç¹ûÄã¾õµÃ¼ì²â·şÎñ±È½ÏºÄÁ÷Á¿ºÍµçÁ¿£¬ÄãÒ²¿ÉÒÔÈ¥µôÕâ¾ä»°-Í¬Ê±»¹ÓĞonDestory·½·¨ÀïÃæµÄstopPollService·½·¨
+		//å¼€å¯å®šæ—¶æ£€æµ‹æœåŠ¡ï¼ˆå•ä½ä¸ºç§’ï¼‰-åœ¨è¿™é‡Œæ£€æµ‹åå°æ˜¯å¦è¿˜æœ‰æœªè¯»çš„æ¶ˆæ¯ï¼Œæœ‰çš„è¯å°±å–å‡ºæ¥
+		//å¦‚æœä½ è§‰å¾—æ£€æµ‹æœåŠ¡æ¯”è¾ƒè€—æµé‡å’Œç”µé‡ï¼Œä½ ä¹Ÿå¯ä»¥å»æ‰è¿™å¥è¯-åŒæ—¶è¿˜æœ‰onDestoryæ–¹æ³•é‡Œé¢çš„stopPollServiceæ–¹æ³•
 		BmobChat.getInstance(this).startPollService(20);
-		//¿ªÆô¹ã²¥½ÓÊÕÆ÷
+		//å¼€å¯å¹¿æ’­æ¥æ”¶å™¨
 		initNewMessageBroadCast();
 		initTagMessageBroadCast();
 		initView();
@@ -66,7 +66,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		mTabs[2] = (Button) findViewById(R.id.btn_set);
 		iv_recent_tips = (ImageView)findViewById(R.id.iv_recent_tips);
 		iv_contact_tips = (ImageView)findViewById(R.id.iv_contact_tips);
-		//°ÑµÚÒ»¸ötabÉèÎªÑ¡ÖĞ×´Ì¬
+		//æŠŠç¬¬ä¸€ä¸ªtabè®¾ä¸ºé€‰ä¸­çŠ¶æ€
 		mTabs[0].setSelected(true);
 	}
 	
@@ -75,7 +75,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		recentFragment = new RecentFragment();
 		settingFragment = new SettingsFragment();
 		fragments = new Fragment[] {recentFragment, contactFragment, settingFragment };
-		// Ìí¼ÓÏÔÊ¾µÚÒ»¸öfragment
+		// æ·»åŠ æ˜¾ç¤ºç¬¬ä¸€ä¸ªfragment
 		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).
 			add(R.id.fragment_container, contactFragment).hide(contactFragment).show(recentFragment).commit();
 	}
@@ -83,7 +83,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	
 	
 	/**
-	 * buttonµã»÷ÊÂ¼ş
+	 * buttonç‚¹å‡»äº‹ä»¶
 	 * @param view
 	 */
 	public void onTabSelect(View view) {
@@ -107,7 +107,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 			trx.show(fragments[index]).commit();
 		}
 		mTabs[currentTabIndex].setSelected(false);
-		//°Ñµ±Ç°tabÉèÎªÑ¡ÖĞ×´Ì¬
+		//æŠŠå½“å‰tabè®¾ä¸ºé€‰ä¸­çŠ¶æ€
 		mTabs[index].setSelected(true);
 		currentTabIndex = index;
 	}
@@ -116,7 +116,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		//Ğ¡Ô²µãÌáÊ¾
+		//å°åœ†ç‚¹æç¤º
 		if(BmobDB.create(this).hasUnReadMsg()){
 			iv_recent_tips.setVisibility(View.VISIBLE);
 		}else{
@@ -127,8 +127,8 @@ public class MainActivity extends ActivityBase implements EventListener{
 		}else{
 			iv_contact_tips.setVisibility(View.GONE);
 		}
-		MyMessageReceiver.ehList.add(this);// ¼àÌıÍÆËÍµÄÏûÏ¢
-		//Çå¿Õ
+		MyMessageReceiver.ehList.add(this);// ç›‘å¬æ¨é€çš„æ¶ˆæ¯
+		//æ¸…ç©º
 		MyMessageReceiver.mNewNum=0;
 		
 	}
@@ -137,7 +137,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MyMessageReceiver.ehList.remove(this);// È¡Ïû¼àÌıÍÆËÍµÄÏûÏ¢
+		MyMessageReceiver.ehList.remove(this);// å–æ¶ˆç›‘å¬æ¨é€çš„æ¶ˆæ¯
 	}
 	
 	@Override
@@ -147,7 +147,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	}
 	
 	
-	/** Ë¢ĞÂ½çÃæ
+	/** åˆ·æ–°ç•Œé¢
 	  * @Title: refreshNewMsg
 	  * @Description: TODO
 	  * @param @param message 
@@ -155,18 +155,18 @@ public class MainActivity extends ActivityBase implements EventListener{
 	  * @throws
 	  */
 	private void refreshNewMsg(BmobMsg message){
-		// ÉùÒôÌáÊ¾
+		// å£°éŸ³æç¤º
 		boolean isAllow = CustomApplcation.getInstance().getSpUtil().isAllowVoice();
 		if(isAllow){
 			CustomApplcation.getInstance().getMediaPlayer().start();
 		}
 		iv_recent_tips.setVisibility(View.VISIBLE);
-		//Ò²Òª´æ´¢ÆğÀ´
+		//ä¹Ÿè¦å­˜å‚¨èµ·æ¥
 		if(message!=null){
 			BmobChatManager.getInstance(MainActivity.this).saveReceiveMessage(true,message);
 		}
 		if(currentTabIndex==0){
-			//µ±Ç°Ò³ÃæÈç¹ûÎª»á»°Ò³Ãæ£¬Ë¢ĞÂ´ËÒ³Ãæ
+			//å½“å‰é¡µé¢å¦‚æœä¸ºä¼šè¯é¡µé¢ï¼Œåˆ·æ–°æ­¤é¡µé¢
 			if(recentFragment != null){
 				recentFragment.refresh();
 			}
@@ -176,24 +176,24 @@ public class MainActivity extends ActivityBase implements EventListener{
 	NewBroadcastReceiver  newReceiver;
 	
 	private void initNewMessageBroadCast(){
-		// ×¢²á½ÓÊÕÏûÏ¢¹ã²¥
+		// æ³¨å†Œæ¥æ”¶æ¶ˆæ¯å¹¿æ’­
 		newReceiver = new NewBroadcastReceiver();
 		IntentFilter intentFilter = new IntentFilter(BmobConfig.BROADCAST_NEW_MESSAGE);
-		//ÓÅÏÈ¼¶ÒªµÍÓÚChatActivity
+		//ä¼˜å…ˆçº§è¦ä½äºChatActivity
 		intentFilter.setPriority(3);
 		registerReceiver(newReceiver, intentFilter);
 	}
 	
 	/**
-	 * ĞÂÏûÏ¢¹ã²¥½ÓÊÕÕß
+	 * æ–°æ¶ˆæ¯å¹¿æ’­æ¥æ”¶è€…
 	 * 
 	 */
 	private class NewBroadcastReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			//Ë¢ĞÂ½çÃæ
+			//åˆ·æ–°ç•Œé¢
 			refreshNewMsg(null);
-			// ¼ÇµÃ°Ñ¹ã²¥¸øÖÕ½áµô
+			// è®°å¾—æŠŠå¹¿æ’­ç»™ç»ˆç»“æ‰
 			abortBroadcast();
 		}
 	}
@@ -201,23 +201,23 @@ public class MainActivity extends ActivityBase implements EventListener{
 	TagBroadcastReceiver  userReceiver;
 	
 	private void initTagMessageBroadCast(){
-		// ×¢²á½ÓÊÕÏûÏ¢¹ã²¥
+		// æ³¨å†Œæ¥æ”¶æ¶ˆæ¯å¹¿æ’­
 		userReceiver = new TagBroadcastReceiver();
 		IntentFilter intentFilter = new IntentFilter(BmobConfig.BROADCAST_ADD_USER_MESSAGE);
-		//ÓÅÏÈ¼¶ÒªµÍÓÚChatActivity
+		//ä¼˜å…ˆçº§è¦ä½äºChatActivity
 		intentFilter.setPriority(3);
 		registerReceiver(userReceiver, intentFilter);
 	}
 	
 	/**
-	 * ±êÇ©ÏûÏ¢¹ã²¥½ÓÊÕÕß
+	 * æ ‡ç­¾æ¶ˆæ¯å¹¿æ’­æ¥æ”¶è€…
 	 */
 	private class TagBroadcastReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			BmobInvitation message = (BmobInvitation) intent.getSerializableExtra("invite");
 			refreshInvite(message);
-			// ¼ÇµÃ°Ñ¹ã²¥¸øÖÕ½áµô
+			// è®°å¾—æŠŠå¹¿æ’­ç»™ç»ˆç»“æ‰
 			abortBroadcast();
 		}
 	}
@@ -236,7 +236,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		refreshInvite(message);
 	}
 	
-	/** Ë¢ĞÂºÃÓÑÇëÇó
+	/** åˆ·æ–°å¥½å‹è¯·æ±‚
 	  * @Title: notifyAddUser
 	  * @Description: TODO
 	  * @param @param message 
@@ -254,8 +254,8 @@ public class MainActivity extends ActivityBase implements EventListener{
 				contactFragment.refresh();
 			}
 		}else{
-			//Í¬Ê±ÌáĞÑÍ¨Öª
-			String tickerText = message.getFromname()+"ÇëÇóÌí¼ÓºÃÓÑ";
+			//åŒæ—¶æé†’é€šçŸ¥
+			String tickerText = message.getFromname()+"è¯·æ±‚æ·»åŠ å¥½å‹";
 			boolean isAllowVibrate = CustomApplcation.getInstance().getSpUtil().isAllowVibrate();
 			BmobNotifyManager.getInstance(this).showNotify(isAllow,isAllowVibrate,R.drawable.ic_launcher, tickerText, message.getFromname(), tickerText.toString(),NewFriendActivity.class);
 		}
@@ -275,7 +275,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	
 	private static long firstTime;
 	/**
-	 * Á¬Ğø°´Á½´Î·µ»Ø¼ü¾ÍÍË³ö
+	 * è¿ç»­æŒ‰ä¸¤æ¬¡è¿”å›é”®å°±é€€å‡º
 	 */
 	@Override
 	public void onBackPressed() {
@@ -283,7 +283,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 		if (firstTime + 2000 > System.currentTimeMillis()) {
 			super.onBackPressed();
 		} else {
-			ShowToast("ÔÙ°´Ò»´ÎÍË³ö³ÌĞò");
+			ShowToast("å†æŒ‰ä¸€æ¬¡é€€å‡ºç¨‹åº");
 		}
 		firstTime = System.currentTimeMillis();
 	}
@@ -300,7 +300,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 			unregisterReceiver(userReceiver);
 		} catch (Exception e) {
 		}
-		//È¡Ïû¶¨Ê±¼ì²â·şÎñ
+		//å–æ¶ˆå®šæ—¶æ£€æµ‹æœåŠ¡
 //		BmobChat.getInstance(this).stopPollService();
 	}
 	

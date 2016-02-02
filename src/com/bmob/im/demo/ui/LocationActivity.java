@@ -33,16 +33,16 @@ import com.bmob.im.demo.R;
 import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 
 /**
- * ÓÃÓÚ·¢ËÍÎ»ÖÃµÄ½çÃæ
+ * ç”¨äºå‘é€ä½ç½®çš„ç•Œé¢
  * 
  * @ClassName: LocationActivity
  * @Description: TODO
  * @author smile
- * @date 2014-6-23 ÏÂÎç3:17:05
+ * @date 2014-6-23 ä¸‹åˆ3:17:05
  */
 public class LocationActivity extends BaseActivity implements OnGetGeoCoderResultListener {
 
-	// ¶¨Î»Ïà¹Ø
+	// å®šä½ç›¸å…³
 	LocationClient mLocClient;
 	public MyLocationListenner myListener = new MyLocationListenner();
 	BitmapDescriptor mCurrentMarker;
@@ -50,9 +50,9 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 	MapView mMapView;
 	BaiduMap mBaiduMap;
 
-	private BaiduReceiver mReceiver;// ×¢²á¹ã²¥½ÓÊÕÆ÷£¬ÓÃÓÚ¼àÌıÍøÂçÒÔ¼°ÑéÖ¤key
+	private BaiduReceiver mReceiver;// æ³¨å†Œå¹¿æ’­æ¥æ”¶å™¨ï¼Œç”¨äºç›‘å¬ç½‘ç»œä»¥åŠéªŒè¯key
 
-	GeoCoder mSearch = null; // ËÑË÷Ä£¿é£¬ÒòÎª°Ù¶È¶¨Î»sdkÄÜ¹»µÃµ½¾­Î³¶È£¬µ«ÊÇÈ´ÎŞ·¨µÃµ½¾ßÌåµÄÏêÏ¸µØÖ·£¬Òò´ËĞèÒª²ÉÈ¡·´±àÂë·½Ê½È¥ËÑË÷´Ë¾­Î³¶È´ú±íµÄµØÖ·
+	GeoCoder mSearch = null; // æœç´¢æ¨¡å—ï¼Œå› ä¸ºç™¾åº¦å®šä½sdkèƒ½å¤Ÿå¾—åˆ°ç»çº¬åº¦ï¼Œä½†æ˜¯å´æ— æ³•å¾—åˆ°å…·ä½“çš„è¯¦ç»†åœ°å€ï¼Œå› æ­¤éœ€è¦é‡‡å–åç¼–ç æ–¹å¼å»æœç´¢æ­¤ç»çº¬åº¦ä»£è¡¨çš„åœ°å€
 
 	static BDLocation lastLocation = null;
 
@@ -66,12 +66,12 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 	}
 
 	private void initBaiduMap() {
-		// µØÍ¼³õÊ¼»¯
+		// åœ°å›¾åˆå§‹åŒ–
 		mMapView = (MapView) findViewById(R.id.bmapView);
 		mBaiduMap = mMapView.getMap();
-		//ÉèÖÃËõ·Å¼¶±ğ
+		//è®¾ç½®ç¼©æ”¾çº§åˆ«
 		mBaiduMap.setMaxAndMinZoomLevel(18, 13);
-		// ×¢²á SDK ¹ã²¥¼àÌıÕß
+		// æ³¨å†Œ SDK å¹¿æ’­ç›‘å¬è€…
 		IntentFilter iFilter = new IntentFilter();
 		iFilter.addAction(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR);
 		iFilter.addAction(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR);
@@ -80,8 +80,8 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 
 		Intent intent = getIntent();
 		String type = intent.getStringExtra("type");
-		if (type.equals("select")) {// Ñ¡Ôñ·¢ËÍÎ»ÖÃ
-			initTopBarForBoth("Î»ÖÃ", R.drawable.btn_login_selector, "·¢ËÍ",
+		if (type.equals("select")) {// é€‰æ‹©å‘é€ä½ç½®
+			initTopBarForBoth("ä½ç½®", R.drawable.btn_login_selector, "å‘é€",
 					new onRightImageButtonClickListener() {
 
 						@Override
@@ -92,12 +92,12 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 					});
 			mHeaderLayout.getRightImageButton().setEnabled(false);
 			initLocClient();
-		} else {// ²é¿´µ±Ç°Î»ÖÃ
-			initTopBarForLeft("Î»ÖÃ");
+		} else {// æŸ¥çœ‹å½“å‰ä½ç½®
+			initTopBarForLeft("ä½ç½®");
 			Bundle b = intent.getExtras();
-			LatLng latlng = new LatLng(b.getDouble("latitude"), b.getDouble("longtitude"));//Î¬¶ÈÔÚÇ°£¬¾­¶ÈÔÚºó
+			LatLng latlng = new LatLng(b.getDouble("latitude"), b.getDouble("longtitude"));//ç»´åº¦åœ¨å‰ï¼Œç»åº¦åœ¨å
 			mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(latlng));
-			//ÏÔÊ¾µ±Ç°Î»ÖÃÍ¼±ê
+			//æ˜¾ç¤ºå½“å‰ä½ç½®å›¾æ ‡
 			OverlayOptions ooA = new MarkerOptions().position(latlng).icon(bdgeo).zIndex(9);
 			mBaiduMap.addOverlay(ooA);
 		}
@@ -108,7 +108,7 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 	}
 
 	/**
-	 * »Øµ½ÁÄÌì½çÃæ
+	 * å›åˆ°èŠå¤©ç•Œé¢
 	 * @Title: gotoChatPage
 	 * @Description: TODO
 	 * @param
@@ -118,28 +118,28 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 	private void gotoChatPage() {
 		if(lastLocation!=null){
 			Intent intent = new Intent();
-			intent.putExtra("y", lastLocation.getLongitude());// ¾­¶È
-			intent.putExtra("x", lastLocation.getLatitude());// Î¬¶È
+			intent.putExtra("y", lastLocation.getLongitude());// ç»åº¦
+			intent.putExtra("x", lastLocation.getLatitude());// ç»´åº¦
 			intent.putExtra("address", lastLocation.getAddrStr());
 			setResult(RESULT_OK, intent);
 			this.finish();
 		}else{
-			ShowToast("»ñÈ¡µØÀíÎ»ÖÃĞÅÏ¢Ê§°Ü!");
+			ShowToast("è·å–åœ°ç†ä½ç½®ä¿¡æ¯å¤±è´¥!");
 		}
 	}
 
 	private void initLocClient() {
-//		 ¿ªÆô¶¨Î»Í¼²ã
+//		 å¼€å¯å®šä½å›¾å±‚
 		mBaiduMap.setMyLocationEnabled(true);
 		mBaiduMap.setMyLocationConfigeration(new MyLocationConfigeration(
 				com.baidu.mapapi.map.MyLocationConfigeration.LocationMode.NORMAL, true, null));
-		// ¶¨Î»³õÊ¼»¯
+		// å®šä½åˆå§‹åŒ–
 		mLocClient = new LocationClient(this);
 		mLocClient.registerLocationListener(myListener);
 		LocationClientOption option = new LocationClientOption();
-		option.setProdName("bmobim");// ÉèÖÃ²úÆ·Ïß
-		option.setOpenGps(true);// ´ò¿ªgps
-		option.setCoorType("bd09ll"); // ÉèÖÃ×ø±êÀàĞÍ
+		option.setProdName("bmobim");// è®¾ç½®äº§å“çº¿
+		option.setOpenGps(true);// æ‰“å¼€gps
+		option.setCoorType("bd09ll"); // è®¾ç½®åæ ‡ç±»å‹
 		option.setScanSpan(1000);
 		option.setOpenGps(true);
 		option.setIsNeedAddress(true);
@@ -150,7 +150,7 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 		    mLocClient.requestLocation();
 
 		if (lastLocation != null) {
-			// ÏÔÊ¾ÔÚµØÍ¼ÉÏ
+			// æ˜¾ç¤ºåœ¨åœ°å›¾ä¸Š
 			LatLng ll = new LatLng(lastLocation.getLatitude(),
 					lastLocation.getLongitude());
 			MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
@@ -159,13 +159,13 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 	}
 
 	/**
-	 * ¶¨Î»SDK¼àÌıº¯Êı
+	 * å®šä½SDKç›‘å¬å‡½æ•°
 	 */
 	public class MyLocationListenner implements BDLocationListener {
 
 		@Override
 		public void onReceiveLocation(BDLocation location) {
-			// map view Ïú»Ùºó²»ÔÚ´¦ÀíĞÂ½ÓÊÕµÄÎ»ÖÃ
+			// map view é”€æ¯åä¸åœ¨å¤„ç†æ–°æ¥æ”¶çš„ä½ç½®
 			if (location == null || mMapView == null)
 				return;
 
@@ -173,7 +173,7 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 				if (lastLocation.getLatitude() == location.getLatitude()
 						&& lastLocation.getLongitude() == location
 						.getLongitude()) {
-					BmobLog.i("»ñÈ¡×ø±êÏàÍ¬");// ÈôÁ½´ÎÇëÇó»ñÈ¡µ½µÄµØÀíÎ»ÖÃ×ø±êÊÇÏàÍ¬µÄ£¬Ôò²»ÔÙ¶¨Î»
+					BmobLog.i("è·å–åæ ‡ç›¸åŒ");// è‹¥ä¸¤æ¬¡è¯·æ±‚è·å–åˆ°çš„åœ°ç†ä½ç½®åæ ‡æ˜¯ç›¸åŒçš„ï¼Œåˆ™ä¸å†å®šä½
 					mLocClient.stop();
 					return;
 				}
@@ -181,12 +181,12 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 			lastLocation = location;
 			
 			BmobLog.i("lontitude = " + location.getLongitude() + ",latitude = "
-					+ location.getLatitude() + ",µØÖ· = "
+					+ location.getLatitude() + ",åœ°å€ = "
 					+ lastLocation.getAddrStr());
 
 			MyLocationData locData = new MyLocationData.Builder()
 					.accuracy(location.getRadius())
-					// ´Ë´¦ÉèÖÃ¿ª·¢Õß»ñÈ¡µ½µÄ·½ÏòĞÅÏ¢£¬Ë³Ê±Õë0-360
+					// æ­¤å¤„è®¾ç½®å¼€å‘è€…è·å–åˆ°çš„æ–¹å‘ä¿¡æ¯ï¼Œé¡ºæ—¶é’ˆ0-360
 					.direction(100).latitude(location.getLatitude())
 					.longitude(location.getLongitude()).build();
 			mBaiduMap.setMyLocationData(locData);
@@ -196,29 +196,29 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 			if (address != null && !address.equals("")) {
 				lastLocation.setAddrStr(address);
 			} else {
-				// ·´GeoËÑË÷
+				// åGeoæœç´¢
 				mSearch.reverseGeoCode(new ReverseGeoCodeOption().location(ll));
 			}
-			// ÏÔÊ¾ÔÚµØÍ¼ÉÏ
+			// æ˜¾ç¤ºåœ¨åœ°å›¾ä¸Š
 			MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
 			mBaiduMap.animateMapStatus(u);
-			//ÉèÖÃ°´Å¥¿Éµã»÷
+			//è®¾ç½®æŒ‰é’®å¯ç‚¹å‡»
 			mHeaderLayout.getRightImageButton().setEnabled(true);
 		}
 
 	}
 
 	/**
-	 * ¹¹Ôì¹ã²¥¼àÌıÀà£¬¼àÌı SDK key ÑéÖ¤ÒÔ¼°ÍøÂçÒì³£¹ã²¥
+	 * æ„é€ å¹¿æ’­ç›‘å¬ç±»ï¼Œç›‘å¬ SDK key éªŒè¯ä»¥åŠç½‘ç»œå¼‚å¸¸å¹¿æ’­
 	 */
 	public class BaiduReceiver extends BroadcastReceiver {
 		public void onReceive(Context context, Intent intent) {
 			String s = intent.getAction();
 			if (s.equals(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR)) {
-				ShowToast("key ÑéÖ¤³ö´í! ÇëÔÚ AndroidManifest.xml ÎÄ¼şÖĞ¼ì²é key ÉèÖÃ");
+				ShowToast("key éªŒè¯å‡ºé”™! è¯·åœ¨ AndroidManifest.xml æ–‡ä»¶ä¸­æ£€æŸ¥ key è®¾ç½®");
 			} else if (s
 					.equals(SDKInitializer.SDK_BROADCAST_ACTION_STRING_NETWORK_ERROR)) {
-				ShowToast("ÍøÂç³ö´í");
+				ShowToast("ç½‘ç»œå‡ºé”™");
 			}
 		}
 	}
@@ -233,10 +233,10 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 	public void onGetReverseGeoCodeResult(ReverseGeoCodeResult result) {
 		// TODO Auto-generated method stub
 		if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-			ShowToast("±§Ç¸£¬Î´ÄÜÕÒµ½½á¹û");
+			ShowToast("æŠ±æ­‰ï¼Œæœªèƒ½æ‰¾åˆ°ç»“æœ");
 			return;
 		}
-		BmobLog.i("·´±àÂëµÃµ½µÄµØÖ·£º" + result.getAddress());
+		BmobLog.i("åç¼–ç å¾—åˆ°çš„åœ°å€ï¼š" + result.getAddress());
 		lastLocation.setAddrStr(result.getAddress());
 	}
 
@@ -256,17 +256,17 @@ public class LocationActivity extends BaseActivity implements OnGetGeoCoderResul
 	@Override
 	protected void onDestroy() {
 		if(mLocClient!=null && mLocClient.isStarted()){
-			// ÍË³öÊ±Ïú»Ù¶¨Î»
+			// é€€å‡ºæ—¶é”€æ¯å®šä½
 			mLocClient.stop();
 		}
-		// ¹Ø±Õ¶¨Î»Í¼²ã
+		// å…³é—­å®šä½å›¾å±‚
 		mBaiduMap.setMyLocationEnabled(false);
 		mMapView.onDestroy();
 		mMapView = null;
-		// È¡Ïû¼àÌı SDK ¹ã²¥
+		// å–æ¶ˆç›‘å¬ SDK å¹¿æ’­
 		unregisterReceiver(mReceiver);
 		super.onDestroy();
-		// »ØÊÕ bitmap ×ÊÔ´
+		// å›æ”¶ bitmap èµ„æº
 		bdgeo.recycle();
 	}
 

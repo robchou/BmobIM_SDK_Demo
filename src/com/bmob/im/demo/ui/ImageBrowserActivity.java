@@ -21,11 +21,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-/**Í¼Æ¬ä¯ÀÀ
+/**å›¾ç‰‡æµè§ˆ
   * @ClassName: ImageBrowserActivity
   * @Description: TODO
   * @author smile
-  * @date 2014-6-19 ÏÂÎç8:22:49
+  * @date 2014-6-19 ä¸‹åˆ8:22:49
   */
 public class ImageBrowserActivity extends BaseActivity implements OnPageChangeListener{
 

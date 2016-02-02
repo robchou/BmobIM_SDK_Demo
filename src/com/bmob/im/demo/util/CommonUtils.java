@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 
 public class CommonUtils {
 
-	/** ¼ì²éÊÇ·ñÓĞÍøÂç */
+	/** æ£€æŸ¥æ˜¯å¦æœ‰ç½‘ç»œ */
 	public static boolean isNetworkAvailable(Context context) {
 		NetworkInfo info = getNetworkInfo(context);
 		if (info != null) {
@@ -15,7 +15,7 @@ public class CommonUtils {
 		return false;
 	}
 
-	/** ¼ì²éÊÇ·ñÊÇWIFI */
+	/** æ£€æŸ¥æ˜¯å¦æ˜¯WIFI */
 	public static boolean isWifi(Context context) {
 		NetworkInfo info = getNetworkInfo(context);
 		if (info != null) {
@@ -25,7 +25,7 @@ public class CommonUtils {
 		return false;
 	}
 
-	/** ¼ì²éÊÇ·ñÊÇÒÆ¶¯ÍøÂç */
+	/** æ£€æŸ¥æ˜¯å¦æ˜¯ç§»åŠ¨ç½‘ç»œ */
 	public static boolean isMobile(Context context) {
 		NetworkInfo info = getNetworkInfo(context);
 		if (info != null) {
@@ -42,7 +42,7 @@ public class CommonUtils {
 		return cm.getActiveNetworkInfo();
 	}
 
-	/** ¼ì²éSD¿¨ÊÇ·ñ´æÔÚ */
+	/** æ£€æŸ¥SDå¡æ˜¯å¦å­˜åœ¨ */
 	public static boolean checkSdCard() {
 		if (android.os.Environment.getExternalStorageState().equals(
 				android.os.Environment.MEDIA_MOUNTED))

@@ -3,11 +3,11 @@ package com.bmob.im.demo.adapter.base;
 import android.util.SparseArray;
 import android.view.View;
 
-/** ViewholderµÄ¼ò»¯
+/** Viewholderçš„ç®€åŒ–
   * @ClassName: ViewHolder
   * @Description: TODO
   * @author smile
-  * @date 2014-5-28 ÉÏÎç9:56:29
+  * @date 2014-5-28 ä¸Šåˆ9:56:29
   */
 @SuppressWarnings("unchecked")
 public class ViewHolder {

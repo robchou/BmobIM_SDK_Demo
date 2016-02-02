@@ -53,11 +53,11 @@ import com.bmob.im.demo.view.MyLetterView.OnTouchingLetterChangedListener;
 import com.bmob.im.demo.view.dialog.DialogTips;
 
 /**
- * ÁªÏµÈË
+ * è”ç³»äºº
  * @ClassName: ContactFragment
  * @Description: TODO
  * @author smile
- * @date 2014-6-7 ÏÂÎç1:02:05
+ * @date 2014-6-7 ä¸‹åˆ1:02:05
  */
 @SuppressLint("DefaultLocale")
 public class ContactFragment extends FragmentBase implements OnItemClickListener,OnItemLongClickListener{
@@ -69,18 +69,18 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	ListView list_friends;
 	MyLetterView right_letter;
 
-	private UserFriendAdapter userAdapter;// ºÃÓÑ
+	private UserFriendAdapter userAdapter;// å¥½å‹
 
 	List<User> friends = new ArrayList<User>();
 
 	private InputMethodManager inputMethodManager;
 	
 	/**
-	 * ºº×Ö×ª»»³ÉÆ´ÒôµÄÀà
+	 * æ±‰å­—è½¬æ¢æˆæ‹¼éŸ³çš„ç±»
 	 */
 	private CharacterParser characterParser;
 	/**
-	 * ¸ù¾İÆ´ÒôÀ´ÅÅÁĞListViewÀïÃæµÄÊı¾İÀà
+	 * æ ¹æ®æ‹¼éŸ³æ¥æ’åˆ—ListViewé‡Œé¢çš„æ•°æ®ç±»
 	 */
 	private PinyinComparator pinyinComparator;
 
@@ -102,7 +102,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	private void init() {
 		characterParser = CharacterParser.getInstance();
 		pinyinComparator = new PinyinComparator();
-		initTopBarForRight("ÁªÏµÈË", R.drawable.base_action_bar_add_bg_selector,
+		initTopBarForRight("è”ç³»äºº", R.drawable.base_action_bar_add_bg_selector,
 				new onRightImageButtonClickListener() {
 
 					@Override
@@ -118,13 +118,13 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 
 	private void initEditText() {
 		mClearEditText = (ClearEditText)findViewById(R.id.et_msg_search);
-		// ¸ù¾İÊäÈë¿òÊäÈëÖµµÄ¸Ä±äÀ´¹ıÂËËÑË÷
+		// æ ¹æ®è¾“å…¥æ¡†è¾“å…¥å€¼çš„æ”¹å˜æ¥è¿‡æ»¤æœç´¢
 		mClearEditText.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// µ±ÊäÈë¿òÀïÃæµÄÖµÎª¿Õ£¬¸üĞÂÎªÔ­À´µÄÁĞ±í£¬·ñÔòÎª¹ıÂËÊı¾İÁĞ±í
+				// å½“è¾“å…¥æ¡†é‡Œé¢çš„å€¼ä¸ºç©ºï¼Œæ›´æ–°ä¸ºåŸæ¥çš„åˆ—è¡¨ï¼Œå¦åˆ™ä¸ºè¿‡æ»¤æ•°æ®åˆ—è¡¨
 				filterData(s.toString());
 			}
 
@@ -142,7 +142,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	}
 
 	/**
-	 * ¸ù¾İÊäÈë¿òÖĞµÄÖµÀ´¹ıÂËÊı¾İ²¢¸üĞÂListView
+	 * æ ¹æ®è¾“å…¥æ¡†ä¸­çš„å€¼æ¥è¿‡æ»¤æ•°æ®å¹¶æ›´æ–°ListView
 	 * 
 	 * @param filterStr
 	 */
@@ -163,13 +163,13 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 				}
 			}
 		}
-		// ¸ù¾İa-z½øĞĞÅÅĞò
+		// æ ¹æ®a-zè¿›è¡Œæ’åº
 		Collections.sort(filterDateList, pinyinComparator);
 		userAdapter.updateListView(filterDateList);
 	}
 
 	/**
-	 * ÎªListViewÌî³äÊı¾İ
+	 * ä¸ºListViewå¡«å……æ•°æ®
 	 * @param date
 	 * @return
 	 */
@@ -184,13 +184,13 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			sortModel.setUsername(user.getUsername());
 			sortModel.setObjectId(user.getObjectId());
 			sortModel.setContacts(user.getContacts());
-			// ºº×Ö×ª»»³ÉÆ´Òô
+			// æ±‰å­—è½¬æ¢æˆæ‹¼éŸ³
 			String username = sortModel.getUsername();
-			// ÈôÃ»ÓĞusername
+			// è‹¥æ²¡æœ‰username
 			if (username != null) {
 				String pinyin = characterParser.getSelling(sortModel.getUsername());
 				String sortString = pinyin.substring(0, 1).toUpperCase();
-				// ÕıÔò±í´ïÊ½£¬ÅĞ¶ÏÊ××ÖÄ¸ÊÇ·ñÊÇÓ¢ÎÄ×ÖÄ¸
+				// æ­£åˆ™è¡¨è¾¾å¼ï¼Œåˆ¤æ–­é¦–å­—æ¯æ˜¯å¦æ˜¯è‹±æ–‡å­—æ¯
 				if (sortString.matches("[A-Z]")) {
 					sortModel.setSortLetters(sortString.toUpperCase());
 				} else {
@@ -201,15 +201,15 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			}
 			friends.add(sortModel);
 		}
-		// ¸ù¾İa-z½øĞĞÅÅĞò
+		// æ ¹æ®a-zè¿›è¡Œæ’åº
 		Collections.sort(friends, pinyinComparator);
 	}
 	
 	
 	ImageView iv_msg_tips;
 	TextView tv_new_name;
-	LinearLayout layout_new;//ĞÂÅóÓÑ
-	LinearLayout layout_near;//¸½½üµÄÈË
+	LinearLayout layout_new;//æ–°æœ‹å‹
+	LinearLayout layout_near;//é™„è¿‘çš„äºº
 	
 	private void initListView() {
 		list_friends= (ListView)findViewById(R.id.list_friends);
@@ -247,7 +247,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				// Òş²ØÈí¼üÅÌ
+				// éšè—è½¯é”®ç›˜
 				if (getActivity().getWindow().getAttributes().softInputMode != WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) {
 					if (getActivity().getCurrentFocus() != null)
 						inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
@@ -280,7 +280,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 
 		@Override
 		public void onTouchingLetterChanged(String s) {
-			// ¸Ã×ÖÄ¸Ê×´Î³öÏÖµÄÎ»ÖÃ
+			// è¯¥å­—æ¯é¦–æ¬¡å‡ºç°çš„ä½ç½®
 			int position = userAdapter.getPositionForSection(s.charAt(0));
 			if (position != -1) {
 				list_friends.setSelection(position);
@@ -288,24 +288,24 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 		}
 	}
 
-	/** »ñÈ¡ºÃÓÑÁĞ±í
+	/** è·å–å¥½å‹åˆ—è¡¨
 	  * queryMyfriends
 	  * @return void
 	  * @throws
 	  */
 	private void queryMyfriends() {
-		//ÊÇ·ñÓĞĞÂµÄºÃÓÑÇëÇó
+		//æ˜¯å¦æœ‰æ–°çš„å¥½å‹è¯·æ±‚
 		if(BmobDB.create(getActivity()).hasNewInvite()){
 			iv_msg_tips.setVisibility(View.VISIBLE);
 		}else{
 			iv_msg_tips.setVisibility(View.GONE);
 		}
-		//ÔÚÕâÀïÔÙ×öÒ»´Î±¾µØµÄºÃÓÑÊı¾İ¿âµÄ¼ì²é£¬ÊÇÎªÁË±¾µØºÃÓÑÊı¾İ¿âÖĞÒÑ¾­Ìí¼ÓÁË¶Ô·½£¬µ«ÊÇ½çÃæÈ´Ã»ÓĞÏÔÊ¾³öÀ´µÄÎÊÌâ
-		// ÖØĞÂÉèÖÃÏÂÄÚ´æÖĞ±£´æµÄºÃÓÑÁĞ±í
+		//åœ¨è¿™é‡Œå†åšä¸€æ¬¡æœ¬åœ°çš„å¥½å‹æ•°æ®åº“çš„æ£€æŸ¥ï¼Œæ˜¯ä¸ºäº†æœ¬åœ°å¥½å‹æ•°æ®åº“ä¸­å·²ç»æ·»åŠ äº†å¯¹æ–¹ï¼Œä½†æ˜¯ç•Œé¢å´æ²¡æœ‰æ˜¾ç¤ºå‡ºæ¥çš„é—®é¢˜
+		// é‡æ–°è®¾ç½®ä¸‹å†…å­˜ä¸­ä¿å­˜çš„å¥½å‹åˆ—è¡¨
 		CustomApplcation.getInstance().setContactList(CollectionUtils.list2map(BmobDB.create(getActivity()).getContactList()));
 	
 		Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
-		//×é×°ĞÂµÄUser
+		//ç»„è£…æ–°çš„User
 		filledData(CollectionUtils.map2list(users));
 		if(userAdapter==null){
 			userAdapter = new UserFriendAdapter(getActivity(), friends);
@@ -350,7 +350,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
 		User user = (User) userAdapter.getItem(position-1);
-		//ÏÈ½øÈëºÃÓÑµÄÏêÏ¸×ÊÁÏÒ³Ãæ
+		//å…ˆè¿›å…¥å¥½å‹çš„è¯¦ç»†èµ„æ–™é¡µé¢
 		Intent intent =new Intent(getActivity(),SetMyInfoActivity.class);
 		intent.putExtra("from", "other");
 		intent.putExtra("username", user.getUsername());
@@ -368,26 +368,26 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	}
 	
 	public void showDeleteDialog(final User user) {
-		DialogTips dialog = new DialogTips(getActivity(),user.getUsername(),"É¾³ıÁªÏµÈË", "È·¶¨",true,true);
-		// ÉèÖÃ³É¹¦ÊÂ¼ş
+		DialogTips dialog = new DialogTips(getActivity(),user.getUsername(),"åˆ é™¤è”ç³»äºº", "ç¡®å®š",true,true);
+		// è®¾ç½®æˆåŠŸäº‹ä»¶
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
 				deleteContact(user);
 			}
 		});
-		// ÏÔÊ¾È·ÈÏ¶Ô»°¿ò
+		// æ˜¾ç¤ºç¡®è®¤å¯¹è¯æ¡†
 		dialog.show();
 		dialog = null;
 	}
 	
-	 /** É¾³ıÁªÏµÈË
+	 /** åˆ é™¤è”ç³»äºº
 	  * deleteContact
 	  * @return void
 	  * @throws
 	  */
 	private void deleteContact(final User user){
 		final ProgressDialog progress = new ProgressDialog(getActivity());
-		progress.setMessage("ÕıÔÚÉ¾³ı...");
+		progress.setMessage("æ­£åœ¨åˆ é™¤...");
 		progress.setCanceledOnTouchOutside(false);
 		progress.show();
 		userManager.deleteContact(user.getObjectId(), new UpdateListener() {
@@ -395,10 +395,10 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			@Override
 			public void onSuccess() {
 				// TODO Auto-generated method stub
-				ShowToast("É¾³ı³É¹¦");
-				//É¾³ıÄÚ´æ
+				ShowToast("åˆ é™¤æˆåŠŸ");
+				//åˆ é™¤å†…å­˜
 				CustomApplcation.getInstance().getContactList().remove(user.getUsername());
-				//¸üĞÂ½çÃæ
+				//æ›´æ–°ç•Œé¢
 				getActivity().runOnUiThread(new Runnable() {
 					public void run() {
 						progress.dismiss();
@@ -410,7 +410,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 			@Override
 			public void onFailure(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				ShowToast("É¾³ıÊ§°Ü£º"+arg1);
+				ShowToast("åˆ é™¤å¤±è´¥ï¼š"+arg1);
 				progress.dismiss();
 			}
 		});

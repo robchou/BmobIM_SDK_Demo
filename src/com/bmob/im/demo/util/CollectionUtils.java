@@ -19,8 +19,8 @@ public class CollectionUtils {
 		return false;
 	}
 	
-	/** list转map
-	 *  以用户名为key
+	/** list杞琺ap
+	 *  浠ョ敤鎴峰悕涓簁ey
 	  * @return Map<String,BmobChatUser>
 	  * @throws
 	  */
@@ -33,7 +33,7 @@ public class CollectionUtils {
 	}
 	
 	
-	/** map转list
+	/** map杞琹ist
 	  * @Title: map2list
 	  * @return List<BmobChatUser>
 	  * @throws

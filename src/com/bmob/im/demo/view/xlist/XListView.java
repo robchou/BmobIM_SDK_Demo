@@ -16,11 +16,11 @@ import android.widget.Scroller;
 
 import com.bmob.im.demo.R;
 
-/** µ¥¸öµÄÏÂÀ­Ë¢ÐÂ¿Ø¼þ
+/** å•ä¸ªçš„ä¸‹æ‹‰åˆ·æ–°æŽ§ä»¶
  * @ClassName: XListView
  * @Description: TODO
  * @author smile
- * @date 2014-4-24 ÏÂÎç5:09:02
+ * @date 2014-4-24 ä¸‹åˆ5:09:02
  */
 public class XListView extends ListView implements OnScrollListener {
 	private float mLastY = -1; // save event y
@@ -198,7 +198,7 @@ public class XListView extends ListView implements OnScrollListener {
 	private void updateHeaderHeight(float delta) {
 		mHeaderView.setVisiableHeight((int) delta
 				+ mHeaderView.getVisiableHeight());
-		if (mEnablePullRefresh && !mPullRefreshing) { // Î´´¦ÓÚË¢ÐÂ×´Ì¬£¬¸üÐÂ¼ýÍ·
+		if (mEnablePullRefresh && !mPullRefreshing) { // æœªå¤„äºŽåˆ·æ–°çŠ¶æ€ï¼Œæ›´æ–°ç®­å¤´
 			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
 				mHeaderView.setState(XListViewHeader.STATE_READY);
 			} else {

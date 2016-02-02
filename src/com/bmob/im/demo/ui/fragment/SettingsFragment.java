@@ -22,12 +22,12 @@ import com.bmob.im.demo.ui.SetMyInfoActivity;
 import com.bmob.im.demo.util.SharePreferenceUtil;
 
 /**
- * ÉèÖÃ
+ * è®¾ç½®
  * 
  * @ClassName: SetFragment
  * @Description: TODO
  * @author smile
- * @date 2014-6-7 ÏÂÎç1:00:27
+ * @date 2014-6-7 ä¸‹åˆ1:00:27
  */
 @SuppressLint("SimpleDateFormat")
 public class SettingsFragment extends FragmentBase implements OnClickListener{
@@ -67,8 +67,8 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 	}
 
 	private void initView() {
-		initTopBarForOnlyTitle("ÉèÖÃ");
-		//ºÚÃûµ¥ÁĞ±í
+		initTopBarForOnlyTitle("è®¾ç½®");
+		//é»‘åå•åˆ—è¡¨
 		layout_blacklist = (RelativeLayout) findViewById(R.id.layout_blacklist);
 		
 		layout_info = (RelativeLayout) findViewById(R.id.layout_info);
@@ -91,7 +91,7 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 		tv_set_name = (TextView) findViewById(R.id.tv_set_name);
 		btn_logout = (Button) findViewById(R.id.btn_logout);
 
-		// ³õÊ¼»¯
+		// åˆå§‹åŒ–
 		boolean isAllowNotify = mSharedUtil.isAllowPushNotify();
 		
 		if (isAllowNotify) {
@@ -138,10 +138,10 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.layout_blacklist:// Æô¶¯µ½ºÚÃûµ¥Ò³Ãæ
+		case R.id.layout_blacklist:// å¯åŠ¨åˆ°é»‘åå•é¡µé¢
 			startAnimActivity(new Intent(getActivity(),BlackListActivity.class));
 			break;
-		case R.id.layout_info:// Æô¶¯µ½¸öÈË×ÊÁÏÒ³Ãæ
+		case R.id.layout_info:// å¯åŠ¨åˆ°ä¸ªäººèµ„æ–™é¡µé¢
 			Intent intent =new Intent(getActivity(),SetMyInfoActivity.class);
 			intent.putExtra("from", "me");
 			startActivity(intent);

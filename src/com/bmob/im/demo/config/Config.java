@@ -1,13 +1,13 @@
 package com.bmob.im.demo.config;
 
-/** ÏµÍ³±äÁ¿
+/** ç³»ç»Ÿå˜é‡
   * @ClassName: Config
   * @Description: TODO
   * @author smile
-  * @date 2014-6-17 ÉÏÎç9:40:11
+  * @date 2014-6-17 ä¸Šåˆ9:40:11
   */
 public class Config {
 
-	//ÕâÊÇBmobµÄApplicationId,ÓÃÓÚ³õÊ¼»¯²Ù×÷
+	//è¿™æ˜¯Bmobçš„ApplicationId,ç”¨äºåˆå§‹åŒ–æ“ä½œ
 	public static String applicationId = "48281833253cdfcbbfa7fa86d4034adb";
 }

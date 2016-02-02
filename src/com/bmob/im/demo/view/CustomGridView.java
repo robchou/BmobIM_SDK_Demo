@@ -4,11 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-/** 自定义GridView
+/** 鑷畾涔塆ridView
   * @ClassName: CustomGridView
   * @Description: TODO
   * @author smile
-  * @date 2014-6-17 下午4:28:55
+  * @date 2014-6-17 涓嬪崍4:28:55
   */
 public class CustomGridView extends GridView {
 

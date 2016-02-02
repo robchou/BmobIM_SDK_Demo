@@ -18,11 +18,11 @@ import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/** ºÃÓÑÁĞ±í
+/** å¥½å‹åˆ—è¡¨
   * @ClassName: UserFriendAdapter
   * @Description: TODO
   * @author smile
-  * @date 2014-6-12 ÏÂÎç3:03:40
+  * @date 2014-6-12 ä¸‹åˆ3:03:40
   */
 @SuppressLint("DefaultLocale")
 public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
@@ -34,7 +34,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		this.data = datas;
 	}
 
-	/** µ±ListViewÊı¾İ·¢Éú±ä»¯Ê±,µ÷ÓÃ´Ë·½·¨À´¸üĞÂListView
+	/** å½“ListViewæ•°æ®å‘ç”Ÿå˜åŒ–æ—¶,è°ƒç”¨æ­¤æ–¹æ³•æ¥æ›´æ–°ListView
 	  * @Title: updateListView
 	  * @Description: TODO
 	  * @param @param list 
@@ -94,9 +94,9 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		}
 		viewHolder.name.setText(name);
 
-		// ¸ù¾İposition»ñÈ¡·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ
+		// æ ¹æ®positionè·å–åˆ†ç±»çš„é¦–å­—æ¯çš„Char asciiå€¼
 		int section = getSectionForPosition(position);
-		// Èç¹ûµ±Ç°Î»ÖÃµÈÓÚ¸Ã·ÖÀàÊ××ÖÄ¸µÄCharµÄÎ»ÖÃ £¬ÔòÈÏÎªÊÇµÚÒ»´Î³öÏÖ
+		// å¦‚æœå½“å‰ä½ç½®ç­‰äºè¯¥åˆ†ç±»é¦–å­—æ¯çš„Charçš„ä½ç½® ï¼Œåˆ™è®¤ä¸ºæ˜¯ç¬¬ä¸€æ¬¡å‡ºç°
 		if (position == getPositionForSection(section)) {
 			viewHolder.alpha.setVisibility(View.VISIBLE);
 			viewHolder.alpha.setText(friend.getSortLetters());
@@ -108,20 +108,20 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 	}
 
 	static class ViewHolder {
-		TextView alpha;// Ê××ÖÄ¸ÌáÊ¾
+		TextView alpha;// é¦–å­—æ¯æç¤º
 		ImageView avatar;
 		TextView name;
 	}
 
 	/**
-	 * ¸ù¾İListViewµÄµ±Ç°Î»ÖÃ»ñÈ¡·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ
+	 * æ ¹æ®ListViewçš„å½“å‰ä½ç½®è·å–åˆ†ç±»çš„é¦–å­—æ¯çš„Char asciiå€¼
 	 */
 	public int getSectionForPosition(int position) {
 		return data.get(position).getSortLetters().charAt(0);
 	}
 
 	/**
-	 * ¸ù¾İ·ÖÀàµÄÊ××ÖÄ¸µÄChar asciiÖµ»ñÈ¡ÆäµÚÒ»´Î³öÏÖ¸ÃÊ××ÖÄ¸µÄÎ»ÖÃ
+	 * æ ¹æ®åˆ†ç±»çš„é¦–å­—æ¯çš„Char asciiå€¼è·å–å…¶ç¬¬ä¸€æ¬¡å‡ºç°è¯¥é¦–å­—æ¯çš„ä½ç½®
 	 */
 	@SuppressLint("DefaultLocale")
 	public int getPositionForSection(int section) {

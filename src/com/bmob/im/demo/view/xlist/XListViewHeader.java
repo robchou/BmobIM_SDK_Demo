@@ -48,7 +48,7 @@ public class XListViewHeader extends LinearLayout{
 	}
 
 	private void initView(Context context) {
-		// ³õÊ¼Çé¿ö£¬ÉèÖÃÏÂÀ­Ë¢ĞÂview¸ß¶ÈÎª0
+		// åˆå§‹æƒ…å†µï¼Œè®¾ç½®ä¸‹æ‹‰åˆ·æ–°viewé«˜åº¦ä¸º0
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
 				android.view.ViewGroup.LayoutParams.MATCH_PARENT, 0);
 		mContainer = (LinearLayout) LayoutInflater.from(context).inflate(
@@ -77,11 +77,11 @@ public class XListViewHeader extends LinearLayout{
 	public void setState(int state) {
 		if (state == mState) return ;
 		
-		if (state == STATE_REFRESHING) {	// ÏÔÊ¾½ø¶È
+		if (state == STATE_REFRESHING) {	// æ˜¾ç¤ºè¿›åº¦
 			mArrowImageView.clearAnimation();
 			mArrowImageView.setVisibility(View.INVISIBLE);
 			mProgressBar.setVisibility(View.VISIBLE);
-		} else {	// ÏÔÊ¾¼ıÍ·Í¼Æ¬
+		} else {	// æ˜¾ç¤ºç®­å¤´å›¾ç‰‡
 			mArrowImageView.setVisibility(View.VISIBLE);
 			mProgressBar.setVisibility(View.INVISIBLE);
 		}

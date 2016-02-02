@@ -13,11 +13,11 @@ import com.bmob.im.demo.R;
 import com.bmob.im.demo.adapter.NewFriendAdapter;
 import com.bmob.im.demo.view.dialog.DialogTips;
 
-/** ĞÂÅóÓÑ
+/** æ–°æœ‹å‹
   * @ClassName: NewFriendActivity
   * @Description: TODO
   * @author smile
-  * @date 2014-6-6 ÏÂÎç4:28:09
+  * @date 2014-6-6 ä¸‹åˆ4:28:09
   */
 public class NewFriendActivity extends ActivityBase implements OnItemLongClickListener{
 	
@@ -37,12 +37,12 @@ public class NewFriendActivity extends ActivityBase implements OnItemLongClickLi
 	}
 	
 	private void initView(){
-		initTopBarForLeft("ĞÂÅóÓÑ");
+		initTopBarForLeft("æ–°æœ‹å‹");
 		listview = (ListView)findViewById(R.id.list_newfriend);
 		listview.setOnItemLongClickListener(this);
 		adapter = new NewFriendAdapter(this,BmobDB.create(this).queryBmobInviteList());
 		listview.setAdapter(adapter);
-		if(from==null){//ÈôÀ´×ÔÍ¨ÖªÀ¸µÄµã»÷£¬Ôò¶¨Î»µ½×îºóÒ»Ìõ
+		if(from==null){//è‹¥æ¥è‡ªé€šçŸ¥æ çš„ç‚¹å‡»ï¼Œåˆ™å®šä½åˆ°æœ€åä¸€æ¡
 			listview.setSelection(adapter.getCount());
 		}
 	}
@@ -57,20 +57,20 @@ public class NewFriendActivity extends ActivityBase implements OnItemLongClickLi
 	}
 	
 	public void showDeleteDialog(final int position,final BmobInvitation invite) {
-		DialogTips dialog = new DialogTips(this,invite.getFromname(),"É¾³ıºÃÓÑÇëÇó", "È·¶¨",true,true);
-		// ÉèÖÃ³É¹¦ÊÂ¼ş
+		DialogTips dialog = new DialogTips(this,invite.getFromname(),"åˆ é™¤å¥½å‹è¯·æ±‚", "ç¡®å®š",true,true);
+		// è®¾ç½®æˆåŠŸäº‹ä»¶
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
 				deleteInvite(position,invite);
 			}
 		});
-		// ÏÔÊ¾È·ÈÏ¶Ô»°¿ò
+		// æ˜¾ç¤ºç¡®è®¤å¯¹è¯æ¡†
 		dialog.show();
 		dialog = null;
 	}
 	
 	/** 
-	 * É¾³ıÇëÇó
+	 * åˆ é™¤è¯·æ±‚
 	  * deleteRecent
 	  * @param @param recent 
 	  * @return void

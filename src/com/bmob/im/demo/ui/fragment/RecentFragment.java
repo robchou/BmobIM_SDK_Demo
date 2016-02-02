@@ -23,11 +23,11 @@ import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.view.ClearEditText;
 import com.bmob.im.demo.view.dialog.DialogTips;
 
-/** ×î½ü»á»°
+/** æœ€è¿‘ä¼šè¯
   * @ClassName: ConversationFragment
   * @Description: TODO
   * @author smile
-  * @date 2014-6-7 ÏÂÎç1:01:37
+  * @date 2014-6-7 ä¸‹åˆ1:01:37
   */
 public class RecentFragment extends FragmentBase implements OnItemClickListener,OnItemLongClickListener{
 
@@ -48,7 +48,7 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	}
 	
 	private void initView(){
-		initTopBarForOnlyTitle("»á»°");
+		initTopBarForOnlyTitle("ä¼šè¯");
 		listview = (ListView)findViewById(R.id.list);
 		listview.setOnItemClickListener(this);
 		listview.setOnItemLongClickListener(this);
@@ -77,7 +77,7 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 		
 	}
 	
-	/** É¾³ı»á»°
+	/** åˆ é™¤ä¼šè¯
 	  * deleteRecent
 	  * @param @param recent 
 	  * @return void
@@ -99,14 +99,14 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	}
 	
 	public void showDeleteDialog(final BmobRecent recent) {
-		DialogTips dialog = new DialogTips(getActivity(),recent.getUserName(),"É¾³ı»á»°", "È·¶¨",true,true);
-		// ÉèÖÃ³É¹¦ÊÂ¼ş
+		DialogTips dialog = new DialogTips(getActivity(),recent.getUserName(),"åˆ é™¤ä¼šè¯", "ç¡®å®š",true,true);
+		// è®¾ç½®æˆåŠŸäº‹ä»¶
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
 				deleteRecent(recent);
 			}
 		});
-		// ÏÔÊ¾È·ÈÏ¶Ô»°¿ò
+		// æ˜¾ç¤ºç¡®è®¤å¯¹è¯æ¡†
 		dialog.show();
 		dialog = null;
 	}
@@ -115,9 +115,9 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
 		BmobRecent recent = adapter.getItem(position);
-		//ÖØÖÃÎ´¶ÁÏûÏ¢
+		//é‡ç½®æœªè¯»æ¶ˆæ¯
 		BmobDB.create(getActivity()).resetUnread(recent.getTargetid());
-		//×é×°ÁÄÌì¶ÔÏó
+		//ç»„è£…èŠå¤©å¯¹è±¡
 		BmobChatUser user = new BmobChatUser();
 		user.setAvatar(recent.getAvatar());
 		user.setNick(recent.getNick());

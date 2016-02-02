@@ -31,11 +31,11 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 /**
- * ×Ô¶¨ÒåÈ«¾ÖApplcationÀà
+ * è‡ªå®šä¹‰å…¨å±€Applcationç±»
  * @ClassName: CustomApplcation
  * @Description: TODO
  * @author smile
- * @date 2014-5-19 ÏÂÎç3:25:00
+ * @date 2014-5-19 ä¸‹åˆ3:25:00
  */
 public class CustomApplcation extends Application {
 
@@ -43,13 +43,13 @@ public class CustomApplcation extends Application {
 	public LocationClient mLocationClient;
 	public MyLocationListener mMyLocationListener;
 
-	public static BmobGeoPoint lastPoint = null;// ÉÏÒ»´Î¶¨Î»µ½µÄ¾­Î³¶È
+	public static BmobGeoPoint lastPoint = null;// ä¸Šä¸€æ¬¡å®šä½åˆ°çš„ç»çº¬åº¦
 
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		// ÊÇ·ñ¿ªÆôdebugÄ£Ê½--Ä¬ÈÏ¿ªÆô×´Ì¬
+		// æ˜¯å¦å¼€å¯debugæ¨¡å¼--é»˜è®¤å¼€å¯çŠ¶æ€
 		BmobChat.DEBUG_MODE = true;
 		mInstance = this;
 		init();
@@ -59,17 +59,17 @@ public class CustomApplcation extends Application {
 		mMediaPlayer = MediaPlayer.create(this, R.raw.notify);
 		mNotificationManager = (NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 		initImageLoader(getApplicationContext());
-		// ÈôÓÃ»§µÇÂ½¹ı£¬ÔòÏÈ´ÓºÃÓÑÊı¾İ¿âÖĞÈ¡³öºÃÓÑlist´æÈëÄÚ´æÖĞ
+		// è‹¥ç”¨æˆ·ç™»é™†è¿‡ï¼Œåˆ™å…ˆä»å¥½å‹æ•°æ®åº“ä¸­å–å‡ºå¥½å‹listå­˜å…¥å†…å­˜ä¸­
 		if (BmobUserManager.getInstance(getApplicationContext())
 				.getCurrentUser() != null) {
-			// »ñÈ¡±¾µØºÃÓÑuser listµ½ÄÚ´æ,·½±ãÒÔºó»ñÈ¡ºÃÓÑlist
+			// è·å–æœ¬åœ°å¥½å‹user liståˆ°å†…å­˜,æ–¹ä¾¿ä»¥åè·å–å¥½å‹list
 			contactList = CollectionUtils.list2map(BmobDB.create(getApplicationContext()).getContactList());
 		}
 		initBaidu();
 	}
 
 	/**
-	 * ³õÊ¼»¯°Ù¶ÈÏà¹Øsdk initBaidumap
+	 * åˆå§‹åŒ–ç™¾åº¦ç›¸å…³sdk initBaidumap
 	 * @Title: initBaidumap
 	 * @Description: TODO
 	 * @param
@@ -77,14 +77,14 @@ public class CustomApplcation extends Application {
 	 * @throws
 	 */
 	private void initBaidu() {
-		// ³õÊ¼»¯µØÍ¼Sdk
+		// åˆå§‹åŒ–åœ°å›¾Sdk
 		SDKInitializer.initialize(this);
-		// ³õÊ¼»¯¶¨Î»sdk
+		// åˆå§‹åŒ–å®šä½sdk
 		initBaiduLocClient();
 	}
 
 	/**
-	 * ³õÊ¼»¯°Ù¶È¶¨Î»sdk
+	 * åˆå§‹åŒ–ç™¾åº¦å®šä½sdk
 	 * @Title: initBaiduLocClient
 	 * @Description: TODO
 	 * @param
@@ -98,7 +98,7 @@ public class CustomApplcation extends Application {
 	}
 
 	/**
-	 * ÊµÏÖÊµÎ»»Øµ÷¼àÌı
+	 * å®ç°å®ä½å›è°ƒç›‘å¬
 	 */
 	public class MyLocationListener implements BDLocationListener {
 
@@ -110,7 +110,7 @@ public class CustomApplcation extends Application {
 			if (lastPoint != null) {
 				if (lastPoint.getLatitude() == location.getLatitude()
 						&& lastPoint.getLongitude() == location.getLongitude()) {
-//					BmobLog.i("Á½´Î»ñÈ¡×ø±êÏàÍ¬");// ÈôÁ½´ÎÇëÇó»ñÈ¡µ½µÄµØÀíÎ»ÖÃ×ø±êÊÇÏàÍ¬µÄ£¬Ôò²»ÔÙ¶¨Î»
+//					BmobLog.i("ä¸¤æ¬¡è·å–åæ ‡ç›¸åŒ");// è‹¥ä¸¤æ¬¡è¯·æ±‚è·å–åˆ°çš„åœ°ç†ä½ç½®åæ ‡æ˜¯ç›¸åŒçš„ï¼Œåˆ™ä¸å†å®šä½
 					mLocationClient.stop();
 					return;
 				}
@@ -119,33 +119,33 @@ public class CustomApplcation extends Application {
 		}
 	}
 
-	/** ³õÊ¼»¯ImageLoader */
+	/** åˆå§‹åŒ–ImageLoader */
 	public static void initImageLoader(Context context) {
 		File cacheDir = StorageUtils.getOwnCacheDirectory(context,
-				"bmobim/Cache");// »ñÈ¡µ½»º´æµÄÄ¿Â¼µØÖ·
-		// ´´½¨ÅäÖÃImageLoader(ËùÓĞµÄÑ¡Ïî¶¼ÊÇ¿ÉÑ¡µÄ,Ö»Ê¹ÓÃÄÇĞ©ÄãÕæµÄÏë¶¨ÖÆ)£¬Õâ¸ö¿ÉÒÔÉè¶¨ÔÚAPPLACATIONÀïÃæ£¬ÉèÖÃÎªÈ«¾ÖµÄÅäÖÃ²ÎÊı
+				"bmobim/Cache");// è·å–åˆ°ç¼“å­˜çš„ç›®å½•åœ°å€
+		// åˆ›å»ºé…ç½®ImageLoader(æ‰€æœ‰çš„é€‰é¡¹éƒ½æ˜¯å¯é€‰çš„,åªä½¿ç”¨é‚£äº›ä½ çœŸçš„æƒ³å®šåˆ¶)ï¼Œè¿™ä¸ªå¯ä»¥è®¾å®šåœ¨APPLACATIONé‡Œé¢ï¼Œè®¾ç½®ä¸ºå…¨å±€çš„é…ç½®å‚æ•°
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				context)
-				// Ïß³Ì³ØÄÚ¼ÓÔØµÄÊıÁ¿
+				// çº¿ç¨‹æ± å†…åŠ è½½çš„æ•°é‡
 				.threadPoolSize(3).threadPriority(Thread.NORM_PRIORITY - 2)
 				.memoryCache(new WeakMemoryCache())
 				.denyCacheImageMultipleSizesInMemory()
 				.discCacheFileNameGenerator(new Md5FileNameGenerator())
-				// ½«±£´æµÄÊ±ºòµÄURIÃû³ÆÓÃMD5 ¼ÓÃÜ
+				// å°†ä¿å­˜çš„æ—¶å€™çš„URIåç§°ç”¨MD5 åŠ å¯†
 				.tasksProcessingOrder(QueueProcessingType.LIFO)
-				.discCache(new UnlimitedDiscCache(cacheDir))// ×Ô¶¨Òå»º´æÂ·¾¶
+				.discCache(new UnlimitedDiscCache(cacheDir))// è‡ªå®šä¹‰ç¼“å­˜è·¯å¾„
 				// .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
 				.writeDebugLogs() // Remove for release app
 				.build();
 		// Initialize ImageLoader with configuration.
-		ImageLoader.getInstance().init(config);// È«¾Ö³õÊ¼»¯´ËÅäÖÃ
+		ImageLoader.getInstance().init(config);// å…¨å±€åˆå§‹åŒ–æ­¤é…ç½®
 	}
 
 	public static CustomApplcation getInstance() {
 		return mInstance;
 	}
 
-	// µ¥ÀıÄ£Ê½£¬²ÅÄÜ¼°Ê±·µ»ØÊı¾İ
+	// å•ä¾‹æ¨¡å¼ï¼Œæ‰èƒ½åŠæ—¶è¿”å›æ•°æ®
 	SharePreferenceUtil mSpUtil;
 	public static final String PREFERENCE_NAME = "_sharedinfo";
 
@@ -175,11 +175,11 @@ public class CustomApplcation extends Application {
 		return mMediaPlayer;
 	}
 	
-	public final String PREF_LONGTITUDE = "longtitude";// ¾­¶È
+	public final String PREF_LONGTITUDE = "longtitude";// ç»åº¦
 	private String longtitude = "";
 
 	/**
-	 * »ñÈ¡¾­¶È
+	 * è·å–ç»åº¦
 	 * 
 	 * @return
 	 */
@@ -191,7 +191,7 @@ public class CustomApplcation extends Application {
 	}
 
 	/**
-	 * ÉèÖÃ¾­¶È
+	 * è®¾ç½®ç»åº¦
 	 * 
 	 * @param pwd
 	 */
@@ -204,11 +204,11 @@ public class CustomApplcation extends Application {
 		}
 	}
 
-	public final String PREF_LATITUDE = "latitude";// ¾­¶È
+	public final String PREF_LATITUDE = "latitude";// ç»åº¦
 	private String latitude = "";
 
 	/**
-	 * »ñÈ¡Î³¶È
+	 * è·å–çº¬åº¦
 	 * 
 	 * @return
 	 */
@@ -219,7 +219,7 @@ public class CustomApplcation extends Application {
 	}
 
 	/**
-	 * ÉèÖÃÎ¬¶È
+	 * è®¾ç½®ç»´åº¦
 	 * 
 	 * @param pwd
 	 */
@@ -234,7 +234,7 @@ public class CustomApplcation extends Application {
 	private Map<String, BmobChatUser> contactList = new HashMap<String, BmobChatUser>();
 
 	/**
-	 * »ñÈ¡ÄÚ´æÖĞºÃÓÑuser list
+	 * è·å–å†…å­˜ä¸­å¥½å‹user list
 	 * 
 	 * @return
 	 */
@@ -243,7 +243,7 @@ public class CustomApplcation extends Application {
 	}
 
 	/**
-	 * ÉèÖÃºÃÓÑuser listµ½ÄÚ´æÖĞ
+	 * è®¾ç½®å¥½å‹user liståˆ°å†…å­˜ä¸­
 	 * @param contactList
 	 */
 	public void setContactList(Map<String, BmobChatUser> contactList) {
@@ -254,7 +254,7 @@ public class CustomApplcation extends Application {
 	}
 
 	/**
-	 * ÍË³öµÇÂ¼,Çå¿Õ»º´æÊı¾İ
+	 * é€€å‡ºç™»å½•,æ¸…ç©ºç¼“å­˜æ•°æ®
 	 */
 	public void logout() {
 		BmobUserManager.getInstance(getApplicationContext()).logout();

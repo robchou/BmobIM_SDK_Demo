@@ -15,11 +15,11 @@ import com.bmob.im.demo.adapter.base.ViewHolder;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/** ºÚÃûµ¥
+/** é»‘åå•
   * @ClassName: BlackListAdapter
   * @Description: TODO
   * @author smile
-  * @date 2014-6-24 ÏÂÎç5:27:14
+  * @date 2014-6-24 ä¸‹åˆ5:27:14
   */
 public class BlackListAdapter extends BaseListAdapter<BmobChatUser> {
 

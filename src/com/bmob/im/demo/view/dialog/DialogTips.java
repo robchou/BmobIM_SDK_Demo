@@ -3,13 +3,13 @@ package com.bmob.im.demo.view.dialog;
 import android.content.Context;
 
 /**
- * ÌáÊ¾¶Ô»°¿ò£¬ÓĞÒ»¸öÈ·ÈÏ¡¢Ò»¸ö·µ»Ø°´Å¥
+ * æç¤ºå¯¹è¯æ¡†ï¼Œæœ‰ä¸€ä¸ªç¡®è®¤ã€ä¸€ä¸ªè¿”å›æŒ‰é’®
  */
 public class DialogTips extends DialogBase {
 	boolean hasNegative;
 	boolean hasTitle;
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 * @param context
 	 */
 	public DialogTips(Context context, String title,String message,String buttonText,boolean hasNegative,boolean hasTitle) {
@@ -21,7 +21,7 @@ public class DialogTips extends DialogBase {
 		super.setTitle(title);
 	}
 	
-	/**ÏÂÏßÍ¨ÖªµÄ¶Ô»°¿òÑùÊ½
+	/**ä¸‹çº¿é€šçŸ¥çš„å¯¹è¯æ¡†æ ·å¼
 	 * @param context
 	 * @param title
 	 * @param message
@@ -33,7 +33,7 @@ public class DialogTips extends DialogBase {
 		super.setNamePositiveButton(buttonText);
 		this.hasNegative = false;
 		this.hasTitle = true;
-		super.setTitle("ÌáÊ¾");
+		super.setTitle("æç¤º");
 		super.setCancel(false);
 	}
 	
@@ -49,13 +49,13 @@ public class DialogTips extends DialogBase {
 	}
 
 	/**
-	 * ´´½¨¶Ô»°¿ò
+	 * åˆ›å»ºå¯¹è¯æ¡†
 	 */
 	@Override
 	protected void onBuilding() {
 		super.setWidth(dip2px(mainContext, 300));
 		if(hasNegative){
-			super.setNameNegativeButton("È¡Ïû");
+			super.setNameNegativeButton("å–æ¶ˆ");
 		}
 		if(!hasTitle){
 			super.setHasTitle(false);
@@ -78,7 +78,7 @@ public class DialogTips extends DialogBase {
 	}
 
 	/**
-	 * È·ÈÏ°´Å¥£¬´¥·¢onSuccessListenerµÄonClick
+	 * ç¡®è®¤æŒ‰é’®ï¼Œè§¦å‘onSuccessListenerçš„onClick
 	 */
 	@Override
 	protected boolean OnClickPositiveButton() { 

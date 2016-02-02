@@ -30,15 +30,15 @@ import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.util.CommonUtils;
 
 /**
- * ÍÆËÍÏûÏ¢½ÓÊÕÆ÷
+ * æ¨é€æ¶ˆæ¯æ¥æ”¶å™¨
  * @ClassName: MyMessageReceiver
  * @Description: TODO
  * @author smile
- * @date 2014-5-30 ÏÂÎç4:01:13
+ * @date 2014-5-30 ä¸‹åˆ4:01:13
  */
 public class MyMessageReceiver extends BroadcastReceiver {
 
-	// ÊÂ¼ş¼àÌı
+	// äº‹ä»¶ç›‘å¬
 	public static ArrayList<EventListener> ehList = new ArrayList<EventListener>();
 	
 	public static final int NOTIFY_ID = 0x000;
@@ -46,13 +46,13 @@ public class MyMessageReceiver extends BroadcastReceiver {
 	BmobUserManager userManager;
 	BmobChatUser currentUser;
 
-	//Èç¹ûÄãÏë·¢ËÍ×Ô¶¨Òå¸ñÊ½µÄÏûÏ¢£¬ÇëÊ¹ÓÃsendJsonMessage·½·¨À´·¢ËÍJson¸ñÊ½µÄ×Ö·û´®£¬È»ºóÄã°´ÕÕ¸ñÊ½×Ô¼º½âÎö²¢´¦Àí
+	//å¦‚æœä½ æƒ³å‘é€è‡ªå®šä¹‰æ ¼å¼çš„æ¶ˆæ¯ï¼Œè¯·ä½¿ç”¨sendJsonMessageæ–¹æ³•æ¥å‘é€Jsonæ ¼å¼çš„å­—ç¬¦ä¸²ï¼Œç„¶åä½ æŒ‰ç…§æ ¼å¼è‡ªå·±è§£æå¹¶å¤„ç†
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
 		String json = intent.getStringExtra("msg");
-		BmobLog.i("ÊÕµ½µÄmessage = " + json);
+		BmobLog.i("æ”¶åˆ°çš„message = " + json);
 		
 		userManager = BmobUserManager.getInstance(context);
 		currentUser = userManager.getCurrentUser();
@@ -65,7 +65,7 @@ public class MyMessageReceiver extends BroadcastReceiver {
 		}
 	}
 
-	/** ½âÎöJson×Ö·û´®
+	/** è§£æJsonå­—ç¬¦ä¸²
 	  * @Title: parseMessage
 	  * @Description: TODO
 	  * @param @param context
@@ -78,35 +78,35 @@ public class MyMessageReceiver extends BroadcastReceiver {
 		try {
 			jo = new JSONObject(json);
 			String tag = BmobJsonUtil.getString(jo, BmobConstant.PUSH_KEY_TAG);
-			if(tag.equals(BmobConfig.TAG_OFFLINE)){//ÏÂÏßÍ¨Öª
+			if(tag.equals(BmobConfig.TAG_OFFLINE)){//ä¸‹çº¿é€šçŸ¥
 				if(currentUser!=null){
-					if (ehList.size() > 0) {// ÓĞ¼àÌıµÄÊ±ºò£¬´«µİÏÂÈ¥
+					if (ehList.size() > 0) {// æœ‰ç›‘å¬çš„æ—¶å€™ï¼Œä¼ é€’ä¸‹å»
 						for (EventListener handler : ehList)
 							handler.onOffline();
 					}else{
-						//Çå¿ÕÊı¾İ
+						//æ¸…ç©ºæ•°æ®
 						CustomApplcation.getInstance().logout();
 					}
 				}
 			}else{
 				String fromId = BmobJsonUtil.getString(jo, BmobConstant.PUSH_KEY_TARGETID);
-			   //Ôö¼ÓÏûÏ¢½ÓÊÕ·½µÄObjectId--Ä¿µÄÊÇ½â¾ö¶àÕË»§µÇÂ½Í¬Ò»Éè±¸Ê±£¬ÎŞ·¨½ÓÊÕµ½·Çµ±Ç°µÇÂ½ÓÃ»§µÄÏûÏ¢¡£
+			   //å¢åŠ æ¶ˆæ¯æ¥æ”¶æ–¹çš„ObjectId--ç›®çš„æ˜¯è§£å†³å¤šè´¦æˆ·ç™»é™†åŒä¸€è®¾å¤‡æ—¶ï¼Œæ— æ³•æ¥æ”¶åˆ°éå½“å‰ç™»é™†ç”¨æˆ·çš„æ¶ˆæ¯ã€‚
 				final String toId = BmobJsonUtil.getString(jo, BmobConstant.PUSH_KEY_TOID);
 				String msgTime = BmobJsonUtil.getString(jo,BmobConstant.PUSH_READED_MSGTIME);
-				if(fromId!=null && !BmobDB.create(context,toId).isBlackUser(fromId)){//¸ÃÏûÏ¢·¢ËÍ·½²»ÎªºÚÃûµ¥ÓÃ»§
-					if(TextUtils.isEmpty(tag)){//²»Ğ¯´øtag±êÇ©--´Ë¿É½ÓÊÕÄ°ÉúÈËµÄÏûÏ¢
+				if(fromId!=null && !BmobDB.create(context,toId).isBlackUser(fromId)){//è¯¥æ¶ˆæ¯å‘é€æ–¹ä¸ä¸ºé»‘åå•ç”¨æˆ·
+					if(TextUtils.isEmpty(tag)){//ä¸æºå¸¦tagæ ‡ç­¾--æ­¤å¯æ¥æ”¶é™Œç”Ÿäººçš„æ¶ˆæ¯
 						BmobChatManager.getInstance(context).createReceiveMsg(json, new OnReceiveListener() {
 							
 							@Override
 							public void onSuccess(BmobMsg msg) {
 								// TODO Auto-generated method stub
-								if (ehList.size() > 0) {// ÓĞ¼àÌıµÄÊ±ºò£¬´«µİÏÂÈ¥
+								if (ehList.size() > 0) {// æœ‰ç›‘å¬çš„æ—¶å€™ï¼Œä¼ é€’ä¸‹å»
 									for (int i = 0; i < ehList.size(); i++) {
 										((EventListener) ehList.get(i)).onMessage(msg);
 									}
 								} else {
 									boolean isAllow = CustomApplcation.getInstance().getSpUtil().isAllowPushNotify();
-									if(isAllow && currentUser!=null && currentUser.getObjectId().equals(toId)){//µ±Ç°µÇÂ½ÓÃ»§´æÔÚ²¢ÇÒÒ²µÈÓÚ½ÓÊÕ·½id
+									if(isAllow && currentUser!=null && currentUser.getObjectId().equals(toId)){//å½“å‰ç™»é™†ç”¨æˆ·å­˜åœ¨å¹¶ä¸”ä¹Ÿç­‰äºæ¥æ”¶æ–¹id
 										mNewNum++;
 										showMsgNotify(context,msg);
 									}
@@ -116,27 +116,27 @@ public class MyMessageReceiver extends BroadcastReceiver {
 							@Override
 							public void onFailure(int code, String arg1) {
 								// TODO Auto-generated method stub
-								BmobLog.i("»ñÈ¡½ÓÊÕµÄÏûÏ¢Ê§°Ü£º"+arg1);
+								BmobLog.i("è·å–æ¥æ”¶çš„æ¶ˆæ¯å¤±è´¥ï¼š"+arg1);
 							}
 						});
 						
-					}else{//´øtag±êÇ©
+					}else{//å¸¦tagæ ‡ç­¾
 						if(tag.equals(BmobConfig.TAG_ADD_CONTACT)){
-							//±£´æºÃÓÑÇëÇóµÀ±¾µØ£¬²¢¸üĞÂºóÌ¨µÄÎ´¶Á×Ö¶Î
+							//ä¿å­˜å¥½å‹è¯·æ±‚é“æœ¬åœ°ï¼Œå¹¶æ›´æ–°åå°çš„æœªè¯»å­—æ®µ
 							BmobInvitation message = BmobChatManager.getInstance(context).saveReceiveInvite(json, toId);
-							if(currentUser!=null){//ÓĞµÇÂ½ÓÃ»§
+							if(currentUser!=null){//æœ‰ç™»é™†ç”¨æˆ·
 								if(toId.equals(currentUser.getObjectId())){
-									if (ehList.size() > 0) {// ÓĞ¼àÌıµÄÊ±ºò£¬´«µİÏÂÈ¥
+									if (ehList.size() > 0) {// æœ‰ç›‘å¬çš„æ—¶å€™ï¼Œä¼ é€’ä¸‹å»
 										for (EventListener handler : ehList)
 											handler.onAddUser(message);
 									}else{
-										showOtherNotify(context, message.getFromname(), toId,  message.getFromname()+"ÇëÇóÌí¼ÓºÃÓÑ", NewFriendActivity.class);
+										showOtherNotify(context, message.getFromname(), toId,  message.getFromname()+"è¯·æ±‚æ·»åŠ å¥½å‹", NewFriendActivity.class);
 									}
 								}
 							}
 						}else if(tag.equals(BmobConfig.TAG_ADD_AGREE)){
 							String username = BmobJsonUtil.getString(jo, BmobConstant.PUSH_KEY_TARGETUSERNAME);
-							//ÊÕµ½¶Ô·½µÄÍ¬ÒâÇëÇóÖ®ºó£¬¾ÍµÃÌí¼Ó¶Ô·½ÎªºÃÓÑ--ÒÑÄ¬ÈÏÌí¼ÓÍ¬Òâ·½ÎªºÃÓÑ£¬²¢±£´æµ½±¾µØºÃÓÑÊı¾İ¿â
+							//æ”¶åˆ°å¯¹æ–¹çš„åŒæ„è¯·æ±‚ä¹‹åï¼Œå°±å¾—æ·»åŠ å¯¹æ–¹ä¸ºå¥½å‹--å·²é»˜è®¤æ·»åŠ åŒæ„æ–¹ä¸ºå¥½å‹ï¼Œå¹¶ä¿å­˜åˆ°æœ¬åœ°å¥½å‹æ•°æ®åº“
 							BmobUserManager.getInstance(context).addContactAfterAgree(username, new FindListener<BmobChatUser>() {
 								
 								@Override
@@ -148,22 +148,22 @@ public class MyMessageReceiver extends BroadcastReceiver {
 								@Override
 								public void onSuccess(List<BmobChatUser> arg0) {
 									// TODO Auto-generated method stub
-									//±£´æµ½ÄÚ´æÖĞ
+									//ä¿å­˜åˆ°å†…å­˜ä¸­
 									CustomApplcation.getInstance().setContactList(CollectionUtils.list2map(BmobDB.create(context).getContactList()));
 								}
 							});
-							//ÏÔÊ¾Í¨Öª
-							showOtherNotify(context, username, toId,  username+"Í¬ÒâÌí¼ÓÄúÎªºÃÓÑ", MainActivity.class);
-							//´´½¨Ò»¸öÁÙÊ±ÑéÖ¤»á»°--ÓÃÓÚÔÚ»á»°½çÃæĞÎ³É³õÊ¼»á»°
+							//æ˜¾ç¤ºé€šçŸ¥
+							showOtherNotify(context, username, toId,  username+"åŒæ„æ·»åŠ æ‚¨ä¸ºå¥½å‹", MainActivity.class);
+							//åˆ›å»ºä¸€ä¸ªä¸´æ—¶éªŒè¯ä¼šè¯--ç”¨äºåœ¨ä¼šè¯ç•Œé¢å½¢æˆåˆå§‹ä¼šè¯
 							BmobMsg.createAndSaveRecentAfterAgree(context, json);
 							
-						}else if(tag.equals(BmobConfig.TAG_READED)){//ÒÑ¶Á»ØÖ´
+						}else if(tag.equals(BmobConfig.TAG_READED)){//å·²è¯»å›æ‰§
 							String conversionId = BmobJsonUtil.getString(jo,BmobConstant.PUSH_READED_CONVERSIONID);
 							if(currentUser!=null){
-								//¸ü¸ÄÄ³ÌõÏûÏ¢µÄ×´Ì¬
+								//æ›´æ”¹æŸæ¡æ¶ˆæ¯çš„çŠ¶æ€
 								BmobChatManager.getInstance(context).updateMsgStatus(conversionId, msgTime);
 								if(toId.equals(currentUser.getObjectId())){
-									if (ehList.size() > 0) {// ÓĞ¼àÌıµÄÊ±ºò£¬´«µİÏÂÈ¥--±ãÓÚĞŞ¸Ä½çÃæ
+									if (ehList.size() > 0) {// æœ‰ç›‘å¬çš„æ—¶å€™ï¼Œä¼ é€’ä¸‹å»--ä¾¿äºä¿®æ”¹ç•Œé¢
 										for (EventListener handler : ehList)
 											handler.onReaded(conversionId, msgTime);
 									}
@@ -171,42 +171,42 @@ public class MyMessageReceiver extends BroadcastReceiver {
 							}
 						}
 					}
-				}else{//ÔÚºÚÃûµ¥ÆÚ¼äËùÓĞµÄÏûÏ¢¶¼Ó¦¸ÃÖÃÎªÒÑ¶Á£¬²»È»µÈÈ¡ÏûºÚÃûµ¥Ö®ºóÓÖ¿ÉÒÔ²éÑ¯µÄµ½
+				}else{//åœ¨é»‘åå•æœŸé—´æ‰€æœ‰çš„æ¶ˆæ¯éƒ½åº”è¯¥ç½®ä¸ºå·²è¯»ï¼Œä¸ç„¶ç­‰å–æ¶ˆé»‘åå•ä¹‹ååˆå¯ä»¥æŸ¥è¯¢çš„åˆ°
 					BmobChatManager.getInstance(context).updateMsgReaded(true, fromId, msgTime);
-					BmobLog.i("¸ÃÏûÏ¢·¢ËÍ·½ÎªºÚÃûµ¥ÓÃ»§");
+					BmobLog.i("è¯¥æ¶ˆæ¯å‘é€æ–¹ä¸ºé»‘åå•ç”¨æˆ·");
 				}
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			//ÕâÀï½ØÈ¡µ½µÄÓĞ¿ÉÄÜÊÇwebºóÌ¨ÍÆËÍ¸ø¿Í»§¶ËµÄÏûÏ¢£¬Ò²ÓĞ¿ÉÄÜÊÇ¿ª·¢Õß×Ô¶¨Òå·¢ËÍµÄÏûÏ¢£¬ĞèÒª¿ª·¢Õß×ÔĞĞ½âÎöºÍ´¦Àí
-			BmobLog.i("parseMessage´íÎó£º"+e.getMessage());
+			//è¿™é‡Œæˆªå–åˆ°çš„æœ‰å¯èƒ½æ˜¯webåå°æ¨é€ç»™å®¢æˆ·ç«¯çš„æ¶ˆæ¯ï¼Œä¹Ÿæœ‰å¯èƒ½æ˜¯å¼€å‘è€…è‡ªå®šä¹‰å‘é€çš„æ¶ˆæ¯ï¼Œéœ€è¦å¼€å‘è€…è‡ªè¡Œè§£æå’Œå¤„ç†
+			BmobLog.i("parseMessageé”™è¯¯ï¼š"+e.getMessage());
 		}
 	}
 	
 	/** 
-	 *  ÏÔÊ¾ÓëÁÄÌìÏûÏ¢µÄÍ¨Öª
+	 *  æ˜¾ç¤ºä¸èŠå¤©æ¶ˆæ¯çš„é€šçŸ¥
 	  * @Title: showNotify
 	  * @return void
 	  * @throws
 	  */
 	public void showMsgNotify(Context context,BmobMsg msg) {
-		// ¸üĞÂÍ¨ÖªÀ¸
+		// æ›´æ–°é€šçŸ¥æ 
 		int icon = R.drawable.ic_launcher;
 		String trueMsg = "";
 		if(msg.getMsgType()==BmobConfig.TYPE_TEXT && msg.getContent().contains("\\ue")){
-			trueMsg = "[±íÇé]";
+			trueMsg = "[è¡¨æƒ…]";
 		}else if(msg.getMsgType()==BmobConfig.TYPE_IMAGE){
-			trueMsg = "[Í¼Æ¬]";
+			trueMsg = "[å›¾ç‰‡]";
 		}else if(msg.getMsgType()==BmobConfig.TYPE_VOICE){
-			trueMsg = "[ÓïÒô]";
+			trueMsg = "[è¯­éŸ³]";
 		}else if(msg.getMsgType()==BmobConfig.TYPE_LOCATION){
-			trueMsg = "[Î»ÖÃ]";
+			trueMsg = "[ä½ç½®]";
 		}else{
 			trueMsg = msg.getContent();
 		}
 		CharSequence tickerText = msg.getBelongUsername() + ":" + trueMsg;
-		String contentTitle = msg.getBelongUsername()+ " (" + mNewNum + "ÌõĞÂÏûÏ¢)";
+		String contentTitle = msg.getBelongUsername()+ " (" + mNewNum + "æ¡æ–°æ¶ˆæ¯)";
 		
 		Intent intent = new Intent(context, MainActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -218,7 +218,7 @@ public class MyMessageReceiver extends BroadcastReceiver {
 	}
 	
 	
-	/** ÏÔÊ¾ÆäËûTagµÄÍ¨Öª
+	/** æ˜¾ç¤ºå…¶ä»–Tagçš„é€šçŸ¥
 	  * showOtherNotify
 	  */
 	public void showOtherNotify(Context context,String username,String toId,String ticker,Class<?> cls){
@@ -226,7 +226,7 @@ public class MyMessageReceiver extends BroadcastReceiver {
 		boolean isAllowVoice = CustomApplcation.getInstance().getSpUtil().isAllowVoice();
 		boolean isAllowVibrate = CustomApplcation.getInstance().getSpUtil().isAllowVibrate();
 		if(isAllow && currentUser!=null && currentUser.getObjectId().equals(toId)){
-			//Í¬Ê±ÌáĞÑÍ¨Öª
+			//åŒæ—¶æé†’é€šçŸ¥
 			BmobNotifyManager.getInstance(context).showNotify(isAllowVoice,isAllowVibrate,R.drawable.ic_launcher, ticker,username, ticker.toString(),NewFriendActivity.class);
 		}
 	}

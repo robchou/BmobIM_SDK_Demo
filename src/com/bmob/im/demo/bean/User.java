@@ -4,11 +4,11 @@ import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.v3.datatype.BmobGeoPoint;
 import cn.bmob.v3.datatype.BmobRelation;
 
-/** ÖØÔØBmobChatUser¶ÔÏó£ºÈô»¹ÓĞÆäËûĞèÒªÔö¼ÓµÄÊôĞÔ¿ÉÔÚ´ËÌí¼Ó
+/** é‡è½½BmobChatUserå¯¹è±¡ï¼šè‹¥è¿˜æœ‰å…¶ä»–éœ€è¦å¢åŠ çš„å±æ€§å¯åœ¨æ­¤æ·»åŠ 
   * @ClassName: TextUser
   * @Description: TODO
   * @author smile
-  * @date 2014-5-29 ÏÂÎç6:15:45
+  * @date 2014-5-29 ä¸‹åˆ6:15:45
   */
 public class User extends BmobChatUser {
 
@@ -18,24 +18,24 @@ public class User extends BmobChatUser {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * ·¢²¼µÄ²©¿ÍÁĞ±í
+	 * å‘å¸ƒçš„åšå®¢åˆ—è¡¨
 	 */
 	private BmobRelation blogs;
 	
 	/**
-	 * //ÏÔÊ¾Êı¾İÆ´ÒôµÄÊ××ÖÄ¸
+	 * //æ˜¾ç¤ºæ•°æ®æ‹¼éŸ³çš„é¦–å­—æ¯
 	 */
 	private String sortLetters;
 	
 	/**
-	 * //ĞÔ±ğ-true-ÄĞ
+	 * //æ€§åˆ«-true-ç”·
 	 */
 	private Boolean sex;
 	
 	private Blog blog;
 	
 	/**
-	 * µØÀí×ø±ê
+	 * åœ°ç†åæ ‡
 	 */
 	private BmobGeoPoint location;//
 	

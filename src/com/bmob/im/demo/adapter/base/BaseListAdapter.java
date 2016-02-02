@@ -17,12 +17,12 @@ import android.widget.Toast;
 import cn.bmob.im.util.BmobLog;
 
 /**
- * »ù´¡µÄÊÊÅäÆ÷
+ * åŸºç¡€çš„é€‚é…å™¨
  * 
  * @ClassName: BaseListAdapter
  * @Description: TODO
  * @author smile
- * @date 2014-6-19 ÉÏÎç11:04:01
+ * @date 2014-6-19 ä¸Šåˆ11:04:01
  * @param <E>
  */
 @SuppressLint("UseSparseArrays")
@@ -83,7 +83,7 @@ public abstract class BaseListAdapter<E> extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		convertView = bindView(position, convertView, parent);
-		// °ó¶¨ÄÚ²¿µã»÷¼àÌı
+		// ç»‘å®šå†…éƒ¨ç‚¹å‡»ç›‘å¬
 		addInternalClickListener(convertView, position, list.get(position));
 		return convertView;
 	}
@@ -91,7 +91,7 @@ public abstract class BaseListAdapter<E> extends BaseAdapter {
 	public abstract View bindView(int position, View convertView,
 			ViewGroup parent);
 
-	// adapterÖĞµÄÄÚ²¿µã»÷ÊÂ¼ş
+	// adapterä¸­çš„å†…éƒ¨ç‚¹å‡»äº‹ä»¶
 	public Map<Integer, onInternalClickListener> canClickItem;
 
 	private void addInternalClickListener(final View itemV, final Integer position,final Object valuesMap) {
@@ -147,7 +147,7 @@ public abstract class BaseListAdapter<E> extends BaseAdapter {
 	}
 
 	/**
-	 * ´òLog ShowLog
+	 * æ‰“Log ShowLog
 	 * @return void
 	 * @throws
 	 */

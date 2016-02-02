@@ -7,11 +7,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import cn.bmob.im.BmobUserManager;
 
-/** ³ıµÇÂ½×¢²áºÍ»¶Ó­Ò³ÃæÍâ¼Ì³ĞµÄ»ùÀà-ÓÃÓÚ¼ì²âÊÇ·ñÓĞÆäËûÉè±¸µÇÂ¼ÁËÍ¬Ò»ÕËºÅ
+/** é™¤ç™»é™†æ³¨å†Œå’Œæ¬¢è¿é¡µé¢å¤–ç»§æ‰¿çš„åŸºç±»-ç”¨äºæ£€æµ‹æ˜¯å¦æœ‰å…¶ä»–è®¾å¤‡ç™»å½•äº†åŒä¸€è´¦å·
   * @ClassName: ActivityBase
   * @Description: TODO
   * @author smile
-  * @date 2014-6-13 ÏÂÎç5:18:24
+  * @date 2014-6-13 ä¸‹åˆ5:18:24
   */
 public class ActivityBase extends BaseActivity {
 
@@ -19,27 +19,27 @@ public class ActivityBase extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		//×Ô¶¯µÇÂ½×´Ì¬ÏÂ¼ì²âÊÇ·ñÔÚÆäËûÉè±¸µÇÂ½
+		//è‡ªåŠ¨ç™»é™†çŠ¶æ€ä¸‹æ£€æµ‹æ˜¯å¦åœ¨å…¶ä»–è®¾å¤‡ç™»é™†
 		checkLogin();
 	}
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		//ËøÆÁ×´Ì¬ÏÂµÄ¼ì²â
+		//é”å±çŠ¶æ€ä¸‹çš„æ£€æµ‹
 		checkLogin();
 	}
 	
 	public void checkLogin() {
 		BmobUserManager userManager = BmobUserManager.getInstance(this);
 		if (userManager.getCurrentUser() == null) {
-			ShowToast("ÄúµÄÕËºÅÒÑÔÚÆäËûÉè±¸ÉÏµÇÂ¼!");
+			ShowToast("æ‚¨çš„è´¦å·å·²åœ¨å…¶ä»–è®¾å¤‡ä¸Šç™»å½•!");
 			startActivity(new Intent(this, LoginActivity.class));
 			finish();
 		}
 	}
 	
-	/** Òş²ØÈí¼üÅÌ
+	/** éšè—è½¯é”®ç›˜
 	  * hideSoftInputView
 	  * @Title: hideSoftInputView
 	  * @Description: TODO

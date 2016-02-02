@@ -17,20 +17,20 @@ import android.widget.TextView;
 import com.bmob.im.demo.R;
 
 /**
- *×Ô¶¨Òå¶Ô»°¿ò»ùÀà
- *Ö§³Ö£º¶Ô»°¿òÈ«ÆÁÏÔÊ¾¿ØÖÆ¡¢titleÏÔÊ¾¿ØÖÆ£¬Ò»¸öbutton»òÁ½¸ö
+ *è‡ªå®šä¹‰å¯¹è¯æ¡†åŸºç±»
+ *æ”¯æŒï¼šå¯¹è¯æ¡†å…¨å±æ˜¾ç¤ºæ§åˆ¶ã€titleæ˜¾ç¤ºæ§åˆ¶ï¼Œä¸€ä¸ªbuttonæˆ–ä¸¤ä¸ª
  */
 public abstract class DialogBase extends Dialog {
 	protected OnClickListener onSuccessListener;
 	protected Context mainContext;
-	protected OnClickListener onCancelListener;//Ìá¹©¸øÈ¡Ïû°´Å¥
+	protected OnClickListener onCancelListener;//æä¾›ç»™å–æ¶ˆæŒ‰é’®
 	protected OnDismissListener onDismissListener;
 	
 	protected View view;
 	protected Button positiveButton, negativeButton;
 	private boolean isFullScreen = false;
 	
-	private boolean hasTitle = true;//ÊÇ·ñÓĞtitle
+	private boolean hasTitle = true;//æ˜¯å¦æœ‰title
 	
 	private int width = 0, height = 0, x = 0, y = 0;
 	private int iconTitle = 0;
@@ -38,7 +38,7 @@ public abstract class DialogBase extends Dialog {
 	private String namePositiveButton, nameNegativeButton;
 	private final int MATCH_PARENT = android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
-	private boolean isCancel = true;//Ä¬ÈÏÊÇ·ñ¿Éµã»÷back°´¼ü/µã»÷Íâ²¿ÇøÓòÈ¡Ïû¶Ô»°¿ò
+	private boolean isCancel = true;//é»˜è®¤æ˜¯å¦å¯ç‚¹å‡»backæŒ‰é”®/ç‚¹å‡»å¤–éƒ¨åŒºåŸŸå–æ¶ˆå¯¹è¯æ¡†
 	
 	
 	public boolean isCancel() {
@@ -50,8 +50,8 @@ public abstract class DialogBase extends Dialog {
 	}
 
 	/**
-	 * ¹¹Ôìº¯Êı
-	 * @param context ¶ÔÏóÓ¦¸ÃÊÇActivity
+	 * æ„é€ å‡½æ•°
+	 * @param context å¯¹è±¡åº”è¯¥æ˜¯Activity
 	 */
 	public DialogBase(Context context) {
 		super(context, R.style.alert);
@@ -59,18 +59,18 @@ public abstract class DialogBase extends Dialog {
 	}
 	
 	/** 
-	 * ´´½¨ÊÂ¼ş
+	 * åˆ›å»ºäº‹ä»¶
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
     	setContentView(R.layout.v2_dialog_base);
 		this.onBuilding();
-		// ÉèÖÃ±êÌâºÍÏûÏ¢
+		// è®¾ç½®æ ‡é¢˜å’Œæ¶ˆæ¯
 		LinearLayout dialog_top = (LinearLayout)findViewById(R.id.dialog_top);
 		View title_red_line = (View)findViewById(R.id.title_red_line);
 		
-		//ÊÇ·ñÓĞtitle
+		//æ˜¯å¦æœ‰title
 		if(hasTitle){
 			dialog_top.setVisibility(View.VISIBLE);
 			title_red_line.setVisibility(View.VISIBLE);
@@ -91,7 +91,7 @@ public abstract class DialogBase extends Dialog {
 			findViewById(R.id.dialog_customPanel).setVisibility(View.GONE);
 		}
 
-		// ÉèÖÃ°´Å¥ÊÂ¼ş¼àÌı
+		// è®¾ç½®æŒ‰é’®äº‹ä»¶ç›‘å¬
 		positiveButton = (Button)findViewById(R.id.dialog_positivebutton);
 		negativeButton = (Button)findViewById(R.id.dialog_negativebutton);
 		if(namePositiveButton != null && namePositiveButton.length()>0){
@@ -109,7 +109,7 @@ public abstract class DialogBase extends Dialog {
 			negativeButton.setVisibility(View.GONE);
 		}
 		
-		// ÉèÖÃ¶Ô»°¿òµÄÎ»ÖÃºÍ´óĞ¡
+		// è®¾ç½®å¯¹è¯æ¡†çš„ä½ç½®å’Œå¤§å°
 		LayoutParams params = this.getWindow().getAttributes();  
 		if(this.getWidth()>0)
 			params.width = this.getWidth();  
@@ -120,13 +120,13 @@ public abstract class DialogBase extends Dialog {
 		if(this.getY()>0)
 			params.height = this.getY();  
 		
-		// Èç¹ûÉèÖÃÎªÈ«ÆÁ
+		// å¦‚æœè®¾ç½®ä¸ºå…¨å±
 		if(isFullScreen) {
 			params.width = WindowManager.LayoutParams.MATCH_PARENT;
 			params.height = WindowManager.LayoutParams.MATCH_PARENT;
 		}
 		
-		//ÉèÖÃµã»÷dialogÍâ²¿ÇøÓò¿ÉÈ¡Ïû
+		//è®¾ç½®ç‚¹å‡»dialogå¤–éƒ¨åŒºåŸŸå¯å–æ¶ˆ
 		if(isCancel){
 			setCanceledOnTouchOutside(true);
 			setCancelable(true);
@@ -140,8 +140,8 @@ public abstract class DialogBase extends Dialog {
 	}
 
 	/**
-	 * »ñÈ¡OnDismissÊÂ¼ş¼àÌı£¬ÊÍ·Å×ÊÔ´
-	 * @return OnDismissÊÂ¼ş¼àÌı
+	 * è·å–OnDismissäº‹ä»¶ç›‘å¬ï¼Œé‡Šæ”¾èµ„æº
+	 * @return OnDismissäº‹ä»¶ç›‘å¬
 	 */
 	protected OnDismissListener GetOnDismissListener() {
 		return new OnDismissListener(){
@@ -160,8 +160,8 @@ public abstract class DialogBase extends Dialog {
 	}
 
 	/**
-	 * »ñÈ¡È·ÈÏ°´Å¥µ¥»÷ÊÂ¼ş¼àÌı
-	 * @return È·ÈÏ°´Å¥µ¥»÷ÊÂ¼ş¼àÌı
+	 * è·å–ç¡®è®¤æŒ‰é’®å•å‡»äº‹ä»¶ç›‘å¬
+	 * @return ç¡®è®¤æŒ‰é’®å•å‡»äº‹ä»¶ç›‘å¬
 	 */
 	protected View.OnClickListener GetPositiveButtonOnClickListener() {
 		return new View.OnClickListener() {
@@ -173,8 +173,8 @@ public abstract class DialogBase extends Dialog {
 	}
 	
 	/**
-	 * »ñÈ¡È¡Ïû°´Å¥µ¥»÷ÊÂ¼ş¼àÌı
-	 * @return È¡Ïû°´Å¥µ¥»÷ÊÂ¼ş¼àÌı
+	 * è·å–å–æ¶ˆæŒ‰é’®å•å‡»äº‹ä»¶ç›‘å¬
+	 * @return å–æ¶ˆæŒ‰é’®å•å‡»äº‹ä»¶ç›‘å¬
 	 */
 	protected View.OnClickListener GetNegativeButtonOnClickListener() {
 		return new View.OnClickListener() {
@@ -186,8 +186,8 @@ public abstract class DialogBase extends Dialog {
 	}
 	
 	/**
-	 * »ñÈ¡½¹µã¸Ä±äÊÂ¼ş¼àÌı£¬ÉèÖÃEditTextÎÄ±¾Ä¬ÈÏÈ«Ñ¡
-	 * @return ½¹µã¸Ä±äÊÂ¼ş¼àÌı
+	 * è·å–ç„¦ç‚¹æ”¹å˜äº‹ä»¶ç›‘å¬ï¼Œè®¾ç½®EditTextæ–‡æœ¬é»˜è®¤å…¨é€‰
+	 * @return ç„¦ç‚¹æ”¹å˜äº‹ä»¶ç›‘å¬
 	 */
 	protected OnFocusChangeListener GetOnFocusChangeListener() {
 		return new OnFocusChangeListener() {
@@ -200,22 +200,22 @@ public abstract class DialogBase extends Dialog {
 	}
 	
 	/**
-	 * ÉèÖÃ³É¹¦ÊÂ¼ş¼àÌı£¬ÓÃÓÚÌá¹©¸øµ÷ÓÃÕßµÄ»Øµ÷º¯Êı
-	 * @param listener ³É¹¦ÊÂ¼ş¼àÌı
+	 * è®¾ç½®æˆåŠŸäº‹ä»¶ç›‘å¬ï¼Œç”¨äºæä¾›ç»™è°ƒç”¨è€…çš„å›è°ƒå‡½æ•°
+	 * @param listener æˆåŠŸäº‹ä»¶ç›‘å¬
 	 */
 	public void SetOnSuccessListener(OnClickListener listener){
 		onSuccessListener = listener;
 	}
 	
 	/**
-	 * ÉèÖÃ¹Ø±ÕÊÂ¼ş¼àÌı£¬ÓÃÓÚÌá¹©¸øµ÷ÓÃÕßµÄ»Øµ÷º¯Êı
-	 * @param listener ¹Ø±ÕÊÂ¼ş¼àÌı
+	 * è®¾ç½®å…³é—­äº‹ä»¶ç›‘å¬ï¼Œç”¨äºæä¾›ç»™è°ƒç”¨è€…çš„å›è°ƒå‡½æ•°
+	 * @param listener å…³é—­äº‹ä»¶ç›‘å¬
 	 */
 	public void SetOnDismissListener(OnDismissListener listener){
 		onDismissListener = listener;
 	}
 
-	/**Ìá¹©¸øÈ¡Ïû°´Å¥£¬ÓÃÓÚÊµÏÖÀà¶¨ÖÆ
+	/**æä¾›ç»™å–æ¶ˆæŒ‰é’®ï¼Œç”¨äºå®ç°ç±»å®šåˆ¶
 	 * @param listener
 	 */
 	public void SetOnCancelListener(OnClickListener listener){
@@ -223,90 +223,90 @@ public abstract class DialogBase extends Dialog {
 	}
 	
 	/**
-	 * ´´½¨·½·¨£¬ÓÃÓÚ×ÓÀà¶¨ÖÆ´´½¨¹ı³Ì
+	 * åˆ›å»ºæ–¹æ³•ï¼Œç”¨äºå­ç±»å®šåˆ¶åˆ›å»ºè¿‡ç¨‹
 	 */
 	protected abstract void onBuilding();
 
 	/**
-	 * È·ÈÏ°´Å¥µ¥»÷·½·¨£¬ÓÃÓÚ×ÓÀà¶¨ÖÆ
+	 * ç¡®è®¤æŒ‰é’®å•å‡»æ–¹æ³•ï¼Œç”¨äºå­ç±»å®šåˆ¶
 	 */
 	protected abstract boolean OnClickPositiveButton();
 
 	/**
-	 * È¡Ïû°´Å¥µ¥»÷·½·¨£¬ÓÃÓÚ×ÓÀà¶¨ÖÆ
+	 * å–æ¶ˆæŒ‰é’®å•å‡»æ–¹æ³•ï¼Œç”¨äºå­ç±»å®šåˆ¶
 	 */
 	protected abstract void OnClickNegativeButton();
 
 	/**
-	 * ¹Ø±Õ·½·¨£¬ÓÃÓÚ×ÓÀà¶¨ÖÆ
+	 * å…³é—­æ–¹æ³•ï¼Œç”¨äºå­ç±»å®šåˆ¶
 	 */
 	protected abstract void onDismiss();
 
 	/**
-	 * @return ¶Ô»°¿ò±êÌâ
+	 * @return å¯¹è¯æ¡†æ ‡é¢˜
 	 */
 	public String getTitle() {
 		return title;
 	}
 
 	/**
-	 * @param title ¶Ô»°¿ò±êÌâ
+	 * @param title å¯¹è¯æ¡†æ ‡é¢˜
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
 	/**
-	 * @param iconTitle ±êÌâÍ¼±êµÄ×ÊÔ´Id
+	 * @param iconTitle æ ‡é¢˜å›¾æ ‡çš„èµ„æºId
 	 */
 	public void setIconTitle(int iconTitle) {
 		this.iconTitle = iconTitle;
 	}
 
 	/**
-	 * @return ±êÌâÍ¼±êµÄ×ÊÔ´Id
+	 * @return æ ‡é¢˜å›¾æ ‡çš„èµ„æºId
 	 */
 	public int getIconTitle() {
 		return iconTitle;
 	}
 
 	/**
-	 * @return ¶Ô»°¿òÌáÊ¾ĞÅÏ¢
+	 * @return å¯¹è¯æ¡†æç¤ºä¿¡æ¯
 	 */
 	protected String getMessage() {
 		return message;
 	}
 
 	/**
-	 * @param message ¶Ô»°¿òÌáÊ¾ĞÅÏ¢
+	 * @param message å¯¹è¯æ¡†æç¤ºä¿¡æ¯
 	 */
 	protected void setMessage(String message) {
 		this.message = message;
 	}
 
 	/**
-	 * @return ¶Ô»°¿òView
+	 * @return å¯¹è¯æ¡†View
 	 */
 	protected View getView() {
 		return view;
 	}
 
 	/**
-	 * @param view ¶Ô»°¿òView
+	 * @param view å¯¹è¯æ¡†View
 	 */
 	protected void setView(View view) {
 		this.view = view;
 	}
 
 	/**
-	 * @return ÊÇ·ñÈ«ÆÁ
+	 * @return æ˜¯å¦å…¨å±
 	 */
 	public boolean getIsFullScreen() {
 		return isFullScreen;
 	}
 
 	/**
-	 * @param isFullScreen ÊÇ·ñÈ«ÆÁ
+	 * @param isFullScreen æ˜¯å¦å…¨å±
 	 */
 	public void setIsFullScreen(boolean isFullScreen) {
 		this.isFullScreen = isFullScreen;
@@ -323,84 +323,84 @@ public abstract class DialogBase extends Dialog {
 
 	
 	/**
-	 * @return ¶Ô»°¿ò¿í¶È
+	 * @return å¯¹è¯æ¡†å®½åº¦
 	 */
 	protected int getWidth() {
 		return width;
 	}
 
 	/**
-	 * @param width ¶Ô»°¿ò¿í¶È
+	 * @param width å¯¹è¯æ¡†å®½åº¦
 	 */
 	protected void setWidth(int width) {
 		this.width = width;
 	}
 
 	/**
-	 * @return ¶Ô»°¿ò¸ß¶È
+	 * @return å¯¹è¯æ¡†é«˜åº¦
 	 */
 	protected int getHeight() {
 		return height;
 	}
 
 	/**
-	 * @param height ¶Ô»°¿ò¸ß¶È
+	 * @param height å¯¹è¯æ¡†é«˜åº¦
 	 */
 	protected void setHeight(int height) {
 		this.height = height;
 	}
 
 	/**
-	 * @return ¶Ô»°¿òX×ø±ê
+	 * @return å¯¹è¯æ¡†Xåæ ‡
 	 */
 	public int getX() {
 		return x;
 	}
 
 	/**
-	 * @param x ¶Ô»°¿òX×ø±ê
+	 * @param x å¯¹è¯æ¡†Xåæ ‡
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
 	/**
-	 * @return ¶Ô»°¿òY×ø±ê
+	 * @return å¯¹è¯æ¡†Yåæ ‡
 	 */
 	public int getY() {
 		return y;
 	}
 
 	/**
-	 * @param y ¶Ô»°¿òY×ø±ê
+	 * @param y å¯¹è¯æ¡†Yåæ ‡
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 
 	/**
-	 * @return È·ÈÏ°´Å¥Ãû³Æ
+	 * @return ç¡®è®¤æŒ‰é’®åç§°
 	 */
 	protected String getNamePositiveButton() {
 		return namePositiveButton;
 	}
 
 	/**
-	 * @param namePositiveButton È·ÈÏ°´Å¥Ãû³Æ
+	 * @param namePositiveButton ç¡®è®¤æŒ‰é’®åç§°
 	 */
 	protected void setNamePositiveButton(String namePositiveButton) {
 		this.namePositiveButton = namePositiveButton;
 	}
 
 	/**
-	 * @return È¡Ïû°´Å¥Ãû³Æ
+	 * @return å–æ¶ˆæŒ‰é’®åç§°
 	 */
 	protected String getNameNegativeButton() {
 		return nameNegativeButton;
 	}
 
 	/**
-	 * @param nameNegativeButton È¡Ïû°´Å¥Ãû³Æ
+	 * @param nameNegativeButton å–æ¶ˆæŒ‰é’®åç§°
 	 */
 	protected void setNameNegativeButton(String nameNegativeButton) {
 		this.nameNegativeButton = nameNegativeButton;

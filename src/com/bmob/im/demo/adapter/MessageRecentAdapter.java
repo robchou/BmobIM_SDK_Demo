@@ -22,11 +22,11 @@ import com.bmob.im.demo.util.ImageLoadOptions;
 import com.bmob.im.demo.util.TimeUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/** »á»°ÊÊÅäÆ÷
+/** ä¼šè¯é€‚é…å™¨
   * @ClassName: MessageRecentAdapter
   * @Description: TODO
   * @author smile
-  * @date 2014-6-7 ÏÂÎç2:34:10
+  * @date 2014-6-7 ä¸‹åˆ2:34:10
   */
 public class MessageRecentAdapter extends ArrayAdapter<BmobRecent> implements Filterable{
 	
@@ -54,7 +54,7 @@ public class MessageRecentAdapter extends ArrayAdapter<BmobRecent> implements Fi
 		TextView tv_recent_time = ViewHolder.get(convertView, R.id.tv_recent_time);
 		TextView tv_recent_unread = ViewHolder.get(convertView, R.id.tv_recent_unread);
 		
-		//Ìî³äÊı¾İ
+		//å¡«å……æ•°æ®
 		String avatar = item.getAvatar();
 		if(avatar!=null&& !avatar.equals("")){
 			ImageLoader.getInstance().displayImage(avatar, iv_recent_avatar, ImageLoadOptions.getOptions());
@@ -64,20 +64,20 @@ public class MessageRecentAdapter extends ArrayAdapter<BmobRecent> implements Fi
 		
 		tv_recent_name.setText(item.getUserName());
 		tv_recent_time.setText(TimeUtil.getChatTime(item.getTime()));
-		//ÏÔÊ¾ÄÚÈİ
+		//æ˜¾ç¤ºå†…å®¹
 		if(item.getType()==BmobConfig.TYPE_TEXT){
 			SpannableString spannableString = FaceTextUtils.toSpannableString(mContext, item.getMessage());
 			tv_recent_msg.setText(spannableString);
 		}else if(item.getType()==BmobConfig.TYPE_IMAGE){
-			tv_recent_msg.setText("[Í¼Æ¬]");
+			tv_recent_msg.setText("[å›¾ç‰‡]");
 		}else if(item.getType()==BmobConfig.TYPE_LOCATION){
 			String all =item.getMessage();
-			if(all!=null &&!all.equals("")){//Î»ÖÃÀàĞÍµÄĞÅÏ¢×é×°¸ñÊ½£ºµØÀíÎ»ÖÃ&Î¬¶È&¾­¶È
+			if(all!=null &&!all.equals("")){//ä½ç½®ç±»å‹çš„ä¿¡æ¯ç»„è£…æ ¼å¼ï¼šåœ°ç†ä½ç½®&ç»´åº¦&ç»åº¦
 				String address = all.split("&")[0];
-				tv_recent_msg.setText("[Î»ÖÃ]"+address);
+				tv_recent_msg.setText("[ä½ç½®]"+address);
 			}
 		}else if(item.getType()==BmobConfig.TYPE_VOICE){
-			tv_recent_msg.setText("[ÓïÒô]");
+			tv_recent_msg.setText("[è¯­éŸ³]");
 		}
 		
 		int num = BmobDB.create(mContext).getUnreadCount(item.getTargetid());

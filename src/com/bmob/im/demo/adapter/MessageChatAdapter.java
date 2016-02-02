@@ -41,26 +41,26 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 
-/** ÁÄÌìÊÊÅäÆ÷
+/** èŠå¤©é€‚é…å™¨
   * @ClassName: MessageChatAdapter
   * @Description: TODO
   * @author smile
-  * @date 2014-5-28 ÏÂÎç5:34:07
+  * @date 2014-5-28 ä¸‹åˆ5:34:07
   */
 @SuppressLint("InflateParams")
 public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 
-	//8ÖÖItemµÄÀàĞÍ
-	//ÎÄ±¾
+	//8ç§Itemçš„ç±»å‹
+	//æ–‡æœ¬
 	private final int TYPE_RECEIVER_TXT = 0;
 	private final int TYPE_SEND_TXT = 1;
-	//Í¼Æ¬
+	//å›¾ç‰‡
 	private final int TYPE_SEND_IMAGE = 2;
 	private final int TYPE_RECEIVER_IMAGE = 3;
-	//Î»ÖÃ
+	//ä½ç½®
 	private final int TYPE_SEND_LOCATION = 4;
 	private final int TYPE_RECEIVER_LOCATION = 5;
-	//ÓïÒô
+	//è¯­éŸ³
 	private final int TYPE_SEND_VOICE =6;
 	private final int TYPE_RECEIVER_VOICE = 7;
 	
@@ -109,22 +109,22 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 	
 	private View createViewByType(BmobMsg message, int position) {
 		int type = message.getMsgType();
-	   if(type==BmobConfig.TYPE_IMAGE){//Í¼Æ¬ÀàĞÍ
+	   if(type==BmobConfig.TYPE_IMAGE){//å›¾ç‰‡ç±»å‹
 			return getItemViewType(position) == TYPE_RECEIVER_IMAGE ? 
 					mInflater.inflate(R.layout.item_chat_received_image, null) 
 					:
 					mInflater.inflate(R.layout.item_chat_sent_image, null);
-		}else if(type==BmobConfig.TYPE_LOCATION){//Î»ÖÃÀàĞÍ
+		}else if(type==BmobConfig.TYPE_LOCATION){//ä½ç½®ç±»å‹
 			return getItemViewType(position) == TYPE_RECEIVER_LOCATION ? 
 					mInflater.inflate(R.layout.item_chat_received_location, null) 
 					:
 					mInflater.inflate(R.layout.item_chat_sent_location, null);
-		}else if(type==BmobConfig.TYPE_VOICE){//ÓïÒôÀàĞÍ
+		}else if(type==BmobConfig.TYPE_VOICE){//è¯­éŸ³ç±»å‹
 			return getItemViewType(position) == TYPE_RECEIVER_VOICE ? 
 					mInflater.inflate(R.layout.item_chat_received_voice, null) 
 					:
 					mInflater.inflate(R.layout.item_chat_sent_voice, null);
-		}else{//Ê£ÏÂÄ¬ÈÏµÄ¶¼ÊÇÎÄ±¾
+		}else{//å‰©ä¸‹é»˜è®¤çš„éƒ½æ˜¯æ–‡æœ¬
 			return getItemViewType(position) == TYPE_RECEIVER_TXT ? 
 					mInflater.inflate(R.layout.item_chat_received_message, null) 
 					:
@@ -139,25 +139,25 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 		if (convertView == null) {
 			convertView = createViewByType(item, position);
 		}
-		//ÎÄ±¾ÀàĞÍ
+		//æ–‡æœ¬ç±»å‹
 		ImageView iv_avatar = ViewHolder.get(convertView, R.id.iv_avatar);
-		final ImageView iv_fail_resend = ViewHolder.get(convertView, R.id.iv_fail_resend);//Ê§°ÜÖØ·¢
-		final TextView tv_send_status = ViewHolder.get(convertView, R.id.tv_send_status);//·¢ËÍ×´Ì¬
+		final ImageView iv_fail_resend = ViewHolder.get(convertView, R.id.iv_fail_resend);//å¤±è´¥é‡å‘
+		final TextView tv_send_status = ViewHolder.get(convertView, R.id.tv_send_status);//å‘é€çŠ¶æ€
 		TextView tv_time = ViewHolder.get(convertView, R.id.tv_time);
 		TextView tv_message = ViewHolder.get(convertView, R.id.tv_message);
-		//Í¼Æ¬
+		//å›¾ç‰‡
 		ImageView iv_picture = ViewHolder.get(convertView, R.id.iv_picture);
-		final ProgressBar progress_load = ViewHolder.get(convertView, R.id.progress_load);//½ø¶ÈÌõ
-		//Î»ÖÃ
+		final ProgressBar progress_load = ViewHolder.get(convertView, R.id.progress_load);//è¿›åº¦æ¡
+		//ä½ç½®
 		TextView tv_location = ViewHolder.get(convertView, R.id.tv_location);
-		//ÓïÒô
+		//è¯­éŸ³
 		final ImageView iv_voice = ViewHolder.get(convertView, R.id.iv_voice);
-		//ÓïÒô³¤¶È
+		//è¯­éŸ³é•¿åº¦
 		final TextView tv_voice_length = ViewHolder.get(convertView, R.id.tv_voice_length);
 		
-		//µã»÷Í·Ïñ½øÈë¸öÈË×ÊÁÏ
+		//ç‚¹å‡»å¤´åƒè¿›å…¥ä¸ªäººèµ„æ–™
 		String avatar = item.getBelongAvatar();
-		if(avatar!=null && !avatar.equals("")){//¼ÓÔØÍ·Ïñ-ÎªÁË²»Ã¿´Î¶¼¼ÓÔØÍ·Ïñ
+		if(avatar!=null && !avatar.equals("")){//åŠ è½½å¤´åƒ-ä¸ºäº†ä¸æ¯æ¬¡éƒ½åŠ è½½å¤´åƒ
 			ImageLoader.getInstance().displayImage(avatar, iv_avatar, ImageLoadOptions.getOptions(),animateFirstListener);
 		}else{
 			iv_avatar.setImageResource(R.drawable.head);
@@ -185,11 +185,11 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 		tv_time.setText(TimeUtil.getChatTime(Long.parseLong(item.getMsgTime())));
 		
 		if(getItemViewType(position)==TYPE_SEND_TXT
-//				||getItemViewType(position)==TYPE_SEND_IMAGE//Í¼Æ¬µ¥¶À´¦Àí
+//				||getItemViewType(position)==TYPE_SEND_IMAGE//å›¾ç‰‡å•ç‹¬å¤„ç†
 				||getItemViewType(position)==TYPE_SEND_LOCATION
-				||getItemViewType(position)==TYPE_SEND_VOICE){//Ö»ÓĞ×Ô¼º·¢ËÍµÄÏûÏ¢²ÅÓĞÖØ·¢»úÖÆ
-			//×´Ì¬ÃèÊö
-			if(item.getStatus()==BmobConfig.STATUS_SEND_SUCCESS){//·¢ËÍ³É¹¦
+				||getItemViewType(position)==TYPE_SEND_VOICE){//åªæœ‰è‡ªå·±å‘é€çš„æ¶ˆæ¯æ‰æœ‰é‡å‘æœºåˆ¶
+			//çŠ¶æ€æè¿°
+			if(item.getStatus()==BmobConfig.STATUS_SEND_SUCCESS){//å‘é€æˆåŠŸ
 				progress_load.setVisibility(View.INVISIBLE);
 				iv_fail_resend.setVisibility(View.INVISIBLE);
 				if(item.getMsgType()==BmobConfig.TYPE_VOICE){
@@ -197,16 +197,16 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 					tv_voice_length.setVisibility(View.VISIBLE);
 				}else{
 					tv_send_status.setVisibility(View.VISIBLE);
-					tv_send_status.setText("ÒÑ·¢ËÍ");
+					tv_send_status.setText("å·²å‘é€");
 				}
-			}else if(item.getStatus()==BmobConfig.STATUS_SEND_FAIL){//·şÎñÆ÷ÎŞÏìÓ¦»òÕß²éÑ¯Ê§°ÜµÈÔ­ÒòÔì³ÉµÄ·¢ËÍÊ§°Ü£¬¾ùĞèÒªÖØ·¢
+			}else if(item.getStatus()==BmobConfig.STATUS_SEND_FAIL){//æœåŠ¡å™¨æ— å“åº”æˆ–è€…æŸ¥è¯¢å¤±è´¥ç­‰åŸå› é€ æˆçš„å‘é€å¤±è´¥ï¼Œå‡éœ€è¦é‡å‘
 				progress_load.setVisibility(View.INVISIBLE);
 				iv_fail_resend.setVisibility(View.VISIBLE);
 				tv_send_status.setVisibility(View.INVISIBLE);
 				if(item.getMsgType()==BmobConfig.TYPE_VOICE){
 					tv_voice_length.setVisibility(View.GONE);
 				}
-			}else if(item.getStatus()==BmobConfig.STATUS_SEND_RECEIVERED){//¶Ô·½ÒÑ½ÓÊÕµ½
+			}else if(item.getStatus()==BmobConfig.STATUS_SEND_RECEIVERED){//å¯¹æ–¹å·²æ¥æ”¶åˆ°
 				progress_load.setVisibility(View.INVISIBLE);
 				iv_fail_resend.setVisibility(View.INVISIBLE);
 				if(item.getMsgType()==BmobConfig.TYPE_VOICE){
@@ -214,9 +214,9 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 					tv_voice_length.setVisibility(View.VISIBLE);
 				}else{
 					tv_send_status.setVisibility(View.VISIBLE);
-					tv_send_status.setText("ÒÑÔÄ¶Á");
+					tv_send_status.setText("å·²é˜…è¯»");
 				}
-			}else if(item.getStatus()==BmobConfig.STATUS_SEND_START){//¿ªÊ¼ÉÏ´«
+			}else if(item.getStatus()==BmobConfig.STATUS_SEND_START){//å¼€å§‹ä¸Šä¼ 
 				progress_load.setVisibility(View.VISIBLE);
 				iv_fail_resend.setVisibility(View.INVISIBLE);
 				tv_send_status.setVisibility(View.INVISIBLE);
@@ -225,7 +225,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 				}
 			}
 		}
-		//¸ù¾İÀàĞÍÏÔÊ¾ÄÚÈİ
+		//æ ¹æ®ç±»å‹æ˜¾ç¤ºå†…å®¹
 		final String text = item.getContent();
 		switch (item.getMsgType()) {
 		case BmobConfig.TYPE_TEXT:
@@ -237,9 +237,9 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 			}
 			break;
 
-		case BmobConfig.TYPE_IMAGE://Í¼Æ¬Àà
+		case BmobConfig.TYPE_IMAGE://å›¾ç‰‡ç±»
 			try {
-				if (text != null && !text.equals("")) {//·¢ËÍ³É¹¦Ö®ºó´æ´¢µÄÍ¼Æ¬ÀàĞÍµÄcontentºÍ½ÓÊÕµ½µÄÊÇ²»Ò»ÑùµÄ
+				if (text != null && !text.equals("")) {//å‘é€æˆåŠŸä¹‹åå­˜å‚¨çš„å›¾ç‰‡ç±»å‹çš„contentå’Œæ¥æ”¶åˆ°çš„æ˜¯ä¸ä¸€æ ·çš„
 					dealWithImage(position, progress_load, iv_fail_resend, tv_send_status, iv_picture, item);
 				}
 				iv_picture.setOnClickListener(new OnClickListener() {
@@ -260,12 +260,12 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 			}
 			break;
 			
-		case BmobConfig.TYPE_LOCATION://Î»ÖÃĞÅÏ¢
+		case BmobConfig.TYPE_LOCATION://ä½ç½®ä¿¡æ¯
 			try {
 				if (text != null && !text.equals("")) {
 					String address  = text.split("&")[0];
-					final String latitude = text.split("&")[1];//Î¬¶È
-					final String longtitude = text.split("&")[2];//¾­¶È
+					final String latitude = text.split("&")[1];//ç»´åº¦
+					final String longtitude = text.split("&")[2];//ç»åº¦
 					tv_location.setText(address);
 					tv_location.setOnClickListener(new OnClickListener() {
 						
@@ -274,8 +274,8 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 							// TODO Auto-generated method stub
 							Intent intent = new Intent(mContext, LocationActivity.class);
 							intent.putExtra("type", "scan");
-							intent.putExtra("latitude", Double.parseDouble(latitude));//Î¬¶È
-							intent.putExtra("longtitude", Double.parseDouble(longtitude));//¾­¶È
+							intent.putExtra("latitude", Double.parseDouble(latitude));//ç»´åº¦
+							intent.putExtra("longtitude", Double.parseDouble(longtitude));//ç»åº¦
 							mContext.startActivity(intent);
 						}
 					});
@@ -284,23 +284,23 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 				
 			}
 			break;
-		case BmobConfig.TYPE_VOICE://ÓïÒôÏûÏ¢
+		case BmobConfig.TYPE_VOICE://è¯­éŸ³æ¶ˆæ¯
 			try {
 				if (text != null && !text.equals("")) {
 					tv_voice_length.setVisibility(View.VISIBLE);
 					String content = item.getContent();
-					if (item.getBelongId().equals(currentObjectId)) {//·¢ËÍµÄÏûÏ¢
+					if (item.getBelongId().equals(currentObjectId)) {//å‘é€çš„æ¶ˆæ¯
 						if(item.getStatus()==BmobConfig.STATUS_SEND_RECEIVERED
-								||item.getStatus()==BmobConfig.STATUS_SEND_SUCCESS){//µ±·¢ËÍ³É¹¦»òÕß·¢ËÍÒÑÔÄ¶ÁµÄÊ±ºò£¬ÔòÏÔÊ¾ÓïÒô³¤¶È
+								||item.getStatus()==BmobConfig.STATUS_SEND_SUCCESS){//å½“å‘é€æˆåŠŸæˆ–è€…å‘é€å·²é˜…è¯»çš„æ—¶å€™ï¼Œåˆ™æ˜¾ç¤ºè¯­éŸ³é•¿åº¦
 							tv_voice_length.setVisibility(View.VISIBLE);
 							String length = content.split("&")[2];
 							tv_voice_length.setText(length+"\''");
 						}else{
 							tv_voice_length.setVisibility(View.INVISIBLE);
 						}
-					} else {//ÊÕµ½µÄÏûÏ¢
+					} else {//æ”¶åˆ°çš„æ¶ˆæ¯
 						boolean isExists = BmobDownloadManager.checkTargetPathExist(currentObjectId,item);
-						if(!isExists){//ÈôÖ¸¶¨¸ñÊ½µÄÂ¼ÒôÎÄ¼ş²»´æÔÚ£¬ÔòĞèÒªÏÂÔØ£¬ÒòÎªÆäÎÄ¼ş±È½ÏĞ¡£¬¹Ê·ÅÔÚ´ËÏÂÔØ
+						if(!isExists){//è‹¥æŒ‡å®šæ ¼å¼çš„å½•éŸ³æ–‡ä»¶ä¸å­˜åœ¨ï¼Œåˆ™éœ€è¦ä¸‹è½½ï¼Œå› ä¸ºå…¶æ–‡ä»¶æ¯”è¾ƒå°ï¼Œæ•…æ”¾åœ¨æ­¤ä¸‹è½½
 							String netUrl = content.split("&")[0];
 							final String length = content.split("&")[1];
 							BmobDownloadManager downloadTask = new BmobDownloadManager(mContext,item,new DownloadListener() {
@@ -310,7 +310,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 									// TODO Auto-generated method stub
 									progress_load.setVisibility(View.VISIBLE);
 									tv_voice_length.setVisibility(View.GONE);
-									iv_voice.setVisibility(View.INVISIBLE);//Ö»ÓĞÏÂÔØÍê³É²ÅÏÔÊ¾²¥·ÅµÄ°´Å¥
+									iv_voice.setVisibility(View.INVISIBLE);//åªæœ‰ä¸‹è½½å®Œæˆæ‰æ˜¾ç¤ºæ’­æ”¾çš„æŒ‰é’®
 								}
 								
 								@Override
@@ -336,7 +336,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 						}
 					}
 				}
-				//²¥·ÅÓïÒôÎÄ¼ş
+				//æ’­æ”¾è¯­éŸ³æ–‡ä»¶
 				iv_voice.setOnClickListener(new NewRecordPlayClickListener(mContext,item,iv_voice));
 			} catch (Exception e) {
 				
@@ -349,7 +349,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 		return convertView;
 	}
 	
-	/** »ñÈ¡Í¼Æ¬µÄµØÖ·--
+	/** è·å–å›¾ç‰‡çš„åœ°å€--
 	  * @Description: TODO
 	  * @param @param item
 	  * @param @return 
@@ -365,14 +365,14 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 			}else{
 				showUrl = text;
 			}
-		}else{//Èç¹ûÊÇÊÕµ½µÄÏûÏ¢£¬ÔòĞèÒª´ÓÍøÂçÏÂÔØ
+		}else{//å¦‚æœæ˜¯æ”¶åˆ°çš„æ¶ˆæ¯ï¼Œåˆ™éœ€è¦ä»ç½‘ç»œä¸‹è½½
 			showUrl = text;
 		}
 		return showUrl;
 	}
 	
 	
-	/** ´¦ÀíÍ¼Æ¬
+	/** å¤„ç†å›¾ç‰‡
 	  * @Description: TODO
 	  * @param @param position
 	  * @param @param progress_load
@@ -385,8 +385,8 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 	  */
 	private void dealWithImage(int position,final ProgressBar progress_load,ImageView iv_fail_resend,TextView tv_send_status,ImageView iv_picture,BmobMsg item){
 		String text = item.getContent();
-		if(getItemViewType(position)==TYPE_SEND_IMAGE){//·¢ËÍµÄÏûÏ¢
-			Log.i("smile", position+",×´Ì¬£º"+item.getStatus());
+		if(getItemViewType(position)==TYPE_SEND_IMAGE){//å‘é€çš„æ¶ˆæ¯
+			Log.i("smile", position+",çŠ¶æ€ï¼š"+item.getStatus());
 			if(item.getStatus()==BmobConfig.STATUS_SEND_START){
 				progress_load.setVisibility(View.VISIBLE);
 				iv_fail_resend.setVisibility(View.INVISIBLE);
@@ -395,7 +395,7 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 				progress_load.setVisibility(View.INVISIBLE);
 				iv_fail_resend.setVisibility(View.INVISIBLE);
 				tv_send_status.setVisibility(View.VISIBLE);
-				tv_send_status.setText("ÒÑ·¢ËÍ");
+				tv_send_status.setText("å·²å‘é€");
 			}else if(item.getStatus()==BmobConfig.STATUS_SEND_FAIL){
 				progress_load.setVisibility(View.INVISIBLE);
 				iv_fail_resend.setVisibility(View.VISIBLE);
@@ -404,16 +404,16 @@ public class MessageChatAdapter extends BaseListAdapter<BmobMsg> {
 				progress_load.setVisibility(View.INVISIBLE);
 				iv_fail_resend.setVisibility(View.INVISIBLE);
 				tv_send_status.setVisibility(View.VISIBLE);
-				tv_send_status.setText("ÒÑÔÄ¶Á");
+				tv_send_status.setText("å·²é˜…è¯»");
 			}
-//			Èç¹ûÊÇ·¢ËÍµÄÍ¼Æ¬µÄ»°£¬ÒòÎª¿ªÊ¼·¢ËÍ´æ´¢µÄµØÖ·ÊÇ±¾µØµØÖ·£¬·¢ËÍ³É¹¦Ö®ºó´æ´¢µÄÊÇ±¾µØµØÖ·+"&"+ÍøÂçµØÖ·£¬Òò´ËĞèÒªÅĞ¶ÏÏÂ
+//			å¦‚æœæ˜¯å‘é€çš„å›¾ç‰‡çš„è¯ï¼Œå› ä¸ºå¼€å§‹å‘é€å­˜å‚¨çš„åœ°å€æ˜¯æœ¬åœ°åœ°å€ï¼Œå‘é€æˆåŠŸä¹‹åå­˜å‚¨çš„æ˜¯æœ¬åœ°åœ°å€+"&"+ç½‘ç»œåœ°å€ï¼Œå› æ­¤éœ€è¦åˆ¤æ–­ä¸‹
 			String showUrl = "";
 			if(text.contains("&")){
 				showUrl = text.split("&")[0];
 			}else{
 				showUrl = text;
 			}
-			//ÎªÁË·½±ãÃ¿´Î¶¼ÊÇÈ¡±¾µØÍ¼Æ¬ÏÔÊ¾
+			//ä¸ºäº†æ–¹ä¾¿æ¯æ¬¡éƒ½æ˜¯å–æœ¬åœ°å›¾ç‰‡æ˜¾ç¤º
 			ImageLoader.getInstance().displayImage(showUrl, iv_picture);
 		}else{
 			ImageLoader.getInstance().displayImage(text, iv_picture,options,new ImageLoadingListener() {

@@ -18,12 +18,12 @@ import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
- * ¸½½üµÄÈË
+ * é™„è¿‘çš„äºº
  * 
  * @ClassName: BlackListAdapter
  * @Description: TODO
  * @author smile
- * @date 2014-6-24 ÏÂÎç5:27:14
+ * @date 2014-6-24 ä¸‹åˆ5:27:14
  */
 public class NearPeopleAdapter extends BaseListAdapter<User> {
 
@@ -56,12 +56,12 @@ public class NearPeopleAdapter extends BaseListAdapter<User> {
 		if(location!=null && !currentLat.equals("") && !currentLong.equals("")){
 			double distance = DistanceOfTwoPoints(Double.parseDouble(currentLat),Double.parseDouble(currentLong),contract.getLocation().getLatitude(), 
 					contract.getLocation().getLongitude());
-			tv_distance.setText(String.valueOf(distance)+"Ã×");
+			tv_distance.setText(String.valueOf(distance)+"ç±³");
 		}else{
-			tv_distance.setText("Î´Öª");
+			tv_distance.setText("æœªçŸ¥");
 		}
 		tv_name.setText(contract.getUsername());
-		tv_logintime.setText("×î½üµÇÂ¼Ê±¼ä:"+contract.getUpdatedAt());
+		tv_logintime.setText("æœ€è¿‘ç™»å½•æ—¶é—´:"+contract.getUpdatedAt());
 		return convertView;
 	}
 
@@ -72,12 +72,12 @@ public class NearPeopleAdapter extends BaseListAdapter<User> {
 	}
 
 	/**
-	 * ¸ù¾İÁ½µã¼ä¾­Î³¶È×ø±ê£¨doubleÖµ£©£¬¼ÆËãÁ½µã¼ä¾àÀë£¬
+	 * æ ¹æ®ä¸¤ç‚¹é—´ç»çº¬åº¦åæ ‡ï¼ˆdoubleå€¼ï¼‰ï¼Œè®¡ç®—ä¸¤ç‚¹é—´è·ç¦»ï¼Œ
 	 * @param lat1
 	 * @param lng1
 	 * @param lat2
 	 * @param lng2
-	 * @return ¾àÀë£ºµ¥Î»ÎªÃ×
+	 * @return è·ç¦»ï¼šå•ä½ä¸ºç±³
 	 */
 	public static double DistanceOfTwoPoints(double lat1, double lng1,double lat2, double lng2) {
 		double radLat1 = rad(lat1);

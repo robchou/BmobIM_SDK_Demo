@@ -20,12 +20,12 @@ import cn.bmob.im.util.BmobUtils;
 import com.bmob.im.demo.R;
 
 /**
- * ²¥·ÅÂ¼ÒôÎÄ¼ş
+ * æ’­æ”¾å½•éŸ³æ–‡ä»¶
  * 
  * @ClassName: NewRecordPlayClickListener
  * @Description: TODO
  * @author smile
- * @date 2014-7-3 ÉÏÎç11:05:06
+ * @date 2014-7-3 ä¸Šåˆ11:05:06
  */
 public class NewRecordPlayClickListener implements View.OnClickListener {
 
@@ -37,7 +37,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 	MediaPlayer mediaPlayer = null;
 	public static boolean isPlaying = false;
 	public static NewRecordPlayClickListener currentPlayListener = null;
-	static BmobMsg currentMsg = null;// ÓÃÓÚÇø·ÖÁ½¸ö²»Í¬ÓïÒôµÄ²¥·Å
+	static BmobMsg currentMsg = null;// ç”¨äºåŒºåˆ†ä¸¤ä¸ªä¸åŒè¯­éŸ³çš„æ’­æ”¾
 
 	BmobUserManager userManager;
 
@@ -54,7 +54,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 	}
 
 	/**
-	 * ²¥·ÅÓïÒô
+	 * æ’­æ”¾è¯­éŸ³
 	 * 
 	 * @Title: playVoice
 	 * @Description: TODO
@@ -76,7 +76,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 			audioManager.setSpeakerphoneOn(true);
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
 		} else {
-			audioManager.setSpeakerphoneOn(false);// ¹Ø±ÕÑïÉùÆ÷
+			audioManager.setSpeakerphoneOn(false);// å…³é—­æ‰¬å£°å™¨
 			audioManager.setMode(AudioManager.MODE_IN_CALL);
 			mediaPlayer.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
 		}
@@ -111,9 +111,9 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 
 		try {
 			mediaPlayer.reset();
-			// µ¥¶ÀÊ¹ÓÃ´Ë·½·¨»á±¨´í²¥·Å´íÎó:setDataSourceFD failed.: status=0x80000000
+			// å•ç‹¬ä½¿ç”¨æ­¤æ–¹æ³•ä¼šæŠ¥é”™æ’­æ”¾é”™è¯¯:setDataSourceFD failed.: status=0x80000000
 			// mediaPlayer.setDataSource(filePath);
-			// Òò´Ë²ÉÓÃ´Ë·½Ê½»á±ÜÃâÕâÖÖ´íÎó
+			// å› æ­¤é‡‡ç”¨æ­¤æ–¹å¼ä¼šé¿å…è¿™ç§é”™è¯¯
 			FileInputStream fis = new FileInputStream(new File(filePath));
 			mediaPlayer.setDataSource(fis.getFD());
 			mediaPlayer.prepare();
@@ -144,12 +144,12 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 			// mediaPlayer.start();
 			// startRecordAnimation();
 		} catch (Exception e) {
-			BmobLog.i("²¥·Å´íÎó:" + e.getMessage());
+			BmobLog.i("æ’­æ”¾é”™è¯¯:" + e.getMessage());
 		}
 	}
 
 	/**
-	 * Í£Ö¹²¥·Å
+	 * åœæ­¢æ’­æ”¾
 	 * 
 	 * @Title: stopPlayRecord
 	 * @Description: TODO
@@ -167,7 +167,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 	}
 
 	/**
-	 * ¿ªÆô²¥·Å¶¯»­
+	 * å¼€å¯æ’­æ”¾åŠ¨ç”»
 	 * 
 	 * @Title: startRecordAnimation
 	 * @Description: TODO
@@ -186,7 +186,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 	}
 
 	/**
-	 * Í£Ö¹²¥·Å¶¯»­
+	 * åœæ­¢æ’­æ”¾åŠ¨ç”»
 	 * 
 	 * @Title: stopRecordAnimation
 	 * @Description: TODO
@@ -215,13 +215,13 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 				return;
 			}
 		}
-		BmobLog.i("voice", "µã»÷ÊÂ¼ş");
-		if (message.getBelongId().equals(currentObjectId)) {// Èç¹ûÊÇ×Ô¼º·¢ËÍµÄÓïÒôÏûÏ¢£¬Ôò²¥·Å±¾µØµØÖ·
+		BmobLog.i("voice", "ç‚¹å‡»äº‹ä»¶");
+		if (message.getBelongId().equals(currentObjectId)) {// å¦‚æœæ˜¯è‡ªå·±å‘é€çš„è¯­éŸ³æ¶ˆæ¯ï¼Œåˆ™æ’­æ”¾æœ¬åœ°åœ°å€
 			String localPath = message.getContent().split("&")[0];
 			startPlayRecord(localPath, true);
-		} else {// Èç¹ûÊÇÊÕµ½µÄÏûÏ¢£¬ÔòĞèÒªÏÈÏÂÔØºó²¥·Å
+		} else {// å¦‚æœæ˜¯æ”¶åˆ°çš„æ¶ˆæ¯ï¼Œåˆ™éœ€è¦å…ˆä¸‹è½½åæ’­æ”¾
 			String localPath = getDownLoadFilePath(message);
-			BmobLog.i("voice", "ÊÕµ½µÄÓïÒô´æ´¢µÄµØÖ·:" + localPath);
+			BmobLog.i("voice", "æ”¶åˆ°çš„è¯­éŸ³å­˜å‚¨çš„åœ°å€:" + localPath);
 			startPlayRecord(localPath, true);
 		}
 	}
@@ -234,7 +234,7 @@ public class NewRecordPlayClickListener implements View.OnClickListener {
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		// ÔÚµ±Ç°ÓÃ»§µÄÄ¿Â¼ÏÂÃæ´æ·ÅÂ¼ÒôÎÄ¼ş
+		// åœ¨å½“å‰ç”¨æˆ·çš„ç›®å½•ä¸‹é¢å­˜æ”¾å½•éŸ³æ–‡ä»¶
 		File audioFile = new File(dir.getAbsolutePath() + File.separator
 				+ msg.getMsgTime() + ".amr");
 		try {

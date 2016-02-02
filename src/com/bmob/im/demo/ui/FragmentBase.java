@@ -18,11 +18,11 @@ import com.bmob.im.demo.view.HeaderLayout.HeaderStyle;
 import com.bmob.im.demo.view.HeaderLayout.onLeftImageButtonClickListener;
 import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 
-/** Fragmenet »ùÀà
+/** Fragmenet åŸºç±»
   * @ClassName: FragmentBase
   * @Description: TODO
   * @author smile
-  * @date 2014-5-22 ÏÂÎç2:43:50
+  * @date 2014-5-22 ä¸‹åˆ2:43:50
   */
 public abstract class FragmentBase extends Fragment {
 	
@@ -30,7 +30,7 @@ public abstract class FragmentBase extends Fragment {
 	public BmobChatManager manager;
 	
 	/**
-	 * ¹«ÓÃµÄHeader²¼¾Ö
+	 * å…¬ç”¨çš„Headerå¸ƒå±€
 	 */
 	public HeaderLayout mHeaderLayout;
 
@@ -85,7 +85,7 @@ public abstract class FragmentBase extends Fragment {
 	}
 
 	
-	/** ´òLog
+	/** æ‰“Log
 	  * ShowLog
 	  * @return void
 	  * @throws
@@ -101,7 +101,7 @@ public abstract class FragmentBase extends Fragment {
 	public CustomApplcation mApplication;
 
 	/**
-	 * Ö»ÓĞtitle initTopBarLayoutByTitle
+	 * åªæœ‰title initTopBarLayoutByTitle
 	 * @Title: initTopBarLayoutByTitle
 	 * @throws
 	 */
@@ -112,7 +112,7 @@ public abstract class FragmentBase extends Fragment {
 	}
 
 	/**
-	 * ³õÊ¼»¯±êÌâÀ¸-´ø×óÓÒ°´Å¥
+	 * åˆå§‹åŒ–æ ‡é¢˜æ -å¸¦å·¦å³æŒ‰é’®
 	 * 
 	 * @return void
 	 * @throws
@@ -129,7 +129,7 @@ public abstract class FragmentBase extends Fragment {
 	}
 
 	/**
-	 * Ö»ÓĞ×ó±ß°´Å¥ºÍTitle initTopBarLayout
+	 * åªæœ‰å·¦è¾¹æŒ‰é’®å’ŒTitle initTopBarLayout
 	 * 
 	 * @throws
 	 */
@@ -141,7 +141,7 @@ public abstract class FragmentBase extends Fragment {
 				new OnLeftButtonClickListener());
 	}
 	
-	/** ÓÒ±ß+title
+	/** å³è¾¹+title
 	  * initTopBarForRight
 	  * @return void
 	  * @throws
@@ -154,7 +154,7 @@ public abstract class FragmentBase extends Fragment {
 				listener);
 	}
 	
-	// ×ó±ß°´Å¥µÄµã»÷ÊÂ¼ş
+	// å·¦è¾¹æŒ‰é’®çš„ç‚¹å‡»äº‹ä»¶
 	public class OnLeftButtonClickListener implements
 			onLeftImageButtonClickListener {
 
@@ -165,7 +165,7 @@ public abstract class FragmentBase extends Fragment {
 	}
 	
 	/**
-	 * ¶¯»­Æô¶¯Ò³Ãæ startAnimActivity
+	 * åŠ¨ç”»å¯åŠ¨é¡µé¢ startAnimActivity
 	 * @throws
 	 */
 	public void startAnimActivity(Intent intent) {

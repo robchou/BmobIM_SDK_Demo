@@ -13,11 +13,11 @@ import cn.bmob.im.util.BmobLog;
 import com.bmob.im.demo.R;
 
 /**
- * ²¥·ÅÂ¼ÒôÎÄ¼ş--ÆúÓÃ£¬»á³öÏÖ²¥·Å´íÎ»£¬ÔİÊ±»¹Î´½â¾ö.
+ * æ’­æ”¾å½•éŸ³æ–‡ä»¶--å¼ƒç”¨ï¼Œä¼šå‡ºç°æ’­æ”¾é”™ä½ï¼Œæš‚æ—¶è¿˜æœªè§£å†³.
  * @ClassName: RecordPlayClickListener
  * @Description: TODO
  * @author smile
- * @date 2014-7-2 ÏÂÎç4:19:35
+ * @date 2014-7-2 ä¸‹åˆ4:19:35
  */
 public class RecordPlayClickListener implements View.OnClickListener {
 
@@ -31,7 +31,7 @@ public class RecordPlayClickListener implements View.OnClickListener {
 
 	String currentObjectId = "";
 
-	static BmobMsg currentMsg = null;// ÓÃÓÚÇø·ÖÁ½¸ö²»Í¬ÓïÒôµÄ²¥·Å
+	static BmobMsg currentMsg = null;// ç”¨äºåŒºåˆ†ä¸¤ä¸ªä¸åŒè¯­éŸ³çš„æ’­æ”¾
 
 	public RecordPlayClickListener(Context context, BmobMsg msg, ImageView voice) {
 		this.iv_voice = voice;
@@ -59,7 +59,7 @@ public class RecordPlayClickListener implements View.OnClickListener {
 	}
 
 	/**
-	 * ¿ªÆô²¥·Å¶¯»­
+	 * å¼€å¯æ’­æ”¾åŠ¨ç”»
 	 * @Title: startRecordAnimation
 	 * @Description: TODO
 	 * @param
@@ -77,7 +77,7 @@ public class RecordPlayClickListener implements View.OnClickListener {
 	}
 
 	/**
-	 * Í£Ö¹²¥·Å¶¯»­
+	 * åœæ­¢æ’­æ”¾åŠ¨ç”»
 	 * 
 	 * @Title: stopRecordAnimation
 	 * @Description: TODO
@@ -101,16 +101,16 @@ public class RecordPlayClickListener implements View.OnClickListener {
 		if (playMananger.isPlaying()) {
 			playMananger.stopPlayback();
 			if (currentMsg != null
-					&& currentMsg.hashCode() == message.hashCode()) {// ÊÇ·ñÊÇÍ¬ÌõÓïÒôÏûÏ¢
+					&& currentMsg.hashCode() == message.hashCode()) {// æ˜¯å¦æ˜¯åŒæ¡è¯­éŸ³æ¶ˆæ¯
 				currentMsg = null;
 				return;
 			}
 		} else {
 			String localPath = message.getContent().split("&")[0];
-			BmobLog.i("voice", "±¾µØµØÖ·:" + localPath);
-			if (message.getBelongId().equals(currentObjectId)) {// Èç¹ûÊÇ×Ô¼º·¢ËÍµÄÓïÒôÏûÏ¢£¬Ôò²¥·Å±¾µØµØÖ·
+			BmobLog.i("voice", "æœ¬åœ°åœ°å€:" + localPath);
+			if (message.getBelongId().equals(currentObjectId)) {// å¦‚æœæ˜¯è‡ªå·±å‘é€çš„è¯­éŸ³æ¶ˆæ¯ï¼Œåˆ™æ’­æ”¾æœ¬åœ°åœ°å€
 				playMananger.playRecording(localPath, true);
-			} else {// Èç¹ûÊÇÊÕµ½µÄÏûÏ¢£¬ÔòĞèÒªÏÈÏÂÔØºó²¥·Å
+			} else {// å¦‚æœæ˜¯æ”¶åˆ°çš„æ¶ˆæ¯ï¼Œåˆ™éœ€è¦å…ˆä¸‹è½½åæ’­æ”¾
 
 			}
 		}

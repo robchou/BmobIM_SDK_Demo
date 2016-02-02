@@ -30,7 +30,7 @@ public class RegisterActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 
-		initTopBarForLeft("×¢²á");
+		initTopBarForLeft("æ³¨å†Œ");
 
 		et_username = (EditText) findViewById(R.id.et_username);
 		et_password = (EditText) findViewById(R.id.et_password);
@@ -73,15 +73,15 @@ public class RegisterActivity extends BaseActivity {
 		}
 		
 		final ProgressDialog progress = new ProgressDialog(RegisterActivity.this);
-		progress.setMessage("ÕıÔÚ×¢²á...");
+		progress.setMessage("æ­£åœ¨æ³¨å†Œ...");
 		progress.setCanceledOnTouchOutside(false);
 		progress.show();
-		//ÓÉÓÚÃ¿¸öÓ¦ÓÃµÄ×¢²áËùĞèµÄ×ÊÁÏ¶¼²»Ò»Ñù£¬¹ÊIM sdkÎ´Ìá¹©×¢²á·½·¨£¬ÓÃ»§¿É°´ÕÕbmod SDKµÄ×¢²á·½Ê½½øĞĞ×¢²á¡£
-		//×¢²áµÄÊ±ºòĞèÒª×¢ÒâÁ½µã£º1¡¢User±íÖĞ°ó¶¨Éè±¸idºÍtype£¬2¡¢Éè±¸±íÖĞ°ó¶¨username×Ö¶Î
+		//ç”±äºæ¯ä¸ªåº”ç”¨çš„æ³¨å†Œæ‰€éœ€çš„èµ„æ–™éƒ½ä¸ä¸€æ ·ï¼Œæ•…IM sdkæœªæä¾›æ³¨å†Œæ–¹æ³•ï¼Œç”¨æˆ·å¯æŒ‰ç…§bmod SDKçš„æ³¨å†Œæ–¹å¼è¿›è¡Œæ³¨å†Œã€‚
+		//æ³¨å†Œçš„æ—¶å€™éœ€è¦æ³¨æ„ä¸¤ç‚¹ï¼š1ã€Userè¡¨ä¸­ç»‘å®šè®¾å¤‡idå’Œtypeï¼Œ2ã€è®¾å¤‡è¡¨ä¸­ç»‘å®šusernameå­—æ®µ
 		final User bu = new User();
 		bu.setUsername(name);
 		bu.setPassword(password);
-		//½«userºÍÉè±¸id½øĞĞ°ó¶¨aa
+		//å°†userå’Œè®¾å¤‡idè¿›è¡Œç»‘å®šaa
 		bu.setSex(true);
 		bu.setDeviceType("android");
 		bu.setInstallId(BmobInstallation.getInstallationId(this));
@@ -91,14 +91,14 @@ public class RegisterActivity extends BaseActivity {
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				progress.dismiss();
-				ShowToast("×¢²á³É¹¦");
-				// ½«Éè±¸Óëusername½øĞĞ°ó¶¨
+				ShowToast("æ³¨å†ŒæˆåŠŸ");
+				// å°†è®¾å¤‡ä¸usernameè¿›è¡Œç»‘å®š
 				userManager.bindInstallationForRegister(bu.getUsername());
-				//¸üĞÂµØÀíÎ»ÖÃĞÅÏ¢
+				//æ›´æ–°åœ°ç†ä½ç½®ä¿¡æ¯
 				updateUserLocation();
-				//·¢¹ã²¥Í¨ÖªµÇÂ½Ò³ÃæÍË³ö
+				//å‘å¹¿æ’­é€šçŸ¥ç™»é™†é¡µé¢é€€å‡º
 				sendBroadcast(new Intent(BmobConstants.ACTION_REGISTER_SUCCESS_FINISH));
-				// Æô¶¯Ö÷Ò³
+				// å¯åŠ¨ä¸»é¡µ
 				Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
 				startActivity(intent);
 				finish();
@@ -109,7 +109,7 @@ public class RegisterActivity extends BaseActivity {
 			public void onFailure(int arg0, String arg1) {
 				// TODO Auto-generated method stub
 				BmobLog.i(arg1);
-				ShowToast("×¢²áÊ§°Ü:" + arg1);
+				ShowToast("æ³¨å†Œå¤±è´¥:" + arg1);
 				progress.dismiss();
 			}
 		});

@@ -14,20 +14,20 @@ import android.widget.TextView;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.util.PixelUtil;
 
-/** Í¨Ñ¶Â¼ÓÒ²à¿ìËÙ¹ö¶¯À¸
+/** é€šè®¯å½•å³ä¾§å¿«é€Ÿæ»šåŠ¨æ 
    * @ClassName: MyLetterView
   * @Description: TODO
   * @author smile
-  * @date 2014-6-7 ÏÂÎç1:20:33
+  * @date 2014-6-7 ä¸‹åˆ1:20:33
   */
 public class MyLetterView extends View {
-	// ´¥ÃşÊÂ¼ş
+	// è§¦æ‘¸äº‹ä»¶
 	private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
-	// 26¸ö×ÖÄ¸
+	// 26ä¸ªå­—æ¯
 	public static String[] b = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
 			"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
 			"W", "X", "Y", "Z", "#" };
-	private int choose = -1;// Ñ¡ÖĞ
+	private int choose = -1;// é€‰ä¸­
 	private Paint paint = new Paint();
 
 	private TextView mTextDialog;
@@ -49,30 +49,30 @@ public class MyLetterView extends View {
 	}
 
 	/**
-	 * ÖØĞ´Õâ¸ö·½·¨
+	 * é‡å†™è¿™ä¸ªæ–¹æ³•
 	 */
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		// »ñÈ¡½¹µã¸Ä±ä±³¾°ÑÕÉ«.
-		int height = getHeight();// »ñÈ¡¶ÔÓ¦¸ß¶È
-		int width = getWidth(); // »ñÈ¡¶ÔÓ¦¿í¶È
-		int singleHeight = height / b.length;// »ñÈ¡Ã¿Ò»¸ö×ÖÄ¸µÄ¸ß¶È
+		// è·å–ç„¦ç‚¹æ”¹å˜èƒŒæ™¯é¢œè‰².
+		int height = getHeight();// è·å–å¯¹åº”é«˜åº¦
+		int width = getWidth(); // è·å–å¯¹åº”å®½åº¦
+		int singleHeight = height / b.length;// è·å–æ¯ä¸€ä¸ªå­—æ¯çš„é«˜åº¦
 
 		for (int i = 0; i < b.length; i++) {
 			paint.setColor(getResources().getColor(R.color.color_bottom_text_normal));
 			paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
 			paint.setTextSize(PixelUtil.sp2px(12));
-			// Ñ¡ÖĞµÄ×´Ì¬
+			// é€‰ä¸­çš„çŠ¶æ€
 			if (i == choose) {
 				paint.setColor(Color.parseColor("#3399ff"));
 				paint.setFakeBoldText(true);
 			}
-			// x×ø±êµÈÓÚÖĞ¼ä-×Ö·û´®¿í¶ÈµÄÒ»°ë.
+			// xåæ ‡ç­‰äºä¸­é—´-å­—ç¬¦ä¸²å®½åº¦çš„ä¸€åŠ.
 			float xPos = width / 2 - paint.measureText(b[i]) / 2;
 			float yPos = singleHeight * i + singleHeight;
 			canvas.drawText(b[i], xPos, yPos, paint);
-			paint.reset();// ÖØÖÃ»­±Ê
+			paint.reset();// é‡ç½®ç”»ç¬”
 		}
 
 	}
@@ -81,10 +81,10 @@ public class MyLetterView extends View {
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent event) {
 		final int action = event.getAction();
-		final float y = event.getY();// µã»÷y×ø±ê
+		final float y = event.getY();// ç‚¹å‡»yåæ ‡
 		final int oldChoose = choose;
 		final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
-		final int c = (int) (y / getHeight() * b.length);// µã»÷y×ø±êËùÕ¼×Ü¸ß¶ÈµÄ±ÈÀı*bÊı×éµÄ³¤¶È¾ÍµÈÓÚµã»÷bÖĞµÄ¸öÊı.
+		final int c = (int) (y / getHeight() * b.length);// ç‚¹å‡»yåæ ‡æ‰€å æ€»é«˜åº¦çš„æ¯”ä¾‹*bæ•°ç»„çš„é•¿åº¦å°±ç­‰äºç‚¹å‡»bä¸­çš„ä¸ªæ•°.
 
 		switch (action) {
 		case MotionEvent.ACTION_UP:
@@ -97,7 +97,7 @@ public class MyLetterView extends View {
 			break;
 
 		default:
-			//ÉèÖÃÓÒ²à×ÖÄ¸ÁĞ±í[A,B,C,D,E....]µÄ±³¾°ÑÕÉ«
+			//è®¾ç½®å³ä¾§å­—æ¯åˆ—è¡¨[A,B,C,D,E....]çš„èƒŒæ™¯é¢œè‰²
 			setBackgroundResource(R.drawable.v2_sortlistview_sidebar_background);
 			if (oldChoose != c) {
 				if (c >= 0 && c < b.length) {
@@ -120,7 +120,7 @@ public class MyLetterView extends View {
 	}
 
 	/**
-	 * ÏòÍâ¹«¿ªµÄ·½·¨
+	 * å‘å¤–å…¬å¼€çš„æ–¹æ³•
 	 * 
 	 * @param onTouchingLetterChangedListener
 	 */
@@ -130,7 +130,7 @@ public class MyLetterView extends View {
 	}
 
 	/**
-	 * ½Ó¿Ú
+	 * æ¥å£
 	 * 
 	 * @author coder
 	 * 

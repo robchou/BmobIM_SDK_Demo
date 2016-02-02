@@ -21,11 +21,11 @@ import com.bmob.im.demo.adapter.base.ViewHolder;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-/**²éÕÒºÃÓÑ
+/**æŸ¥æ‰¾å¥½å‹
   * @ClassName: AddFriendAdapter
   * @Description: TODO
   * @author smile
-  * @date 2014-6-25 ÉÏÎç10:56:33
+  * @date 2014-6-25 ä¸Šåˆ10:56:33
   */
 public class AddFriendAdapter extends BaseListAdapter<BmobChatUser> {
 
@@ -55,32 +55,32 @@ public class AddFriendAdapter extends BaseListAdapter<BmobChatUser> {
 		}
 
 		name.setText(contract.getUsername());
-		btn_add.setText("Ìí¼Ó");
+		btn_add.setText("æ·»åŠ ");
 		btn_add.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				final ProgressDialog progress = new ProgressDialog(mContext);
-				progress.setMessage("ÕıÔÚÌí¼Ó...");
+				progress.setMessage("æ­£åœ¨æ·»åŠ ...");
 				progress.setCanceledOnTouchOutside(false);
 				progress.show();
-				//·¢ËÍtagÇëÇó
+				//å‘é€tagè¯·æ±‚
 				BmobChatManager.getInstance(mContext).sendTagMessage(BmobConfig.TAG_ADD_CONTACT, contract.getObjectId(),new PushListener() {
 					
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
 						progress.dismiss();
-						ShowToast("·¢ËÍÇëÇó³É¹¦£¬µÈ´ı¶Ô·½ÑéÖ¤!");
+						ShowToast("å‘é€è¯·æ±‚æˆåŠŸï¼Œç­‰å¾…å¯¹æ–¹éªŒè¯!");
 					}
 					
 					@Override
 					public void onFailure(int arg0, final String arg1) {
 						// TODO Auto-generated method stub
 						progress.dismiss();
-						ShowToast("·¢ËÍÇëÇóÊ§°Ü£¬ÇëÖØĞÂÌí¼Ó!");
-						ShowLog("·¢ËÍÇëÇóÊ§°Ü:"+arg1);
+						ShowToast("å‘é€è¯·æ±‚å¤±è´¥ï¼Œè¯·é‡æ–°æ·»åŠ !");
+						ShowLog("å‘é€è¯·æ±‚å¤±è´¥:"+arg1);
 					}
 				});
 			}

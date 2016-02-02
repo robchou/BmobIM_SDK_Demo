@@ -21,12 +21,12 @@ import com.bmob.im.demo.view.xlist.XListView;
 import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
 
 /**
- * ¸½½üµÄÈËÁĞ±í
+ * é™„è¿‘çš„äººåˆ—è¡¨
  * 
  * @ClassName: NewFriendActivity
  * @Description: TODO
  * @author smile
- * @date 2014-6-6 ÏÂÎç4:28:09
+ * @date 2014-6-6 ä¸‹åˆ4:28:09
  */
 public class NearPeopleActivity extends ActivityBase implements IXListViewListener,OnItemClickListener {
 
@@ -36,7 +36,7 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 
 	List<User> nears = new ArrayList<User>();
 
-	private double QUERY_KILOMETERS = 10;//Ä¬ÈÏ²éÑ¯10¹«Àï·¶Î§ÄÚµÄÈË
+	private double QUERY_KILOMETERS = 10;//é»˜è®¤æŸ¥è¯¢10å…¬é‡ŒèŒƒå›´å†…çš„äºº
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -46,18 +46,18 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 	}
 
 	private void initView() {
-		initTopBarForLeft("¸½½üµÄÈË");
+		initTopBarForLeft("é™„è¿‘çš„äºº");
 		initXListView();
 	}
 
 	private void initXListView() {
 		mListView = (XListView) findViewById(R.id.list_near);
 		mListView.setOnItemClickListener(this);
-		// Ê×ÏÈ²»ÔÊĞí¼ÓÔØ¸ü¶à
+		// é¦–å…ˆä¸å…è®¸åŠ è½½æ›´å¤š
 		mListView.setPullLoadEnable(false);
-		// ÔÊĞíÏÂÀ­
+		// å…è®¸ä¸‹æ‹‰
 		mListView.setPullRefreshEnable(true);
-		// ÉèÖÃ¼àÌıÆ÷
+		// è®¾ç½®ç›‘å¬å™¨
 		mListView.setXListViewListener(this);
 		//
 		mListView.pullRefreshing();
@@ -73,7 +73,7 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 	private void initNearByList(final boolean isUpdate){
 		if(!isUpdate){
 			progress = new ProgressDialog(NearPeopleActivity.this);
-			progress.setMessage("ÕıÔÚ²éÑ¯¸½½üµÄÈË...");
+			progress.setMessage("æ­£åœ¨æŸ¥è¯¢é™„è¿‘çš„äºº...");
 			progress.setCanceledOnTouchOutside(true);
 			progress.show();
 		}
@@ -81,12 +81,12 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 		if(!mApplication.getLatitude().equals("")&&!mApplication.getLongtitude().equals("")){
 			double latitude = Double.parseDouble(mApplication.getLatitude());
 			double longtitude = Double.parseDouble(mApplication.getLongtitude());
-			//·â×°µÄ²éÑ¯·½·¨£¬µ±½øÈë´ËÒ³ÃæÊ± isUpdateÎªfalse£¬µ±ÏÂÀ­Ë¢ĞÂµÄÊ±ºòÉèÖÃÎªtrue¾ÍĞĞ¡£
-			//´Ë·½·¨Ä¬ÈÏÃ¿Ò³²éÑ¯10ÌõÊı¾İ,ÈôÏë²éÑ¯¶àÓÚ10Ìõ£¬¿ÉÔÚ²éÑ¯Ö®Ç°ÉèÖÃBRequest.QUERY_LIMIT_COUNT£¬Èç£ºBRequest.QUERY_LIMIT_COUNT=20
-			// ´Ë·½·¨ÊÇĞÂÔöµÄ²éÑ¯Ö¸¶¨10¹«ÀïÄÚµÄĞÔ±ğÎªÅ®ĞÔµÄÓÃ»§ÁĞ±í£¬Ä¬ÈÏ°üº¬ºÃÓÑÁĞ±í
-			//Èç¹ûÄã²»Ïë²éÑ¯ĞÔ±ğÎªÅ®µÄÓÃ»§£¬¿ÉÒÔ½«equalPropertyÉèÎªnull»òÕßequalObjÉèÎªnull¼´¿É
+			//å°è£…çš„æŸ¥è¯¢æ–¹æ³•ï¼Œå½“è¿›å…¥æ­¤é¡µé¢æ—¶ isUpdateä¸ºfalseï¼Œå½“ä¸‹æ‹‰åˆ·æ–°çš„æ—¶å€™è®¾ç½®ä¸ºtrueå°±è¡Œã€‚
+			//æ­¤æ–¹æ³•é»˜è®¤æ¯é¡µæŸ¥è¯¢10æ¡æ•°æ®,è‹¥æƒ³æŸ¥è¯¢å¤šäº10æ¡ï¼Œå¯åœ¨æŸ¥è¯¢ä¹‹å‰è®¾ç½®BRequest.QUERY_LIMIT_COUNTï¼Œå¦‚ï¼šBRequest.QUERY_LIMIT_COUNT=20
+			// æ­¤æ–¹æ³•æ˜¯æ–°å¢çš„æŸ¥è¯¢æŒ‡å®š10å…¬é‡Œå†…çš„æ€§åˆ«ä¸ºå¥³æ€§çš„ç”¨æˆ·åˆ—è¡¨ï¼Œé»˜è®¤åŒ…å«å¥½å‹åˆ—è¡¨
+			//å¦‚æœä½ ä¸æƒ³æŸ¥è¯¢æ€§åˆ«ä¸ºå¥³çš„ç”¨æˆ·ï¼Œå¯ä»¥å°†equalPropertyè®¾ä¸ºnullæˆ–è€…equalObjè®¾ä¸ºnullå³å¯
 			userManager.queryKiloMetersListByPage(isUpdate,0,"location", longtitude, latitude, true,QUERY_KILOMETERS,"sex",false,new FindListener<User>() {
-			//´Ë·½·¨Ä¬ÈÏ²éÑ¯ËùÓĞ´øµØÀíÎ»ÖÃĞÅÏ¢µÄÇÒĞÔ±ğÎªÅ®µÄÓÃ»§ÁĞ±í£¬Èç¹ûÄã²»Ïë°üº¬ºÃÓÑÁĞ±íµÄ»°£¬½«²éÑ¯Ìõ¼şÖĞµÄisShowFriendsÉèÖÃÎªfalse¾ÍĞĞ
+			//æ­¤æ–¹æ³•é»˜è®¤æŸ¥è¯¢æ‰€æœ‰å¸¦åœ°ç†ä½ç½®ä¿¡æ¯çš„ä¸”æ€§åˆ«ä¸ºå¥³çš„ç”¨æˆ·åˆ—è¡¨ï¼Œå¦‚æœä½ ä¸æƒ³åŒ…å«å¥½å‹åˆ—è¡¨çš„è¯ï¼Œå°†æŸ¥è¯¢æ¡ä»¶ä¸­çš„isShowFriendsè®¾ç½®ä¸ºfalseå°±è¡Œ
 //			userManager.queryNearByListByPage(isUpdate,0,"location", longtitude, latitude, true,"sex",false,new FindListener<User>() {
 
 				@Override
@@ -99,12 +99,12 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 						adapter.addAll(arg0);
 						if(arg0.size()<BRequest.QUERY_LIMIT_COUNT){
 							mListView.setPullLoadEnable(false);
-							ShowToast("¸½½üµÄÈËËÑË÷Íê³É!");
+							ShowToast("é™„è¿‘çš„äººæœç´¢å®Œæˆ!");
 						}else{
 							mListView.setPullLoadEnable(true);
 						}
 					}else{
-						ShowToast("ÔİÎŞ¸½½üµÄÈË!");
+						ShowToast("æš‚æ— é™„è¿‘çš„äºº!");
 					}
 					
 					if(!isUpdate){
@@ -117,7 +117,7 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 				@Override
 				public void onError(int arg0, String arg1) {
 					// TODO Auto-generated method stub
-					ShowToast("ÔİÎŞ¸½½üµÄÈË!");
+					ShowToast("æš‚æ— é™„è¿‘çš„äºº!");
 					mListView.setPullLoadEnable(false);
 					if(!isUpdate){
 						progress.dismiss();
@@ -128,14 +128,14 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 
 			});
 		}else{
-			ShowToast("ÔİÎŞ¸½½üµÄÈË!");
+			ShowToast("æš‚æ— é™„è¿‘çš„äºº!");
 			progress.dismiss();
 			refreshPull();
 		}
 		
 	}
 	
-	/** ²éÑ¯¸ü¶à
+	/** æŸ¥è¯¢æ›´å¤š
 	  * @Title: queryMoreNearList
 	  * @Description: TODO
 	  * @param @param page 
@@ -145,9 +145,9 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 	private void queryMoreNearList(int page){
 		double latitude = Double.parseDouble(mApplication.getLatitude());
 		double longtitude = Double.parseDouble(mApplication.getLongtitude());
-		//²éÑ¯10¹«Àï·¶Î§ÄÚµÄĞÔ±ğÎªÅ®µÄÓÃ»§ÁĞ±í
+		//æŸ¥è¯¢10å…¬é‡ŒèŒƒå›´å†…çš„æ€§åˆ«ä¸ºå¥³çš„ç”¨æˆ·åˆ—è¡¨
 		userManager.queryKiloMetersListByPage(true,page,"location", longtitude, latitude, true,QUERY_KILOMETERS,"sex",false,new FindListener<User>() {
-		//²éÑ¯È«²¿µØÀíÎ»ÖÃĞÅÏ¢ÇÒĞÔ±ğÎªÅ®ĞÔµÄÓÃ»§ÁĞ±í
+		//æŸ¥è¯¢å…¨éƒ¨åœ°ç†ä½ç½®ä¿¡æ¯ä¸”æ€§åˆ«ä¸ºå¥³æ€§çš„ç”¨æˆ·åˆ—è¡¨
 //		userManager.queryNearByListByPage(true,page, "location", longtitude, latitude, true,"sex",false,new FindListener<User>() {
 
 			@Override
@@ -162,7 +162,7 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 			@Override
 			public void onError(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				ShowLog("²éÑ¯¸ü¶à¸½½üµÄÈË³ö´í:"+arg1);
+				ShowLog("æŸ¥è¯¢æ›´å¤šé™„è¿‘çš„äººå‡ºé”™:"+arg1);
 				mListView.setPullLoadEnable(false);
 				refreshLoad();
 			}
@@ -202,9 +202,9 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 		// TODO Auto-generated method stub
 		double latitude = Double.parseDouble(mApplication.getLatitude());
 		double longtitude = Double.parseDouble(mApplication.getLongtitude());
-		//ÕâÊÇ²éÑ¯10¹«Àï·¶Î§ÄÚµÄĞÔ±ğÎªÅ®ÓÃ»§×ÜÊı
+		//è¿™æ˜¯æŸ¥è¯¢10å…¬é‡ŒèŒƒå›´å†…çš„æ€§åˆ«ä¸ºå¥³ç”¨æˆ·æ€»æ•°
 		userManager.queryKiloMetersTotalCount(User.class, "location", longtitude, latitude, true,QUERY_KILOMETERS,"sex",false,new CountListener() {
-	    //ÕâÊÇ²éÑ¯¸½½üµÄÈËÇÒĞÔ±ğÎªÅ®ĞÔµÄÓÃ»§×ÜÊı
+	    //è¿™æ˜¯æŸ¥è¯¢é™„è¿‘çš„äººä¸”æ€§åˆ«ä¸ºå¥³æ€§çš„ç”¨æˆ·æ€»æ•°
 //		userManager.queryNearTotalCount(User.class, "location", longtitude, latitude, true,"sex",false,new CountListener() {
 			
 			@Override
@@ -214,7 +214,7 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 					curPage++;
 					queryMoreNearList(curPage);
 				}else{
-					ShowToast("Êı¾İ¼ÓÔØÍê³É");
+					ShowToast("æ•°æ®åŠ è½½å®Œæˆ");
 					mListView.setPullLoadEnable(false);
 					refreshLoad();
 				}
@@ -223,7 +223,7 @@ public class NearPeopleActivity extends ActivityBase implements IXListViewListen
 			@Override
 			public void onFailure(int arg0, String arg1) {
 				// TODO Auto-generated method stub
-				ShowLog("²éÑ¯¸½½üµÄÈË×ÜÊıÊ§°Ü"+arg1);
+				ShowLog("æŸ¥è¯¢é™„è¿‘çš„äººæ€»æ•°å¤±è´¥"+arg1);
 				refreshLoad();
 			}
 		});

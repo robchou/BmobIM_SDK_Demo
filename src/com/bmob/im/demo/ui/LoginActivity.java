@@ -26,7 +26,7 @@ import com.bmob.im.demo.view.dialog.DialogTips;
  * @ClassName: LoginActivity
  * @Description: TODO
  * @author smile
- * @date 2014-6-3 ÏÂÎç4:41:42
+ * @date 2014-6-3 ä¸‹åˆ4:41:42
  */
 public class LoginActivity extends BaseActivity implements OnClickListener {
 
@@ -42,7 +42,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		init();
-		//×¢²áÍË³ö¹ã²¥
+		//æ³¨å†Œé€€å‡ºå¹¿æ’­
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(BmobConstants.ACTION_REGISTER_SUCCESS_FINISH);
 		registerReceiver(receiver, filter);
@@ -50,14 +50,14 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	}
 
 	public void showNotice() {
-		DialogTips dialog = new DialogTips(this,"ÌáÊ¾",getResources().getString(R.string.show_notice), "È·¶¨",true,true);
-		// ÉèÖÃ³É¹¦ÊÂ¼ş
+		DialogTips dialog = new DialogTips(this,"æç¤º",getResources().getString(R.string.show_notice), "ç¡®å®š",true,true);
+		// è®¾ç½®æˆåŠŸäº‹ä»¶
 		dialog.SetOnSuccessListener(new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialogInterface, int userId) {
 				
 			}
 		});
-		// ÏÔÊ¾È·ÈÏ¶Ô»°¿ò
+		// æ˜¾ç¤ºç¡®è®¤å¯¹è¯æ¡†
 		dialog.show();
 		dialog = null;
 	}
@@ -114,7 +114,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 		final ProgressDialog progress = new ProgressDialog(
 				LoginActivity.this);
-		progress.setMessage("ÕıÔÚµÇÂ½...");
+		progress.setMessage("æ­£åœ¨ç™»é™†...");
 		progress.setCanceledOnTouchOutside(false);
 		progress.show();
 		User user = new User();
@@ -130,10 +130,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						progress.setMessage("ÕıÔÚ»ñÈ¡ºÃÓÑÁĞ±í...");
+						progress.setMessage("æ­£åœ¨è·å–å¥½å‹åˆ—è¡¨...");
 					}
 				});
-				//¸üĞÂÓÃ»§µÄµØÀíÎ»ÖÃÒÔ¼°ºÃÓÑµÄ×ÊÁÏ
+				//æ›´æ–°ç”¨æˆ·çš„åœ°ç†ä½ç½®ä»¥åŠå¥½å‹çš„èµ„æ–™
 				updateUserInfos();
 				progress.dismiss();
 				Intent intent = new Intent(LoginActivity.this,MainActivity.class);
