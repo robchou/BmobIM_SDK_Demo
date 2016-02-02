@@ -27,3 +27,11 @@ proguard/
 
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# IDEA
+*.iml
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/captures
