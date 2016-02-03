@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="android-support-v4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/baidumapapi_v3_0_0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/Bmob_Push_V0.6beta_20150408.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/bmobim_sdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/BmobSDK_V3.4.5_1111.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/locSDK_4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/photoview-library-1.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2_sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/universal-image-loader-1.9.2_sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
