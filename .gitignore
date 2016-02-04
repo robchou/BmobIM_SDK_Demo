@@ -32,5 +32,4 @@ proguard/
 captures/
 
 # IDEA files
-.idea/workspace.xml
 .idea/misc.xml
